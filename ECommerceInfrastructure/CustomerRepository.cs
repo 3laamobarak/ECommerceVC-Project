@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ECommerceInfrastructure
 {
-    public class CustomerRepositpory : GenericRepositpory<Customer>
+    public class CustomerRepository : GenericRepository<Customer>
     {
         //  private MyProjectContext projectContext;
-        public CustomerRepositpory(MyProjectContext context) : base(context)
+        public CustomerRepository(MyProjectContext context) : base(context)
         {
             //    projectContext = context;
         }
