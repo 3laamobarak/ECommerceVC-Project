@@ -1,0 +1,11 @@
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\bin\Debug\net9.0\ECommerceModels.deps.json
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\bin\Debug\net9.0\ECommerceModels.dll
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\bin\Debug\net9.0\ECommerceModels.pdb
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECommerceModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECommerceModels.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECommerceModels.AssemblyInfo.cs
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECommerceModels.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECommerceModels.dll
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\refint\ECommerceModels.dll
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECommerceModels.pdb
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ref\ECommerceModels.dll

@@ -1,0 +1,16 @@
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\ECommercePresentation.exe
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\ECommercePresentation.deps.json
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\ECommercePresentation.runtimeconfig.json
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\ECommercePresentation.dll
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\ECommercePresentation.pdb
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.Form1.resources
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.csproj.GenerateResource.cache
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.AssemblyInfo.cs
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.dll
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\refint\ECommercePresentation.dll
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.pdb
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.genruntimeconfig.cache
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ref\ECommercePresentation.dll
