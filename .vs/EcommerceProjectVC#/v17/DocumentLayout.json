@@ -1,58 +1,62 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\",
+  "WorkspaceRootPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercepresentation\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|solutionrelative:ecommercepresentation\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceinfrastructure\\ecommerceinfrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|solutionrelative:ecommerceinfrastructure\\ecommerceinfrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceapplication\\services\\customerservices\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\services\\customerservices\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceapplication\\services\\customerservices\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\services\\customerservices\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceapplication\\mapping\\mapsterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\mapping\\mapsterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceapplication\\contracts\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\contracts\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceapplication\\contracts\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\contracts\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CECCDFBC-A7FF-4BAE-8F7F-38CB1B0298E1}|ECommerceContext\\ECommerceContext.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercecontext\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CECCDFBC-A7FF-4BAE-8F7F-38CB1B0298E1}|ECommerceContext\\ECommerceContext.csproj|solutionrelative:ecommercecontext\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{74B6D170-32F1-47ED-9893-15E38259E8BD}|ECommerceDTOs\\ECommerceDTOs.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercedtos\\customerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{74B6D170-32F1-47ED-9893-15E38259E8BD}|ECommerceDTOs\\ECommerceDTOs.csproj|solutionrelative:ecommercedtos\\customerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceinfrastructure\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|solutionrelative:ecommerceinfrastructure\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceinfrastructure\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceinfrastructure\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|solutionrelative:ecommerceinfrastructure\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48DB0911-4607-4496-A91C-73D60255C3C2}|EcommerceData\\ECommerceModels.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercedata\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{48DB0911-4607-4496-A91C-73D60255C3C2}|EcommerceData\\ECommerceModels.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommercedata\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48DB0911-4607-4496-A91C-73D60255C3C2}|EcommerceData\\ECommerceModels.csproj|solutionrelative:ecommercedata\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48DB0911-4607-4496-A91C-73D60255C3C2}|EcommerceData\\ECommerceModels.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommercedata\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{48DB0911-4607-4496-A91C-73D60255C3C2}|EcommerceData\\ECommerceModels.csproj|solutionrelative:ecommercedata\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48DB0911-4607-4496-A91C-73D60255C3C2}|EcommerceData\\ECommerceModels.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercedata\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{48DB0911-4607-4496-A91C-73D60255C3C2}|EcommerceData\\ECommerceModels.csproj|solutionrelative:ecommercedata\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceinfrastructure\\productrepository||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|solutionrelative:ecommerceinfrastructure\\productrepository||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceinfrastructure\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|solutionrelative:ecommerceinfrastructure\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CECCDFBC-A7FF-4BAE-8F7F-38CB1B0298E1}|ECommerceContext\\ECommerceContext.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommercecontext\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CECCDFBC-A7FF-4BAE-8F7F-38CB1B0298E1}|ECommerceContext\\ECommerceContext.csproj|solutionrelative:ecommercecontext\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommercepresentation\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|solutionrelative:ecommercepresentation\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceinfrastructure\\ecommerceinfrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2EA7D630-D2A9-4E3B-ABC1-0B04F9AADD63}|ECommerceInfrastructure\\ECommerceInfrastructure.csproj|solutionrelative:ecommerceinfrastructure\\ecommerceinfrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceapplication\\services\\customerservices\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\services\\customerservices\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceapplication\\services\\customerservices\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\services\\customerservices\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceapplication\\mapping\\mapsterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\mapping\\mapsterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceapplication\\contracts\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\contracts\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommerceapplication\\contracts\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\contracts\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74B6D170-32F1-47ED-9893-15E38259E8BD}|ECommerceDTOs\\ECommerceDTOs.csproj|c:\\users\\elmanahry\\onedrive\\desktop\\ecommercevc-project\\ecommercedtos\\customerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74B6D170-32F1-47ED-9893-15E38259E8BD}|ECommerceDTOs\\ECommerceDTOs.csproj|solutionrelative:ecommercedtos\\customerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,23 +66,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 382,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 11,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductRepository",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceInfrastructure\\ProductRepository",
+              "RelativeDocumentMoniker": "ECommerceInfrastructure\\ProductRepository",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceInfrastructure\\ProductRepository",
+              "RelativeToolTip": "ECommerceInfrastructure\\ProductRepository",
+              "ViewState": "AgIAAAEAAAAAMzMzMzMjwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-02T16:40:46.765Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommercePresentation\\Form1.cs",
               "RelativeDocumentMoniker": "ECommercePresentation\\Form1.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommercePresentation\\Form1.cs [Design]",
               "RelativeToolTip": "ECommercePresentation\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T13:54:47.988Z",
@@ -86,11 +95,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "CustomerService.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Services\\CustomerServices\\CustomerService.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Services\\CustomerServices\\CustomerService.cs",
               "RelativeDocumentMoniker": "ECommerceApplication\\Services\\CustomerServices\\CustomerService.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Services\\CustomerServices\\CustomerService.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Services\\CustomerServices\\CustomerService.cs",
               "RelativeToolTip": "ECommerceApplication\\Services\\CustomerServices\\CustomerService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -98,11 +107,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "MapsterConfig.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Mapping\\MapsterConfig.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Mapping\\MapsterConfig.cs",
               "RelativeDocumentMoniker": "ECommerceApplication\\Mapping\\MapsterConfig.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Mapping\\MapsterConfig.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Mapping\\MapsterConfig.cs",
               "RelativeToolTip": "ECommerceApplication\\Mapping\\MapsterConfig.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -110,11 +119,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "IGenericRepository.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Contracts\\IGenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Contracts\\IGenericRepository.cs",
               "RelativeDocumentMoniker": "ECommerceApplication\\Contracts\\IGenericRepository.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Contracts\\IGenericRepository.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Contracts\\IGenericRepository.cs",
               "RelativeToolTip": "ECommerceApplication\\Contracts\\IGenericRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -122,24 +131,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "ECommerceInfrastructure.csproj",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj",
               "RelativeDocumentMoniker": "ECommerceInfrastructure\\ECommerceInfrastructure.csproj",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj",
               "RelativeToolTip": "ECommerceInfrastructure\\ECommerceInfrastructure.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-02T13:35:34.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T13:35:34.323Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "ICustomerService.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Services\\CustomerServices\\ICustomerService.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Services\\CustomerServices\\ICustomerService.cs",
               "RelativeDocumentMoniker": "ECommerceApplication\\Services\\CustomerServices\\ICustomerService.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Services\\CustomerServices\\ICustomerService.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Services\\CustomerServices\\ICustomerService.cs",
               "RelativeToolTip": "ECommerceApplication\\Services\\CustomerServices\\ICustomerService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -147,11 +155,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "ICustomerRepository.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Contracts\\ICustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Contracts\\ICustomerRepository.cs",
               "RelativeDocumentMoniker": "ECommerceApplication\\Contracts\\ICustomerRepository.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Contracts\\ICustomerRepository.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceApplication\\Contracts\\ICustomerRepository.cs",
               "RelativeToolTip": "ECommerceApplication\\Contracts\\ICustomerRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -159,23 +167,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "CustomerRepository.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\CustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceInfrastructure\\CustomerRepository.cs",
               "RelativeDocumentMoniker": "ECommerceInfrastructure\\CustomerRepository.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\CustomerRepository.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceInfrastructure\\CustomerRepository.cs",
               "RelativeToolTip": "ECommerceInfrastructure\\CustomerRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAABdPQ8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T13:40:39.706Z"
+              "WhenOpened": "2025-05-02T13:40:39.706Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "CustomerDTO.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceDTOs\\CustomerDTO.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceDTOs\\CustomerDTO.cs",
               "RelativeDocumentMoniker": "ECommerceDTOs\\CustomerDTO.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceDTOs\\CustomerDTO.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceDTOs\\CustomerDTO.cs",
               "RelativeToolTip": "ECommerceDTOs\\CustomerDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -183,51 +192,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "AppDBContext.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceContext\\AppDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceContext\\AppDBContext.cs",
               "RelativeDocumentMoniker": "ECommerceContext\\AppDBContext.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceContext\\AppDBContext.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceContext\\AppDBContext.cs",
               "RelativeToolTip": "ECommerceContext\\AppDBContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAB4MjMzMzMlwAoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T13:23:56.023Z"
+              "WhenOpened": "2025-05-02T13:23:56.023Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "GenericRepository.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceInfrastructure\\GenericRepository.cs",
               "RelativeDocumentMoniker": "ECommerceInfrastructure\\GenericRepository.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceInfrastructure\\GenericRepository.cs",
               "RelativeToolTip": "ECommerceInfrastructure\\GenericRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAALzMzMzMtwCYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T13:29:20.004Z"
+              "WhenOpened": "2025-05-02T13:29:20.004Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 2,
               "Title": "Product.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\Product.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\EcommerceData\\Product.cs",
               "RelativeDocumentMoniker": "EcommerceData\\Product.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\Product.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\EcommerceData\\Product.cs",
               "RelativeToolTip": "EcommerceData\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAACAlZmZmZkJwAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T13:21:27.512Z"
+              "WhenOpened": "2025-05-02T13:21:27.512Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 1,
               "Title": "Customer.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\Customer.cs",
+              "DocumentMoniker": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\EcommerceData\\Customer.cs",
               "RelativeDocumentMoniker": "EcommerceData\\Customer.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\Customer.cs",
+              "ToolTip": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\EcommerceData\\Customer.cs",
               "RelativeToolTip": "EcommerceData\\Customer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T13:19:52.276Z"
+              "WhenOpened": "2025-05-02T13:19:52.276Z",
+              "EditorCaption": ""
             }
           ]
         }

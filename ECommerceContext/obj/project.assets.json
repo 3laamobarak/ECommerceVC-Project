@@ -4728,23 +4728,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {},
+    "C:\\Users\\elmanahry\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceContext\\ECommerceContext.csproj",
+      "projectUniqueName": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceContext\\ECommerceContext.csproj",
       "projectName": "ECommerceContext",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceContext\\ECommerceContext.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceContext\\obj\\",
+      "projectPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceContext\\ECommerceContext.csproj",
+      "packagesPath": "C:\\Users\\elmanahry\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\ECommerceContext\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\elmanahry\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4753,15 +4753,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\ECommerceModels.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\ECommerceModels.csproj"
+            "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\EcommerceData\\ECommerceModels.csproj": {
+              "projectPath": "C:\\Users\\elmanahry\\OneDrive\\Desktop\\ECommerceVC-Project\\EcommerceData\\ECommerceModels.csproj"
             }
           }
         }
@@ -4819,7 +4818,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
