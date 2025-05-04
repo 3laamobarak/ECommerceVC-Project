@@ -5,38 +5,56 @@ namespace ECommerceInfrastructure
 {
     public class GenericRepository<T> where T : class
     {
-        private readonly AppDBContext _appDbContext;
+        private readonly AppDBContext _context;
         private readonly DbSet<T> _dbSet;
         public GenericRepository(AppDBContext AppDbContext)
         {
-            _appDbContext = AppDbContext;
-            _dbSet = _appDbContext.Set<T>();
+            _context = AppDbContext;
+            _dbSet = _context.Set<T>();
         }
-        public IQueryable<T> GetAll()
+        public async Task<IQueryable<T>> GetAll()
         {
-            return _dbSet.AsNoTracking();
+            return await Task.FromResult(_dbSet.AsNoTracking());
         }
-        public async Task<T> CreateAsync(T entity)
+        public async Task<T?> CreateAsync(T entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
             var result = (await _dbSet.AddAsync(entity)).Entity;
-            await _appDbContext.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return result;
         }
-        public async Task<T> UpdateAsync(T entity)
+        public async Task<T?> UpdateAsync(T entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
             var result = _dbSet.Update(entity).Entity;
-            await _appDbContext.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return result;
         }
-        public async Task<T> RemoveAsync(T entity)
+        public async Task<T?> RemoveAsync(T entity)
         {
-            var result = _dbSet.Remove(entity).Entity;
-            await _appDbContext.SaveChangesAsync();
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+            var existingEntity = await _dbSet.FindAsync(entity);
+            if (existingEntity == null)
+            {
+                throw new ArgumentException("Entity not found in the database.");
+            }
+            var result = _dbSet.Remove(existingEntity).Entity;
+            await _context.SaveChangesAsync();
             return result;
         }
         public async Task<T?> GetByIdAsync(int Id)
         {
-            return await _dbSet.FindAsync(Id);
+            var entity = await _dbSet.FindAsync(Id);
+            return entity ?? throw new ArgumentException("Entity not found in the database.");
         }
     }
 }

@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECommerceContext;
 
 namespace ECommerceInfrastructure
 {
-    public class CustomerRepositpory : GenericRepositpory<Customer>
+    public class CustomerRepositpory : GenericRepository<Customer>
     {
-        //  private MyProjectContext projectContext;
-        public CustomerRepositpory(MyProjectContext context) : base(context)
+        private AppDBContext _context;
+        public CustomerRepositpory(AppDBContext context) : base(context)
         {
-            //    projectContext = context;
+            _context = context;
         }
     }
-
 }
