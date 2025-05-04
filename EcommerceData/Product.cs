@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECommerceModels.Enums;
 
 namespace EcommercModels
 {
     public class Product
     {
-        public int Id { get; set; }
+        [Key]
+        public int ProductID { get; set; }
+        [Required, MaxLength(100)]
         public string Name { get; set; }
         public string Description { get; set; }
+        [Required]
         public decimal Price { get; set; }
-        public int Stock { get; set; }
-        public string Category { get; set; }
-        [ForeignKey("Owner")]
-        public int OwnerId { get; set; }
-        public Customer Owner { get; set; }
-
+        [Required]
+        public int UnitsInStock { get; set; }
+        [Required]
+        public int CategoryID { get; set; }
+        [ForeignKey(nameof(CategoryID))]
+        public Category Category { get; set; }
+        public string? ImagePath { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

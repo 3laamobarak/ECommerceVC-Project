@@ -9,3 +9,4 @@ C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECo
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\refint\ECommerceModels.dll
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECommerceModels.pdb
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ref\ECommerceModels.dll
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\EcommerceData\obj\Debug\net9.0\ECommerceModels.sourcelink.json
