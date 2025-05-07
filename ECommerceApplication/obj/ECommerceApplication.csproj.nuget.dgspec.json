@@ -272,7 +272,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\ECommerceModels.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\ECommerceModels.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

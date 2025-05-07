@@ -13,4 +13,8 @@
       <ProjectReference Include="..\ECommerceInfrastructure\ECommerceInfrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="8.2.1" />
+    </ItemGroup>
+
 </Project>
