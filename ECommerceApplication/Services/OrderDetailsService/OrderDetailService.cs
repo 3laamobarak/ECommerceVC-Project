@@ -58,8 +58,6 @@ namespace ECommerceApplication.Services.IOrderDetailsService
                 OrderID = orderId,
                 ProductID = orderDetailDto.ProductID,
                 Quantity = orderDetailDto.Quantity,
-                //UnitPrice = product.Price, // Use current product price
-                //Subtotal = product.Price * orderDetailDto.Quantity
             };
 
             // Reduce product stock

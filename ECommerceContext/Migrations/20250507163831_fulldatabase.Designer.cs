@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceContext.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250504153250_seeding")]
-    partial class seeding
+    [Migration("20250507163831_fulldatabase")]
+    partial class fulldatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace ECommerceContext.Migrations
                         new
                         {
                             CartItemID = 1,
-                            DateAdded = new DateTime(2025, 5, 4, 15, 32, 50, 87, DateTimeKind.Utc).AddTicks(2508),
+                            DateAdded = new DateTime(2002, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductID = 1,
                             Quantity = 1,
                             UserID = 1
@@ -65,7 +65,7 @@ namespace ECommerceContext.Migrations
                         new
                         {
                             CartItemID = 2,
-                            DateAdded = new DateTime(2025, 5, 4, 15, 32, 50, 87, DateTimeKind.Utc).AddTicks(3271),
+                            DateAdded = new DateTime(2002, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductID = 3,
                             Quantity = 2,
                             UserID = 1
@@ -73,7 +73,7 @@ namespace ECommerceContext.Migrations
                         new
                         {
                             CartItemID = 3,
-                            DateAdded = new DateTime(2025, 5, 4, 15, 32, 50, 87, DateTimeKind.Utc).AddTicks(3272),
+                            DateAdded = new DateTime(2002, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductID = 4,
                             Quantity = 1,
                             UserID = 1
@@ -185,7 +185,7 @@ namespace ECommerceContext.Migrations
                         new
                         {
                             OrderID = 1,
-                            OrderDate = new DateTime(2025, 5, 4, 18, 32, 50, 87, DateTimeKind.Local).AddTicks(305),
+                            OrderDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 0,
                             TotalAmount = 699.99m,
                             UserID = 1
@@ -193,7 +193,7 @@ namespace ECommerceContext.Migrations
                         new
                         {
                             OrderID = 2,
-                            OrderDate = new DateTime(2025, 5, 4, 18, 32, 50, 87, DateTimeKind.Local).AddTicks(894),
+                            OrderDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 3,
                             TotalAmount = 19.99m,
                             UserID = 1
@@ -405,6 +405,9 @@ namespace ECommerceContext.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("IsActive")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("LastLoginDate")
                         .HasColumnType("datetime2");
 
@@ -433,10 +436,11 @@ namespace ECommerceContext.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2025, 5, 4, 18, 32, 50, 84, DateTimeKind.Local).AddTicks(2182),
+                            DateCreated = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "3al@gmail.com",
                             FirstName = "Alaa",
-                            LastLoginDate = new DateTime(2025, 5, 4, 18, 32, 50, 86, DateTimeKind.Local).AddTicks(8641),
+                            IsActive = 0,
+                            LastLoginDate = new DateTime(2023, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LastName = "Mobarak",
                             Password = "asdasdasa",
                             Role = 2,
@@ -453,7 +457,7 @@ namespace ECommerceContext.Migrations
                         .IsRequired();
 
                     b.HasOne("EcommercModels.User", "User")
-                        .WithMany()
+                        .WithMany("CartItems")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -521,6 +525,8 @@ namespace ECommerceContext.Migrations
 
             modelBuilder.Entity("EcommercModels.User", b =>
                 {
+                    b.Navigation("CartItems");
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

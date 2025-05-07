@@ -44,11 +44,11 @@ namespace ECommerceContext
                 new Product { ProductID = 10, Name = "Car Battery", Description = "12V car battery", Price = 89.99m, UnitsInStock = 20, CategoryID = 8 }
             );
             modelBuilder.Entity<User>().HasData(
-                new User { Id = 1, Username = "lolomomo", DateCreated = new DateTime(2023 ,1 ,1), Email = "3al@gmail.com", FirstName = "Alaa", LastName = "Mobarak", LastLoginDate = new DateTime(2023 ,1 ,5), Password = "asdasdasa", Role = UserRole.SuperAdmin }
+                new User { Id = 1, Username = "lolomomo", DateCreated = new DateTime(2023, 1, 1), Email = "3al@gmail.com", FirstName = "Alaa", LastName = "Mobarak", LastLoginDate = new DateTime(2023, 1, 5), Password = "asdasdasa", Role = UserRole.SuperAdmin }
             );
             modelBuilder.Entity<Order>().HasData(
-                new Order { OrderID = 1, UserID = 1, OrderDate = new DateTime(2023 ,1 ,1), TotalAmount = 699.99m, Status = OrderStatus.Pending },
-                new Order { OrderID = 2, UserID = 1, OrderDate = new DateTime(2023 ,1 ,1), TotalAmount = 19.99m, Status = OrderStatus.Shipped }
+                new Order { OrderID = 1, UserID = 1, OrderDate = new DateTime(2023, 1, 1), TotalAmount = 699.99m, Status = OrderStatus.Pending },
+                new Order { OrderID = 2, UserID = 1, OrderDate = new DateTime(2023, 1, 1), TotalAmount = 19.99m, Status = OrderStatus.Shipped }
             );
             modelBuilder.Entity<OrderDetail>().HasData(
                 new OrderDetail { OrderDetailID = 1, OrderID = 1, ProductID = 1, Quantity = 1 },
@@ -57,9 +57,9 @@ namespace ECommerceContext
                 new OrderDetail { OrderDetailID = 4, OrderID = 2, ProductID = 4, Quantity = 1 }
             );
             modelBuilder.Entity<CartItem>().HasData(
-                new CartItem { CartItemID = 1, UserID = 1, ProductID = 1, Quantity = 1 },
-                new CartItem { CartItemID = 2, UserID = 1, ProductID = 3, Quantity = 2 },
-                new CartItem { CartItemID = 3, UserID = 1, ProductID = 4, Quantity = 1 }
+                new CartItem { CartItemID = 1, UserID = 1, ProductID = 1, Quantity = 1, DateAdded = new DateTime(2002, 2, 2) },
+                new CartItem { CartItemID = 2, UserID = 1, ProductID = 3, Quantity = 2, DateAdded = new DateTime(2002, 2, 2) },
+                new CartItem { CartItemID = 3, UserID = 1, ProductID = 4, Quantity = 1, DateAdded = new DateTime(2002, 2, 2) }
             );
 
             #endregion
