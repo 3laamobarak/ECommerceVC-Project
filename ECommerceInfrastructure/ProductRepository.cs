@@ -1,11 +1,12 @@
 using EcommercModels;
-    using ECommerceContext;
-    using Microsoft.EntityFrameworkCore;
-    
-    namespace ECommerceInfrastructure
+using ECommerceContext;
+using Microsoft.EntityFrameworkCore;
+using ECommerceApplication.Contracts;
+
+namespace ECommerceInfrastructure
+{
+    public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        public class ProductRepository : GenericRepository<Product>
-        {
             private readonly AppDBContext _context;
     
             public ProductRepository(AppDBContext context) : base(context)

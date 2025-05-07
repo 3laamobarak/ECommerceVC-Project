@@ -9,6 +9,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Autofac" Version="8.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\ECommerceApplication\ECommerceApplication.csproj" />
       <ProjectReference Include="..\ECommerceInfrastructure\ECommerceInfrastructure.csproj" />
     </ItemGroup>

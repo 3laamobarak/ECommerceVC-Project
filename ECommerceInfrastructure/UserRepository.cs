@@ -2,10 +2,11 @@
 using ECommerceContext;
 using ECommerceModels.Enums;
 using Microsoft.EntityFrameworkCore;
+using ECommerceApplication.Contracts;
 
 namespace ECommerceInfrastructure
 {
-    public class UserRepository : GenericRepository<User>
+    public class UserRepository : GenericRepository<User> , IUserRepository
     {
         private readonly AppDBContext _context;
 
@@ -15,7 +16,7 @@ namespace ECommerceInfrastructure
         }
 
         // Find a user by username
-        public async Task<User?> GetByUsernameAsync(string username)
+        public async Task<User?> GetByUsername(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
             {
@@ -38,6 +39,17 @@ namespace ECommerceInfrastructure
             return await _context.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Email == email);
+        }
+        public async Task<User?> AuthenticateAsync(string username, string password)
+        {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                throw new ArgumentNullException("Username or password cannot be null or empty");
+            }
+
+            return await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
         }
 
         // Get all active users

@@ -1,4 +1,5 @@
-﻿using ECommerceContext;
+﻿using ECommerceApplication.Contracts;
+using ECommerceContext;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceInfrastructure
