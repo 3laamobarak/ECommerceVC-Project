@@ -2,10 +2,11 @@ using EcommercModels;
 using ECommerceContext;
 using ECommerceModels.Enums;
 using Microsoft.EntityFrameworkCore;
+using ECommerceApplication.Contracts;
 
 namespace ECommerceInfrastructure
 {
-    public class OrderRepository : GenericRepository<Order>
+    public class OrderRepository : GenericRepository<Order> , IOrderRepository
     {
         private readonly AppDBContext _context;
 

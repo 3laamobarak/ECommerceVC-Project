@@ -1,36 +1,36 @@
 using ECommerceApplication.Contracts;
 using EcommercModels;
-    using ECommerceContext;
-    using Microsoft.EntityFrameworkCore;
+using ECommerceContext;
+using Microsoft.EntityFrameworkCore;
     
-    namespace ECommerceInfrastructure
+namespace ECommerceInfrastructure
+{
+    public class CategoryRepository : GenericRepository<Category> , ICategoryRepository
     {
-        public class CategoryRepository : GenericRepository<Category> , ICategoryRepository
+        private readonly AppDBContext _context;
+    
+        public CategoryRepository(AppDBContext context) : base(context)
         {
-            private readonly AppDBContext _context;
-    
-            public CategoryRepository(AppDBContext context) : base(context)
-            {
-                _context = context;
-            }
+            _context = context;
+        }
    
-            public async Task<IEnumerable<Category>> SearchAsync(string keyword)
+        public async Task<IEnumerable<Category>> SearchAsync(string keyword)
+        {
+            return await _context.Categories
+                .Where(c => c.Name.Contains(keyword))
+                .ToListAsync();
+        }
+        // Get category by name
+        public async Task<Category?> GetByNameAsync(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
             {
-                return await _context.Categories
-                    .Where(c => c.Name.Contains(keyword))
-                    .ToListAsync();
+                throw new ArgumentNullException(nameof(name));
             }
-            // Get category by name
-            public async Task<Category?> GetByNameAsync(string name)
-            {
-                if (string.IsNullOrWhiteSpace(name))
-                {
-                    throw new ArgumentNullException(nameof(name));
-                }
     
-                return await _context.Categories
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(c => c.Name == name);
-            }
+            return await _context.Categories
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c => c.Name == name);
         }
     }
+}
