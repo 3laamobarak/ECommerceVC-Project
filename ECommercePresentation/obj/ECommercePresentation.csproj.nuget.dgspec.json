@@ -443,12 +443,6 @@
       "frameworks": {
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
-          "dependencies": {
-            "Autofac": {
-              "target": "Package",
-              "version": "[8.2.1, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
