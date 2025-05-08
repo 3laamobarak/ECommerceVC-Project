@@ -68,11 +68,19 @@ namespace ECommerceDTOs
     public class ProductDto
     {
         public int ProductID { get; set; }
+        [Required][MaxLength(100)]
         public string Name { get; set; }
+        [MaxLength(500)]
         public string Description { get; set; }
+        [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
         public decimal Price { get; set; }
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Units in stock cannot be negative")]
         public int UnitsInStock { get; set; }
+        [Required]
         public int CategoryID { get; set; }
+        [MaxLength(255)]
         public string ImagePath { get; set; }
         
         // Navigation property

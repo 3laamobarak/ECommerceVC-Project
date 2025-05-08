@@ -17,4 +17,8 @@
       <ProjectReference Include="..\ECommerceInfrastructure\ECommerceInfrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Resources\" />
+    </ItemGroup>
+
 </Project>

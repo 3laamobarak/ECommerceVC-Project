@@ -33,7 +33,7 @@ static class Program
 
         ApplicationConfiguration.Initialize();
         var provider = services.BuildServiceProvider();
-        Application.Run(new OrderForm(provider.GetRequiredService<IOrderService>())); 
-        
+        //Application.Run(new OrderForm(provider.GetRequiredService<IOrderService>())); 
+        Application.Run(new Base());
     }
 }

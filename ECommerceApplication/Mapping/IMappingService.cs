@@ -9,9 +9,8 @@ namespace ECommerceApplication.Mapping
         User MapToUserEntity(UserDto userDto);
 
         // Product mappings
+        Product MapToProduct(ProductDto productDto);
         ProductDto MapToProductDto(Product product);
-        Product MapToProductEntity(ProductDto productDto);
-    
         // Category mappings
         CategoryDto MapToCategoryDto(Category category);
         Category MapToCategoryEntity(CategoryDto categoryDto);

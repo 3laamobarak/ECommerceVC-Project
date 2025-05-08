@@ -6,4 +6,9 @@ public partial class Base : Form
     {
         InitializeComponent();
     }
+
+    private void contentPanel_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
 }
