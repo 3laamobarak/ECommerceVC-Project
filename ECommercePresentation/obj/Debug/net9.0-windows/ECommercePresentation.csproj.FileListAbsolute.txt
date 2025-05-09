@@ -72,3 +72,4 @@ C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\ne
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.sourcelink.json
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommerc.DA840F32.Up2Date
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.Base.resources
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.Properties.Resources.resources

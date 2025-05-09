@@ -9,7 +9,6 @@ namespace ECommercePresentation
         private Panel navBar;
         private Panel contentPanel;
         private Panel footerPanel;
-        private PictureBox logo;
         private TextBox searchBox;
         private Button searchButton;
         private PictureBox userProfile;
@@ -43,88 +42,61 @@ namespace ECommercePresentation
         /// </summary>
         private void InitializeComponent()
         {
-            // Header panel
-            Panel header = new Panel
+            // Navigation Panel
+            Panel navPanel = new Panel
             {
-                Dock = DockStyle.Top,
-                Height = 80,
-                BackColor = Color.FromArgb(45, 45, 48),
-                Padding = new Padding(20, 0, 20, 0)
+                BackColor = SystemColors.ButtonFace,
+                Dock = DockStyle.Left,
             };
 
             // Logo
-            Label logo = new Label
+            PictureBox logo = new PictureBox
             {
-                Text = "Your Brand",
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 16F, FontStyle.Bold),
-                Location = new Point(10, 10)
+                Image = Properties.Resources.logo1, // Replace with your logo path
+                Size = new Size(177, 59),
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
+            navPanel.Controls.Add(logo);
+
+            // Navigation Buttons
+            navPanel.Controls.Add(CreateNavButton("Products", new Point(0, 125), button1_Click));
+            navPanel.Controls.Add(CreateNavButton("Categories", new Point(0, 181), CategoriesButton_Click));
+            navPanel.Controls.Add(CreateNavButton("Cart", new Point(0, 243), null));
+            navPanel.Controls.Add(CreateNavButton("Order", new Point(0, 319), null));
+            navPanel.Controls.Add(CreateNavButton("Profile", new Point(0, 432), button3_Click));
+            navPanel.Controls.Add(CreateNavButton("Setting", new Point(0, 506), null));
+            navPanel.Controls.Add(CreateNavButton("Logout", new Point(0, 603), null));
+
+            // Search Panel
+            Panel searchPanel = new Panel
+            {
+                Dock = DockStyle.Top,
+                Size = new Size(1070, 59)
             };
 
-            // Navigation links
-            Button homeBtn = CreateNavButton("Home", new Point(100, 20));
-            Button aboutBtn = CreateNavButton("About", new Point(160, 20));
-            Button shopBtn = CreateNavButton("Shop", new Point(220, 20));
-
-            // Cart button
-            Button cartBtn = CreateNavButton("Cart", new Point(740, 20));
-
-            // Add controls to header
-            header.Controls.Add(logo);
-            header.Controls.Add(homeBtn);
-            header.Controls.Add(aboutBtn);
-            header.Controls.Add(shopBtn);
-            header.Controls.Add(cartBtn);
-
-            this.Controls.Add(header);
-        }
-
-        private Button CreateNavButton(string text, Point location)
-        {
-            return new Button
+            searchBox = new TextBox
             {
-                Text = text,
-                Location = location,
-                Size = new Size(60, 30),
-                BackColor = Color.Transparent,
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10F)
+                Location = new Point(78, 12),
+                Size = new Size(417, 27)
             };
-        }
+            searchPanel.Controls.Add(searchBox);
 
-        private void InitializeProductGrid()
-        {
-            // Product grid panel
-            TableLayoutPanel productGrid = new TableLayoutPanel
+            searchButton = new Button
             {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 4,
-                Padding = new Padding(20, 20, 20, 20)
+                Text = "Search",
+                Location = new Point(500, 12),
+                Size = new Size(77, 27)
             };
+            searchPanel.Controls.Add(searchButton);
 
-            // Create product cards
-            for (int i = 0; i < 8; i++)
-            {
-                ProductCard card = new ProductCard();
-                productGrid.Controls.Add(card, i % 2, i / 2);
-            }
-
-            this.Controls.Add(productGrid);
-        }
-
-        private void InitializeFooter()
-        {
-            // Footer panel
-            Panel footer = new Panel
+            // Footer Panel
+            footerPanel = new Panel
             {
                 Dock = DockStyle.Bottom,
                 Height = 30,
                 BackColor = Color.FromArgb(45, 45, 48)
             };
 
-            // Footer label
             Label footerLabel = new Label
             {
                 Text = "© 2023 Your Brand. All rights reserved.",
@@ -133,112 +105,35 @@ namespace ECommercePresentation
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("Segoe UI", 9F)
             };
+            footerPanel.Controls.Add(footerLabel);
 
-            footer.Controls.Add(footerLabel);
-            this.Controls.Add(footer);
+            // Main Form
+            this.ClientSize = new Size(1247, 659);
+            this.Controls.Add(searchPanel);
+            this.Controls.Add(navPanel);
+            this.Controls.Add(footerPanel);
+            this.Text = "E-Commerce Application";
         }
-    }
 
-    public class ProductCard : PictureBox
-    {
-        public ProductCard()
-        {
-            this.Size = new Size(350, 300);
-            this.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.Dock = DockStyle.Fill;
-            this.BackColor = Color.White;
-            this.TabStop = false;
-
-            // Add product details
-            Panel productDetails = new Panel
-            {
-                Dock = DockStyle.Fill,
-                BackColor = Color.White
-            };
-
-            Label price = new Label
-            {
-                Text = "$50.00",
-                Font = new Font("Segoe UI", 14F, FontStyle.Bold),
-                Dock = DockStyle.Bottom
-            };
-
-            Label productName = new Label
-            {
-                Text = "Fancy Product",
-                Font = new Font("Segoe UI", 12F),
-                Dock = DockStyle.Bottom
-            };
-
-            Label stars = new Label
-            {
-                Text = "*****",
-                Dock = DockStyle.Bottom
-            };
-
-            Button addToCart = new Button
-            {
-                Text = "Add to Cart",
-                Dock = DockStyle.Bottom,
-                Size = new Size(100, 25)
-            };
-
-            productDetails.Controls.Add(price);
-            productDetails.Controls.Add(productName);
-            productDetails.Controls.Add(stars);
-            productDetails.Controls.Add(addToCart);
-
-            this.Controls.Add(productDetails);
-        }
-        #endregion
-
-        private Button CreateCategoryButton(string text, string imagePath, Point location)
+        private Button CreateNavButton(string text, Point location, EventHandler clickEvent)
         {
             Button button = new Button
             {
                 Text = text,
                 Location = location,
-                Size = new Size(180, 180),
-                BackColor = Color.White,
+                Size = new Size(177, 35),
                 FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
-                Image = System.Drawing.Image.FromFile(imagePath),
-                ImageAlign = ContentAlignment.TopCenter,
-                TextAlign = ContentAlignment.BottomCenter,
-                Padding = new Padding(10)
+                Font = new Font("Century Gothic", 10.2F),
+                ForeColor = SystemColors.ControlDarkDark,
+                Cursor = Cursors.Hand
             };
-
-            button.FlatAppearance.BorderSize = 1;
-            button.FlatAppearance.BorderColor = Color.LightGray;
-
+            button.FlatAppearance.BorderSize = 0;
+            if (clickEvent != null)
+            {
+                button.Click += clickEvent;
+            }
             return button;
         }
-
-        private Button CreateStyledButton(string text, Point location, Color backColor)
-        {
-            return new Button
-            {
-                Text = text,
-                Location = location,
-                Size = new Size(80, 30),
-                BackColor = backColor,
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10F, FontStyle.Regular),
-                FlatAppearance = { BorderSize = 0 }
-            };
-        }
-
-        private void AddHoverEffect(Button button, Color hoverColor)
-        {
-            button.MouseEnter += (sender, e) =>
-            {
-                button.BackColor = hoverColor;
-            };
-            button.MouseLeave += (sender, e) =>
-            {
-                button.BackColor = Color.FromArgb(28, 151, 234);
-            };
-        }
+        #endregion
     }
 }
