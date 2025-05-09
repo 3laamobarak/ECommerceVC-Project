@@ -42,6 +42,21 @@ namespace ECommercePresentation
         /// </summary>
         private void InitializeComponent()
         {
+            this.contentPanel = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // contentPanel
+            // 
+            this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contentPanel.Location = new System.Drawing.Point(177, 59); // Adjust based on your layout
+            this.contentPanel.Name = "contentPanel";
+            this.contentPanel.Size = new System.Drawing.Size(1070, 570); // Adjust based on your layout
+            this.contentPanel.TabIndex = 0;
+            // 
+            // Base
+            // 
+            this.Controls.Add(this.contentPanel);
+            this.ResumeLayout(false);
             // Navigation Panel
             Panel navPanel = new Panel
             {
@@ -59,10 +74,10 @@ namespace ECommercePresentation
             navPanel.Controls.Add(logo);
 
             // Navigation Buttons
-            navPanel.Controls.Add(CreateNavButton("Products", new Point(0, 125), button1_Click));
+            navPanel.Controls.Add(CreateNavButton("Products", new Point(0, 125), ProductButton_Click));
             navPanel.Controls.Add(CreateNavButton("Categories", new Point(0, 181), CategoriesButton_Click));
-            navPanel.Controls.Add(CreateNavButton("Cart", new Point(0, 243), null));
-            navPanel.Controls.Add(CreateNavButton("Order", new Point(0, 319), null));
+            navPanel.Controls.Add(CreateNavButton("Cart", new Point(0, 243), CartItemButton_Click));
+            navPanel.Controls.Add(CreateNavButton("Order",      new Point(0, 319), OrderButton_Click));
             navPanel.Controls.Add(CreateNavButton("Profile", new Point(0, 432), button3_Click));
             navPanel.Controls.Add(CreateNavButton("Setting", new Point(0, 506), null));
             navPanel.Controls.Add(CreateNavButton("Logout", new Point(0, 603), null));

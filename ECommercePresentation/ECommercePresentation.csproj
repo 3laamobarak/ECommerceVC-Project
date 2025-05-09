@@ -27,7 +27,13 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
-      <Compile Update="AddEditCategoryForm.cs">
+      <Compile Update="CategoryForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="ProductForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="CartItemForm.cs">
         <SubType>Form</SubType>
       </Compile>
     </ItemGroup>

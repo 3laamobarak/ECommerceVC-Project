@@ -1,7 +1,10 @@
 using Autofac;
 using ECommerceApplication.Contracts;
 using ECommerceApplication.Mapping;
+using ECommerceApplication.Services.CartItemService;
+using ECommerceApplication.Services.CategoryService;
 using ECommerceApplication.Services.IOrderDetailsService;
+using ECommerceApplication.Services.ProductService;
 using ECommerceContext;
 using ECommerceInfrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,30 +13,26 @@ namespace ECommercePresentation;
 
 static class Program
 {
-    /// <summary>
-    ///  The main entry point for the application.
-    /// </summary>
     [STAThread]
     static void Main()
     {
-        //var container = Autofac.Inject();
-        //To customize application configuration such as set high DPI settings or default font,
-        // see https://aka.ms/applicationconfiguration.
-        //ApplicationConfiguration.Initialize();
-
-
-
         var services = new ServiceCollection();
         services.AddDbContext<AppDBContext>();
+        services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
         services.AddScoped<IMappingService, MappingService>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<ICartItemService, CartItemService>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICartItemRepository, CartItemRepository>();
 
-
+        
         ApplicationConfiguration.Initialize();
         var provider = services.BuildServiceProvider();
-        //Application.Run(new OrderForm(provider.GetRequiredService<IOrderService>())); 
-        Application.Run(new Base());
+        Application.Run(new Base(provider));
+        
     }
 }

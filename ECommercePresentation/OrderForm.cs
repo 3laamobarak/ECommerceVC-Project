@@ -196,10 +196,5 @@ namespace ECommercePresentation
             _selectedOrderId = null;
             gridOrders.ClearSelection();
         }
-
-        private void lblStatus_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

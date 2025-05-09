@@ -1,86 +1,184 @@
-﻿using ECommerceApplication.Services.CategoryService;
+using ECommerceApplication.Services.CategoryService;
+using ECommerceDTOs;
+using System;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace ECommercePresentation;
-
-public partial class CategoryForm : Base
+namespace ECommercePresentation
 {
-    private readonly ICategoryService _categoryService;
-    public CategoryForm(/*ICategoryService categoryService*/)
+    public partial class CategoryForm : Form
     {
-        //_categoryService = categoryService;
-        InitializeComponent();
-        LoadCategories();
-    }
-    private async void LoadCategories()
-    {
-        try
-        {
-            var categories = await _categoryService.GetAllAsync();
-            dataGridView1.Rows.Clear();
+        private readonly ICategoryService _categoryService;
+        private int? _selectedCategoryId;
 
-            foreach (var category in categories)
-            {
-                dataGridView1.Rows.Add(category.Name, category.Description, "Edit/Delete");
-            }
-        }
-        catch (Exception ex)
+        public CategoryForm(ICategoryService categoryService)
         {
-            MessageBox.Show($"Error loading categories: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    }
-    private async void button1_Click(object sender, EventArgs e) // Add New Category
-    {
-        var addForm = new AddEditCategoryForm(_categoryService);
-        if (addForm.ShowDialog() == DialogResult.OK)
-        {
-            LoadCategories();
-        }
-    }
-    private async void button2_Click(object sender, EventArgs e) // Edit Category
-    {
-        if (dataGridView1.SelectedRows.Count > 0)
-        {
-            var selectedRow = dataGridView1.SelectedRows[0];
-            var categoryName = selectedRow.Cells["Name"].Value.ToString();
+            _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
+            InitializeComponent();
 
-            var category = await _categoryService.GetByNameAsync(categoryName);
-            if (category != null)
+            // Initialize DataGridView columns and styling
+            gridCategories.Columns.Clear();
+            gridCategories.Columns.Add("CategoryID", "Category ID");
+            gridCategories.Columns.Add("Name", "Name");
+            gridCategories.Columns.Add("Description", "Description");
+
+            // Apply Bootstrap-like styling to DataGridView
+            gridCategories.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
-                var editForm = new AddEditCategoryForm(_categoryService, category);
-                if (editForm.ShowDialog() == DialogResult.OK)
+                BackColor = Color.FromArgb(0, 123, 255), // Bootstrap primary
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                Alignment = DataGridViewContentAlignment.MiddleCenter
+            };
+            gridCategories.DefaultCellStyle = new DataGridViewCellStyle
+            {
+                Font = new Font("Segoe UI", 9),
+                SelectionBackColor = Color.FromArgb(108, 117, 125), // Bootstrap secondary
+                SelectionForeColor = Color.White
+            };
+
+            LoadCategoriesAsync();
+        }
+
+        private async void LoadCategoriesAsync()
+        {
+            try
+            {
+                var categories = await _categoryService.GetAllAsync();
+                gridCategories.Rows.Clear();
+                foreach (var category in categories)
                 {
-                    LoadCategories();
+                    gridCategories.Rows.Add(
+                        category.CategoryID,
+                        category.Name,
+                        category.Description
+                    );
                 }
             }
-        }
-        else
-        {
-            MessageBox.Show("Please select a category to edit.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-    }
-    private async void button3_Click(object sender, EventArgs e) // Delete Category
-    {
-        if (dataGridView1.SelectedRows.Count > 0)
-        {
-            var selectedRow = dataGridView1.SelectedRows[0];
-            var categoryName = selectedRow.Cells["Name"].Value.ToString();
-
-            var category = await _categoryService.GetByNameAsync(categoryName);
-            if (category != null)
+            catch (Exception ex)
             {
-                var confirmResult = MessageBox.Show($"Are you sure you want to delete the category '{category.Name}'?",
-                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (confirmResult == DialogResult.Yes)
-                {
-                    //await _categoryService.DeleteAsync(category.Id);
-                    LoadCategories();
-                }
+                MessageBox.Show($"Error loading categories: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        else
+
+        private void GridCategories_SelectionChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Please select a category to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (gridCategories.SelectedRows.Count > 0)
+            {
+                var selectedRow = gridCategories.SelectedRows[0];
+                _selectedCategoryId = Convert.ToInt32(selectedRow.Cells["CategoryID"].Value);
+                txtName.Text = selectedRow.Cells["Name"].Value.ToString();
+                txtDescription.Text = selectedRow.Cells["Description"].Value.ToString();
+            }
+        }
+
+        private async void BtnCreate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!ValidateInputs()) return;
+
+                var categoryDto = new CategoryDto
+                {
+                    Name = txtName.Text,
+                    Description = txtDescription.Text
+                };
+
+                var createdCategory = await _categoryService.AddAsync(categoryDto);
+                MessageBox.Show("Category created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearInputs();
+                LoadCategoriesAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error creating category: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!_selectedCategoryId.HasValue)
+                {
+                    MessageBox.Show("Please select a category to update.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (!ValidateInputs()) return;
+
+                var categoryDto = new CategoryDto
+                {
+                    CategoryID = _selectedCategoryId.Value,
+                    Name = txtName.Text,
+                    Description = txtDescription.Text
+                };
+
+                var updatedCategory = await _categoryService.UpdateAsync(categoryDto);
+                MessageBox.Show("Category updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearInputs();
+                LoadCategoriesAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating category: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void BtnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!_selectedCategoryId.HasValue)
+                {
+                    MessageBox.Show("Please select a category to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var result = MessageBox.Show("Are you sure you want to delete this category?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    var deleted = await _categoryService.DeleteAsync(_selectedCategoryId.Value);
+                    if (deleted)
+                    {
+                        MessageBox.Show("Category deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ClearInputs();
+                        LoadCategoriesAsync();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Category not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting category: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            ClearInputs();
+        }
+
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Please enter a valid Name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private void ClearInputs()
+        {
+            txtName.Clear();
+            txtDescription.Clear();
+            _selectedCategoryId = null;
+            gridCategories.ClearSelection();
         }
     }
 }
