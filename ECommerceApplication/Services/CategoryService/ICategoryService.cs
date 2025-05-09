@@ -1,13 +1,15 @@
-namespace ECommerceApplication.Services.CategoryService;
-using EcommercModels;
-public interface ICategoryService
+using ECommerceDTOs;
+
+namespace ECommerceApplication.Services.CategoryService
 {
-    public Task<Category?> GetByNameAsync(string name);
-    public Task<IEnumerable<Category>> SearchAsync(string keyword);
-    public Task<Category?> GetByIdAsync(int id);
-    public Task<IQueryable<Category>> GetAllAsync();
-    public Task<Category> AddAsync(Category entity);
-    public Task<Category> UpdateAsync(Category entity);
-    public Task<Category> DeleteAsync(int id);
-    
+    public interface ICategoryService
+    {
+        Task<CategoryDto?> GetByNameAsync(string name);
+        Task<IEnumerable<CategoryDto>> SearchAsync(string keyword);
+        Task<CategoryDto?> GetByIdAsync(int id);
+        Task<IEnumerable<CategoryDto>> GetAllAsync();
+        Task<CategoryDto> AddAsync(CategoryDto categoryDto);
+        Task<CategoryDto> UpdateAsync(CategoryDto categoryDto);
+        Task<bool> DeleteAsync(int id);
+    }
 }

@@ -56,28 +56,10 @@ namespace ECommerceApplication.Mapping
 
         #region Product Mappings
 
-        public ProductDto MapToProductDto(Product product)
-        {
-            if (product == null) return null;
-            
-            return new ProductDto
-            {
-                ProductID = product.ProductID,
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price,
-                UnitsInStock = product.UnitsInStock,
-                CategoryID = product.CategoryID,
-                ImagePath = product.ImagePath,
-                // Map the Category if it's loaded
-                Category = product.Category != null ? MapToCategoryDto(product.Category) : null
-            };
-        }
-
-        public Product MapToProductEntity(ProductDto productDto)
+        public Product MapToProduct(ProductDto productDto)
         {
             if (productDto == null) return null;
-            
+
             return new Product
             {
                 ProductID = productDto.ProductID,
@@ -87,7 +69,22 @@ namespace ECommerceApplication.Mapping
                 UnitsInStock = productDto.UnitsInStock,
                 CategoryID = productDto.CategoryID,
                 ImagePath = productDto.ImagePath
-                // Category relationship is handled separately
+            };
+        }
+
+        public ProductDto MapToProductDto(Product product)
+        {
+            if (product == null) return null;
+
+            return new ProductDto
+            {
+                ProductID = product.ProductID,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                UnitsInStock = product.UnitsInStock,
+                CategoryID = product.CategoryID,
+                ImagePath = product.ImagePath
             };
         }
         

@@ -67,7 +67,8 @@ C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\ne
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\ECommerceDTOs.pdb
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\ECommerceModels.pdb
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.csproj.AssemblyReference.cache
-C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.CategoryForm.resources
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.OrderForm.resources
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.sourcelink.json
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommerc.DA840F32.Up2Date
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.Base.resources
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.Properties.Resources.resources

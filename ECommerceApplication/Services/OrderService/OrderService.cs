@@ -7,8 +7,8 @@ using ECommerceApplication.Mapping;
 namespace ECommerceApplication.Services.IOrderDetailsService
 
 {
-     public class OrderService : IOrderService
- {
+    public class OrderService : IOrderService
+    {
      private readonly IOrderRepository _orderRepository;
      private readonly IOrderDetailRepository _orderDetailRepository;
      private readonly IMappingService _mapper;

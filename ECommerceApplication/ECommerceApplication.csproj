@@ -16,9 +16,4 @@
     <ProjectReference Include="..\ECommerceDTOs\ECommerceDTOs.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\CartItem\" />
-    <Folder Include="Services\ProductService\" />
-  </ItemGroup>
-
 </Project>

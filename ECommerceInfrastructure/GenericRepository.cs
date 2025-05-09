@@ -43,12 +43,12 @@ namespace ECommerceInfrastructure
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            var existingEntity = await _dbSet.FindAsync(entity);
-            if (existingEntity == null)
-            {
-                throw new ArgumentException("Entity not found in the database.");
-            }
-            var result = _dbSet.Remove(existingEntity).Entity;
+            //var existingEntity = await _dbSet.FindAsync(entity);
+            // if (existingEntity == null)
+            // {
+            //     throw new ArgumentException("Entity not found in the database.");
+            // }
+            var result = _dbSet.Remove(entity).Entity;
             await _context.SaveChangesAsync();
             return result;
         }
