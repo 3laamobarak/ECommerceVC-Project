@@ -75,3 +75,4 @@ C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\ne
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\BCrypt.Net-Next.dll
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.AuthForms.LoginForm.resources
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.AuthForms.RegistrationForm.resources
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\Autofac.Extensions.DependencyInjection.dll

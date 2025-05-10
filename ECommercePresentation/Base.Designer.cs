@@ -30,7 +30,6 @@ namespace ECommercePresentation
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
 
@@ -52,16 +51,23 @@ namespace ECommercePresentation
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(1070, 570); // Adjust based on your layout
             this.contentPanel.TabIndex = 0;
+            this.contentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contentPanel_Paint);
             // 
             // Base
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.contentPanel);
+            this.Name = "Base";
+            this.Text = "E-Commerce Application";
             this.ResumeLayout(false);
+
             // Navigation Panel
             Panel navPanel = new Panel
             {
                 BackColor = SystemColors.ButtonFace,
                 Dock = DockStyle.Left,
+                Width = 177
             };
 
             // Logo
@@ -77,7 +83,7 @@ namespace ECommercePresentation
             navPanel.Controls.Add(CreateNavButton("Products", new Point(0, 125), ProductButton_Click));
             navPanel.Controls.Add(CreateNavButton("Categories", new Point(0, 181), CategoriesButton_Click));
             navPanel.Controls.Add(CreateNavButton("Cart", new Point(0, 243), CartItemButton_Click));
-            navPanel.Controls.Add(CreateNavButton("Order",      new Point(0, 319), OrderButton_Click));
+            navPanel.Controls.Add(CreateNavButton("Order", new Point(0, 319), OrderButton_Click));
             navPanel.Controls.Add(CreateNavButton("Profile", new Point(0, 432), button3_Click));
             navPanel.Controls.Add(CreateNavButton("Setting", new Point(0, 506), null));
             navPanel.Controls.Add(CreateNavButton("Logout", new Point(0, 603), null));
@@ -127,7 +133,6 @@ namespace ECommercePresentation
             this.Controls.Add(searchPanel);
             this.Controls.Add(navPanel);
             this.Controls.Add(footerPanel);
-            this.Text = "E-Commerce Application";
         }
 
         private Button CreateNavButton(string text, Point location, EventHandler clickEvent)

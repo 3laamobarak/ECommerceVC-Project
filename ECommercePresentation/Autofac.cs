@@ -43,7 +43,7 @@ namespace ECommercePresentation
 
             // Register Forms
             builder.RegisterType<LoginForm>().AsSelf().InstancePerDependency();
-            builder.RegisterType<RegistrationForm>().AsSelf().InstancePerDependency(); // Added
+            builder.RegisterType<RegistrationForm>().AsSelf().InstancePerDependency();
             builder.RegisterType<Base>().AsSelf().InstancePerDependency();
             builder.RegisterType<CategoryForm>().AsSelf().InstancePerDependency();
             builder.RegisterType<OrderForm>().AsSelf().InstancePerDependency();

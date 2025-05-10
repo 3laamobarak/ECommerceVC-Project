@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "2sjITEt1ZxI=",
+  "dgSpecHash": "AKksmNwgC+g=",
   "success": true,
   "projectFilePath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\EcommerceData\\ECommerceModels.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\DELL\\.nuget\\packages\\autofac\\8.1.0\\autofac.8.1.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\autofac.extensions.dependencyinjection\\10.0.0\\autofac.extensions.dependencyinjection.10.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.1\\system.diagnostics.diagnosticsource.8.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
