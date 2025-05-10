@@ -4,10 +4,25 @@
     <Compile Update="Base.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form1.cs">
+    <Compile Update="Client Forms\CartForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="OrderForm.cs">
+    <Compile Update="Auth\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin Forms\OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Client Forms\ProductDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Client Forms\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Auth\RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin Forms\UsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -1,10 +1,11 @@
-using ECommerceApplication.Services.CategoryService;
-using ECommerceDTOs;
+﻿using ECommerceApplication.Services.CategoryService;
+using EcommercModels;
 using System;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace ECommercePresentation
 {
@@ -12,6 +13,7 @@ namespace ECommercePresentation
     {
         private readonly ICategoryService _categoryService;
         private int? _selectedCategoryId;
+        private Category? _selectedCategory;
 
         public CategoryForm(ICategoryService categoryService)
         {
@@ -56,6 +58,10 @@ namespace ECommercePresentation
                         category.Description
                     );
                 }
+                if (!categories.Any())
+                {
+                    MessageBox.Show("No categories found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -63,14 +69,14 @@ namespace ECommercePresentation
             }
         }
 
-        private void GridCategories_SelectionChanged(object sender, EventArgs e)
+        private async void GridCategories_SelectionChanged(object sender, EventArgs e)
         {
             if (gridCategories.SelectedRows.Count > 0)
             {
                 var selectedRow = gridCategories.SelectedRows[0];
                 _selectedCategoryId = Convert.ToInt32(selectedRow.Cells["CategoryID"].Value);
-                txtName.Text = selectedRow.Cells["Name"].Value.ToString();
-                txtDescription.Text = selectedRow.Cells["Description"].Value.ToString();
+                _selectedCategory = await _categoryService.GetByIdAsync(_selectedCategoryId.Value); txtName.Text = selectedRow.Cells["Name"].Value?.ToString();
+                txtDescription.Text = selectedRow.Cells["Description"].Value?.ToString();
             }
         }
 
@@ -80,13 +86,13 @@ namespace ECommercePresentation
             {
                 if (!ValidateInputs()) return;
 
-                var categoryDto = new CategoryDto
+                var category = new Category
                 {
                     Name = txtName.Text,
                     Description = txtDescription.Text
                 };
 
-                var createdCategory = await _categoryService.AddAsync(categoryDto);
+                var createdCategory = await _categoryService.AddAsync(category);
                 MessageBox.Show("Category created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearInputs();
                 LoadCategoriesAsync();
@@ -108,14 +114,17 @@ namespace ECommercePresentation
                 }
                 if (!ValidateInputs()) return;
 
-                var categoryDto = new CategoryDto
+                var category = await _categoryService.GetByIdAsync(_selectedCategoryId.Value);
+                if (category == null)
                 {
-                    CategoryID = _selectedCategoryId.Value,
-                    Name = txtName.Text,
-                    Description = txtDescription.Text
-                };
+                    MessageBox.Show("Category not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                var updatedCategory = await _categoryService.UpdateAsync(categoryDto);
+                category.Name = txtName.Text;
+                category.Description = txtDescription.Text;
+
+                var updatedCategory = await _categoryService.UpdateAsync(category);
                 MessageBox.Show("Category updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearInputs();
                 LoadCategoriesAsync();
@@ -139,17 +148,10 @@ namespace ECommercePresentation
                 var result = MessageBox.Show("Are you sure you want to delete this category?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    var deleted = await _categoryService.DeleteAsync(_selectedCategoryId.Value);
-                    if (deleted)
-                    {
-                        MessageBox.Show("Category deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        ClearInputs();
-                        LoadCategoriesAsync();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Category not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    await _categoryService.DeleteAsync(_selectedCategoryId.Value);
+                    MessageBox.Show("Category deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearInputs();
+                    LoadCategoriesAsync();
                 }
             }
             catch (Exception ex)
@@ -165,14 +167,30 @@ namespace ECommercePresentation
 
         private bool ValidateInputs()
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text))
+            if (string.IsNullOrWhiteSpace(txtName.Text) || txtName.Text.Length > 100)
             {
-                MessageBox.Show("Please enter a valid Name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a valid Name (1-100 characters).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
         }
+        private void TextBox_Enter(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderStyle = BorderStyle.Fixed3D;
+                textBox.BackColor = Color.FromArgb(235, 245, 255);
+            }
+        }
 
+        private void TextBox_Leave(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderStyle = BorderStyle.FixedSingle;
+                textBox.BackColor = Color.White;
+            }
+        }
         private void ClearInputs()
         {
             txtName.Clear();

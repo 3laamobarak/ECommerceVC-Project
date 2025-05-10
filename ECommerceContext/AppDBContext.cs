@@ -8,7 +8,7 @@ namespace ECommerceContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=EcommerceProject;Integrated Security=true;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=EcommerceProject1;Integrated Security=true;Trusted_Connection=True;TrustServerCertificate=True");
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }

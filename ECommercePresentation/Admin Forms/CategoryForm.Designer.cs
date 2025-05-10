@@ -1,9 +1,16 @@
-namespace ECommercePresentation
+﻿namespace ECommercePresentation
 {
     partial class CategoryForm
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -13,6 +20,12 @@ namespace ECommercePresentation
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
             this.gridCategories = new System.Windows.Forms.DataGridView();
@@ -25,14 +38,15 @@ namespace ECommercePresentation
             this.lblName = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridCategories)).BeginInit();
+            this.SuspendLayout();
             // 
             // gridCategories
             // 
             this.gridCategories.AllowUserToAddRows = false;
+            this.gridCategories.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridCategories.BackgroundColor = System.Drawing.Color.White;
             this.gridCategories.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridCategories.ColumnHeadersHeightSizeMode =
-                System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridCategories.Location = new System.Drawing.Point(20, 20);
             this.gridCategories.Name = "gridCategories";
             this.gridCategories.ReadOnly = true;
@@ -50,6 +64,8 @@ namespace ECommercePresentation
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(200, 25);
             this.txtName.TabIndex = 1;
+            this.txtName.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.txtName.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // txtDescription
             // 
@@ -62,11 +78,12 @@ namespace ECommercePresentation
             // 
             // btnCreate
             // 
-            this.btnCreate.BackColor =
-                System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.btnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.btnCreate.FlatAppearance.BorderSize = 0;
             this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreate.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnCreate.Location = new System.Drawing.Point(20, 450);
+            this.btnCreate.ForeColor = System.Drawing.Color.White;
+            this.btnCreate.Location = new System.Drawing.Point(20, 410);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(100, 35);
             this.btnCreate.TabIndex = 3;
@@ -76,24 +93,27 @@ namespace ECommercePresentation
             // 
             // btnUpdate
             // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(130, 450);
+            this.btnUpdate.Location = new System.Drawing.Point(130, 410);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(100, 35);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor =
-                System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(240, 450);
+            this.btnDelete.Location = new System.Drawing.Point(240, 410);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 35);
             this.btnDelete.TabIndex = 5;
@@ -103,12 +123,12 @@ namespace ECommercePresentation
             // 
             // btnClear
             // 
-            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))),
-                ((int)(((byte)(125)))));
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+            this.btnClear.FlatAppearance.BorderSize = 0;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(350, 450);
+            this.btnClear.Location = new System.Drawing.Point(350, 410);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(100, 35);
             this.btnClear.TabIndex = 6;
@@ -122,7 +142,7 @@ namespace ECommercePresentation
             this.lblName.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblName.Location = new System.Drawing.Point(20, 340);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(48, 19);
+            this.lblName.Size = new System.Drawing.Size(46, 19);
             this.lblName.TabIndex = 7;
             this.lblName.Text = "Name:";
             // 
@@ -140,8 +160,7 @@ namespace ECommercePresentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor =
-                System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(900, 600);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblName);
@@ -156,10 +175,14 @@ namespace ECommercePresentation
             this.MaximizeBox = false;
             this.Name = "CategoryForm";
             this.Text = "Category Management";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen; // Center form
+
             ((System.ComponentModel.ISupportInitialize)(this.gridCategories)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        #endregion
 
         private System.Windows.Forms.DataGridView gridCategories;
         private System.Windows.Forms.TextBox txtName;

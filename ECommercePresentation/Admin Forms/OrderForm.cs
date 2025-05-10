@@ -187,7 +187,23 @@ namespace ECommercePresentation
             }
             return true;
         }
+        private void TextBox_Enter(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderStyle = BorderStyle.Fixed3D;
+                textBox.BackColor = Color.FromArgb(235, 245, 255);
+            }
+        }
 
+        private void TextBox_Leave(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderStyle = BorderStyle.FixedSingle;
+                textBox.BackColor = Color.White;
+            }
+        }
         private void ClearInputs()
         {
             txtUserId.Clear();

@@ -617,7 +617,7 @@
         },
         "runtime": {
           "ECommerceContext.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -628,7 +628,7 @@
         },
         "runtime": {
           "ECommerceDTOs.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -636,7 +636,7 @@
       "ECommerceModels/1.0.0": {
         "runtime": {
           "ECommerceModels.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

@@ -27,15 +27,13 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
-      <Compile Update="CategoryForm.cs">
+      <Compile Update="Admin Forms\CategoryForm.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="ProductForm.cs">
+      <Compile Update="Admin Forms\ProductForm.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="CartItemForm.cs">
-        <SubType>Form</SubType>
-      </Compile>
+      <Compile Update="CartItemForm.cs" />
     </ItemGroup>
 
     <ItemGroup>

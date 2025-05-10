@@ -157,11 +157,33 @@ namespace ECommercePresentation
 
         }
 
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            // Close form to return to BaseForm
+            this.Close();
+        }
         private void BtnClear_Click(object sender, EventArgs e)
         {
             ClearInputs();
         }
 
+        private void TextBox_Enter(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderStyle = BorderStyle.Fixed3D;
+                textBox.BackColor = Color.FromArgb(235, 245, 255);
+            }
+        }
+
+        private void TextBox_Leave(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                textBox.BorderStyle = BorderStyle.FixedSingle;
+                textBox.BackColor = Color.White;
+            }
+        }
         private void ClearInputs()
         {
             txtName.Clear();

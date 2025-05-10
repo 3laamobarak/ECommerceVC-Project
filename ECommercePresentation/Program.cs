@@ -32,7 +32,8 @@ static class Program
         
         ApplicationConfiguration.Initialize();
         var provider = services.BuildServiceProvider();
-        Application.Run(new Base(provider));
+        Application.Run(new LoginForm());
+        //Application.Run(new BaseForm(provider.GetRequiredService<IProductService>(), provider.GetRequiredService<ICategoryService>(), provider.GetRequiredService<ICartItemService>(), provider.GetRequiredService<IOrderService>()));
         
     }
 }

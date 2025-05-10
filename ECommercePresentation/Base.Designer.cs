@@ -1,154 +1,203 @@
-﻿using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace ECommercePresentation
+﻿namespace ECommercePresentation
 {
-    partial class Base
+    partial class BaseForm
     {
-        private Panel navBar;
-        private Panel contentPanel;
-        private Panel footerPanel;
-        private TextBox searchBox;
-        private Button searchButton;
-        private PictureBox userProfile;
-        private Label userName;
-        private Button shoppingCart;
+        private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
                 components.Dispose();
             }
-
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.contentPanel = new System.Windows.Forms.Panel();
-            this.SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
+            sidebarPanel = new Panel();
+            button1 = new Button();
+            pictureBox1 = new PictureBox();
+            btnUsers = new Button();
+            btnCart = new Button();
+            btnCategories = new Button();
+            btnOrders = new Button();
+            btnProducts = new Button();
+            productPanel = new FlowLayoutPanel();
+            LogOutBtn = new Button();
+            sidebarPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
-            // contentPanel
+            // sidebarPanel
             // 
-            this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentPanel.Location = new System.Drawing.Point(177, 59); // Adjust based on your layout
-            this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1070, 570); // Adjust based on your layout
-            this.contentPanel.TabIndex = 0;
+            sidebarPanel.BackColor = Color.FromArgb(233, 236, 239);
+            sidebarPanel.Controls.Add(LogOutBtn);
+            sidebarPanel.Controls.Add(button1);
+            sidebarPanel.Controls.Add(pictureBox1);
+            sidebarPanel.Controls.Add(btnUsers);
+            sidebarPanel.Controls.Add(btnCart);
+            sidebarPanel.Controls.Add(btnCategories);
+            sidebarPanel.Controls.Add(btnOrders);
+            sidebarPanel.Controls.Add(btnProducts);
+            sidebarPanel.Location = new Point(0, 0);
+            sidebarPanel.Margin = new Padding(4, 5, 4, 5);
+            sidebarPanel.Name = "sidebarPanel";
+            sidebarPanel.Size = new Size(267, 923);
+            sidebarPanel.TabIndex = 0;
             // 
-            // Base
+            // button1
             // 
-            this.Controls.Add(this.contentPanel);
-            this.ResumeLayout(false);
-            // Navigation Panel
-            Panel navPanel = new Panel
-            {
-                BackColor = SystemColors.ButtonFace,
-                Dock = DockStyle.Left,
-            };
-
-            // Logo
-            PictureBox logo = new PictureBox
-            {
-                Image = Properties.Resources.logo1, // Replace with your logo path
-                Size = new Size(177, 59),
-                SizeMode = PictureBoxSizeMode.StretchImage
-            };
-            navPanel.Controls.Add(logo);
-
-            // Navigation Buttons
-            navPanel.Controls.Add(CreateNavButton("Products", new Point(0, 125), ProductButton_Click));
-            navPanel.Controls.Add(CreateNavButton("Categories", new Point(0, 181), CategoriesButton_Click));
-            navPanel.Controls.Add(CreateNavButton("Cart", new Point(0, 243), CartItemButton_Click));
-            navPanel.Controls.Add(CreateNavButton("Order",      new Point(0, 319), OrderButton_Click));
-            navPanel.Controls.Add(CreateNavButton("Profile", new Point(0, 432), button3_Click));
-            navPanel.Controls.Add(CreateNavButton("Setting", new Point(0, 506), null));
-            navPanel.Controls.Add(CreateNavButton("Logout", new Point(0, 603), null));
-
-            // Search Panel
-            Panel searchPanel = new Panel
-            {
-                Dock = DockStyle.Top,
-                Size = new Size(1070, 59)
-            };
-
-            searchBox = new TextBox
-            {
-                Location = new Point(78, 12),
-                Size = new Size(417, 27)
-            };
-            searchPanel.Controls.Add(searchBox);
-
-            searchButton = new Button
-            {
-                Text = "Search",
-                Location = new Point(500, 12),
-                Size = new Size(77, 27)
-            };
-            searchPanel.Controls.Add(searchButton);
-
-            // Footer Panel
-            footerPanel = new Panel
-            {
-                Dock = DockStyle.Bottom,
-                Height = 30,
-                BackColor = Color.FromArgb(45, 45, 48)
-            };
-
-            Label footerLabel = new Label
-            {
-                Text = "© 2023 Your Brand. All rights reserved.",
-                ForeColor = Color.White,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter,
-                Font = new Font("Segoe UI", 9F)
-            };
-            footerPanel.Controls.Add(footerLabel);
-
-            // Main Form
-            this.ClientSize = new Size(1247, 659);
-            this.Controls.Add(searchPanel);
-            this.Controls.Add(navPanel);
-            this.Controls.Add(footerPanel);
-            this.Text = "E-Commerce Application";
+            button1.BackColor = Color.FromArgb(0, 123, 255);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 10F);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(27, 434);
+            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.Name = "button1";
+            button1.Size = new Size(213, 54);
+            button1.TabIndex = 6;
+            button1.Text = "Profile";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(27, 31);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(204, 166);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            // 
+            // btnUsers
+            // 
+            btnUsers.BackColor = Color.FromArgb(0, 123, 255);
+            btnUsers.FlatAppearance.BorderSize = 0;
+            btnUsers.FlatStyle = FlatStyle.Flat;
+            btnUsers.Font = new Font("Segoe UI", 10F);
+            btnUsers.ForeColor = Color.White;
+            btnUsers.Location = new Point(27, 644);
+            btnUsers.Margin = new Padding(4, 5, 4, 5);
+            btnUsers.Name = "btnUsers";
+            btnUsers.Size = new Size(213, 54);
+            btnUsers.TabIndex = 4;
+            btnUsers.Text = "Users";
+            btnUsers.UseVisualStyleBackColor = false;
+            btnUsers.Click += BtnUsers_Click;
+            // 
+            // btnCart
+            // 
+            btnCart.BackColor = Color.FromArgb(0, 123, 255);
+            btnCart.FlatAppearance.BorderSize = 0;
+            btnCart.FlatStyle = FlatStyle.Flat;
+            btnCart.Font = new Font("Segoe UI", 10F);
+            btnCart.ForeColor = Color.White;
+            btnCart.Location = new Point(27, 574);
+            btnCart.Margin = new Padding(4, 5, 4, 5);
+            btnCart.Name = "btnCart";
+            btnCart.Size = new Size(213, 54);
+            btnCart.TabIndex = 3;
+            btnCart.Text = "Cart";
+            btnCart.UseVisualStyleBackColor = false;
+            btnCart.Click += BtnCart_Click;
+            // 
+            // btnCategories
+            // 
+            btnCategories.BackColor = Color.FromArgb(0, 123, 255);
+            btnCategories.FlatAppearance.BorderSize = 0;
+            btnCategories.FlatStyle = FlatStyle.Flat;
+            btnCategories.Font = new Font("Segoe UI", 10F);
+            btnCategories.ForeColor = Color.White;
+            btnCategories.Location = new Point(27, 505);
+            btnCategories.Margin = new Padding(4, 5, 4, 5);
+            btnCategories.Name = "btnCategories";
+            btnCategories.Size = new Size(213, 54);
+            btnCategories.TabIndex = 2;
+            btnCategories.Text = "Categories";
+            btnCategories.UseVisualStyleBackColor = false;
+            btnCategories.Click += BtnCategories_Click;
+            // 
+            // btnOrders
+            // 
+            btnOrders.BackColor = Color.FromArgb(0, 123, 255);
+            btnOrders.FlatAppearance.BorderSize = 0;
+            btnOrders.FlatStyle = FlatStyle.Flat;
+            btnOrders.Font = new Font("Segoe UI", 10F);
+            btnOrders.ForeColor = Color.White;
+            btnOrders.Location = new Point(27, 436);
+            btnOrders.Margin = new Padding(4, 5, 4, 5);
+            btnOrders.Name = "btnOrders";
+            btnOrders.Size = new Size(213, 54);
+            btnOrders.TabIndex = 1;
+            btnOrders.Text = "Orders";
+            btnOrders.UseVisualStyleBackColor = false;
+            btnOrders.Click += BtnOrders_Click;
+            // 
+            // btnProducts
+            // 
+            btnProducts.BackColor = Color.FromArgb(0, 123, 255);
+            btnProducts.FlatAppearance.BorderSize = 0;
+            btnProducts.FlatStyle = FlatStyle.Flat;
+            btnProducts.Font = new Font("Segoe UI", 10F);
+            btnProducts.ForeColor = Color.White;
+            btnProducts.Location = new Point(27, 367);
+            btnProducts.Margin = new Padding(4, 5, 4, 5);
+            btnProducts.Name = "btnProducts";
+            btnProducts.Size = new Size(213, 54);
+            btnProducts.TabIndex = 0;
+            btnProducts.Text = "Products";
+            btnProducts.UseVisualStyleBackColor = false;
+            btnProducts.Click += BtnProducts_Click;
+            // 
+            // productPanel
+            // 
+            productPanel.AutoScroll = true;
+            productPanel.BackColor = Color.White;
+            productPanel.Location = new Point(280, 31);
+            productPanel.Margin = new Padding(4, 5, 4, 5);
+            productPanel.Name = "productPanel";
+            productPanel.Size = new Size(893, 862);
+            productPanel.TabIndex = 5;
+            // 
+            // LogOutBtn
+            // 
+            LogOutBtn.BackColor = Color.Black;
+            LogOutBtn.FlatAppearance.BorderSize = 0;
+            LogOutBtn.FlatStyle = FlatStyle.Flat;
+            LogOutBtn.Font = new Font("Segoe UI", 10F);
+            LogOutBtn.ForeColor = Color.White;
+            LogOutBtn.Location = new Point(55, 798);
+            LogOutBtn.Margin = new Padding(4, 5, 4, 5);
+            LogOutBtn.Name = "LogOutBtn";
+            LogOutBtn.Size = new Size(154, 46);
+            LogOutBtn.TabIndex = 7;
+            LogOutBtn.Text = "Log Out";
+            LogOutBtn.UseVisualStyleBackColor = false;
+            // 
+            // BaseForm
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(248, 249, 250);
+            ClientSize = new Size(1200, 923);
+            Controls.Add(productPanel);
+            Controls.Add(sidebarPanel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
+            Name = "BaseForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "E-Commerce Dashboard";
+            sidebarPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
         }
 
-        private Button CreateNavButton(string text, Point location, EventHandler clickEvent)
-        {
-            Button button = new Button
-            {
-                Text = text,
-                Location = location,
-                Size = new Size(177, 35),
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Century Gothic", 10.2F),
-                ForeColor = SystemColors.ControlDarkDark,
-                Cursor = Cursors.Hand
-            };
-            button.FlatAppearance.BorderSize = 0;
-            if (clickEvent != null)
-            {
-                button.Click += clickEvent;
-            }
-            return button;
-        }
-        #endregion
+        private PictureBox pictureBox1;
+        private Button button1;
+        private Button LogOutBtn;
     }
 }

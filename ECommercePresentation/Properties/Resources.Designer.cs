@@ -79,5 +79,15 @@ namespace ECommercePresentation.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap undraw_web_shopping_m3o2 {
+            get {
+                object obj = ResourceManager.GetObject("undraw_web-shopping_m3o2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

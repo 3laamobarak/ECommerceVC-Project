@@ -1,67 +1,55 @@
 using ECommerceApplication.Contracts;
-using ECommerceApplication.Mapping;
-using ECommerceDTOs;
 using EcommercModels;
-
 namespace ECommerceApplication.Services.CategoryService
 {
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IMappingService _mapper;
 
-        public CategoryService(ICategoryRepository categoryRepository, IMappingService mapper)
+        public CategoryService(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
-            _mapper = mapper;
         }
 
-        public async Task<CategoryDto?> GetByNameAsync(string name)
+        public async Task<Category?> GetByNameAsync(string name)
         {
-            var category = await _categoryRepository.GetByNameAsync(name);
-            return category != null ? _mapper.MapToCategoryDto(category) : null;
+            return await _categoryRepository.GetByNameAsync(name);
         }
 
-        public async Task<IEnumerable<CategoryDto>> SearchAsync(string keyword)
+        public async Task<IEnumerable<Category>> SearchAsync(string keyword)
         {
-            var categories = await _categoryRepository.SearchAsync(keyword);
-            return categories.Select(c => _mapper.MapToCategoryDto(c));
+            return await _categoryRepository.SearchAsync(keyword);
         }
 
-        public async Task<CategoryDto?> GetByIdAsync(int id)
+        public async Task<Category?> GetByIdAsync(int id)
         {
-            var category = await _categoryRepository.GetByIdAsync(id);
-            return category != null ? _mapper.MapToCategoryDto(category) : null;
+            return await _categoryRepository.GetByIdAsync(id);
         }
 
-        public async Task<IEnumerable<CategoryDto>> GetAllAsync()
+        public async Task<IQueryable<Category>> GetAllAsync()
         {
-            var categories = await _categoryRepository.GetAll();
-            return categories.Select(c => _mapper.MapToCategoryDto(c));
+            return await _categoryRepository.GetAll();
         }
 
-        public async Task<CategoryDto> AddAsync(CategoryDto categoryDto)
+        public async Task<Category> AddAsync(Category entity)
         {
-            var category = _mapper.MapToCategoryEntity(categoryDto);
-            var createdCategory = await _categoryRepository.CreateAsync(category);
-            return _mapper.MapToCategoryDto(createdCategory);
+            return await _categoryRepository.CreateAsync(entity);
         }
 
-        public async Task<CategoryDto> UpdateAsync(CategoryDto categoryDto)
+        public async Task<Category> UpdateAsync(Category entity)
         {
-            var category = _mapper.MapToCategoryEntity(categoryDto);
-            var updatedCategory = await _categoryRepository.UpdateAsync(category);
-            return _mapper.MapToCategoryDto(updatedCategory);
+            return await _categoryRepository.UpdateAsync(entity);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<Category> DeleteAsync(int id)
         {
             var category = await _categoryRepository.GetByIdAsync(id);
             if (category == null)
-                return false;
+            {
+                throw new ArgumentException("Category not found in the database.");
+            }
 
-            await _categoryRepository.RemoveAsync(category);
-            return true;
+            return await _categoryRepository.RemoveAsync(category);
         }
     }
 }

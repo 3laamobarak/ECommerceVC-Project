@@ -66,6 +66,8 @@
             this.txtUserId.Name = "txtUserId";
             this.txtUserId.Size = new System.Drawing.Size(200, 25);
             this.txtUserId.TabIndex = 1;
+            this.txtUserId.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.txtUserId.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // txtTotalAmount
             // 
@@ -202,6 +204,8 @@
             this.MaximizeBox = false;
             this.Name = "OrderForm";
             this.Text = "Order Management";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen; // Center form
+
             ((System.ComponentModel.ISupportInitialize)(this.gridOrders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
