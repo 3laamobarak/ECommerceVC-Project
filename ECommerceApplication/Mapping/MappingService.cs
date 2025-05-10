@@ -84,7 +84,8 @@ namespace ECommerceApplication.Mapping
                 Price = product.Price,
                 UnitsInStock = product.UnitsInStock,
                 CategoryID = product.CategoryID,
-                ImagePath = product.ImagePath
+                ImagePath = product.ImagePath,
+                CategoryName = product.Category?.Name // Map category name
             };
         }
         

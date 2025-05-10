@@ -1,65 +1,68 @@
-﻿using EcommercModels;
+﻿using ECommerceApplication.Contracts;
 using ECommerceContext;
 using ECommerceModels.Enums;
+using EcommercModels;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using ECommerceApplication.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ECommerceDTOs;
 
 namespace ECommerceInfrastructure
 {
-    public class UserRepository : GenericRepository<User> , IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly AppDBContext _context;
 
-        public UserRepository(AppDBContext context) : base(context)
+        public UserRepository(AppDBContext context)
         {
             _context = context;
         }
-
-        // Find a user by username
-        public async Task<User?> GetByUsername(string username)
+        public async Task<User> GetByUsernameOrEmailAsync(string identifier)
         {
-            if (string.IsNullOrWhiteSpace(username))
-            {
-                throw new ArgumentNullException(nameof(username));
-            }
-
             return await _context.Users
-                .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Username == username);
+                .FirstOrDefaultAsync(u => u.Username == identifier || u.Email == identifier);
+        }
+        public async Task<User> GetByIdAsync(int id)
+        {
+            return await _context.Users.FindAsync(id);
         }
 
-        // Find a user by email
-        public async Task<User?> GetByEmailAsync(string email)
+        public async Task AddAsync(User user)
         {
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                throw new ArgumentNullException(nameof(email));
-            }
-
-            return await _context.Users
-                .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Email == email);
-        }
-        public async Task<User?> AuthenticateAsync(string username, string password)
-        {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                throw new ArgumentNullException("Username or password cannot be null or empty");
-            }
-
-            return await _context.Users
-                .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
         }
 
-        // Get all active users
-        public async Task<IQueryable<User>> GetActiveUsersAsync()
+        public async Task<bool> UpdateAsync(User user)
         {
-            return await Task.FromResult(
-                _context.Users
-                    .AsNoTracking()
-                    .Where(c=>c.IsActive == IsActive.Active)
-            );
+            _context.Users.Update(user);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public IQueryable<User> GetAll()
+        {
+            return _context.Users;
+        }
+        public async Task<bool> ActivateUser(int userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return false;
+
+            user.IsActive = IsActive.Active;
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> DeactivateUser(int userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return false;
+
+            user.IsActive = IsActive.Inactive;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

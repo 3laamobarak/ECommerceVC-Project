@@ -25,7 +25,7 @@ public partial class Base : Form
     }
     private void CategoriesButton_Click(object sender, EventArgs e)
     {
-        CategoryForm categoryForm = new CategoryForm(_categoryService);
+        CategoryForm categoryForm = new CategoryForm(_categoryService, _productService);
         categoryForm.Show();
     }
 
@@ -37,13 +37,13 @@ public partial class Base : Form
     // product 
     private void ProductButton_Click(object sender, EventArgs e)
     {
-        ProductForm productForm = new ProductForm(_productService);
+        ProductForm productForm = new ProductForm(_productService, _categoryService);
         productForm.Show();
     }
     // cart item
     private void CartItemButton_Click(object sender, EventArgs e)
     {
-        CartItemForm cartItemForm = new CartItemForm(_cartItemService);
+        var cartItemForm = Program.Resolve<CartItemForm>();
         cartItemForm.Show();
     }
     

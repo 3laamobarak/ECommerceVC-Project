@@ -1,12 +1,15 @@
-﻿using System;
+﻿using EcommercModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace ECommerceApplication.Services.CustomerServices
+using ECommerceDTOs;
+namespace ECommerceApplication.Services.UserServices
 {
-    internal interface IUsererService
+    public interface IUserService
     {
+        Task<User> GetUserDetailsAsync(int userId);
+        Task UpdateUserAsync(User updatedUser, string newPassword = null);
     }
 }

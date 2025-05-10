@@ -1,7 +1,16 @@
 ﻿using Autofac;
 using ECommerceApplication.Contracts;
+using ECommerceApplication.Mapping;
+using ECommerceApplication.PasswordHasherService;
+using ECommerceApplication.Services.AuthServices;
+using ECommerceApplication.Services.CartItemService;
+using ECommerceApplication.Services.CategoryService;
+using ECommerceApplication.Services.IOrderDetailsService;
+using ECommerceApplication.Services.ProductService;
 using ECommerceContext;
 using ECommerceInfrastructure;
+using ECommerceInfrastructure.Security;
+using ECommercePresentation.AuthForms;
 
 namespace ECommercePresentation
 {
@@ -10,14 +19,38 @@ namespace ECommercePresentation
         public static IContainer Inject()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<AppDBContext>().As<AppDBContext>();
-            builder.RegisterType<CartItemRepository>().As<ICartItemRepository>();
-            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
-            builder.RegisterType<OrderRepository>().As<IOrderRepository>();
-            builder.RegisterType<OrderDetailRepository>().As<IOrderDetailRepository>();
-            builder.RegisterType<ProductRepository>().As<IProductRepository>();
-            builder.RegisterType<UserRepository>().As<IUserRepository>();
-            
+
+            // Register DbContext
+            builder.RegisterType<AppDBContext>().AsSelf().InstancePerLifetimeScope();
+
+            // Register Repositories
+            builder.RegisterType<AuthRepository>().As<IAuthRepository>().InstancePerDependency();
+            builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerDependency();
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>().InstancePerDependency();
+            builder.RegisterType<OrderDetailRepository>().As<IOrderDetailRepository>().InstancePerDependency();
+            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerDependency();
+            builder.RegisterType<CartItemRepository>().As<ICartItemRepository>().InstancePerDependency();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerDependency();
+
+            // Register Services
+            builder.RegisterType<MappingService>().As<IMappingService>().InstancePerDependency();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerDependency();
+            builder.RegisterType<OrderService>().As<IOrderService>().InstancePerDependency();
+            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerDependency();
+            builder.RegisterType<CartItemService>().As<ICartItemService>().InstancePerDependency();
+            builder.RegisterType<AuthService>().As<IAuthService>().InstancePerDependency();
+            builder.RegisterType<PasswordHasher>().As<IPasswordHasher>().InstancePerDependency();
+
+            // Register Forms
+            builder.RegisterType<LoginForm>().AsSelf().InstancePerDependency();
+            builder.RegisterType<RegistrationForm>().AsSelf().InstancePerDependency(); // Added
+            builder.RegisterType<Base>().AsSelf().InstancePerDependency();
+            builder.RegisterType<CategoryForm>().AsSelf().InstancePerDependency();
+            builder.RegisterType<OrderForm>().AsSelf().InstancePerDependency();
+            builder.RegisterType<ProductForm>().AsSelf().InstancePerDependency();
+            builder.RegisterType<CartItemForm>().AsSelf().InstancePerDependency();
+
+            // Build the container
             var container = builder.Build();
 
             return container;
