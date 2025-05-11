@@ -2,14 +2,9 @@
 using ECommerceContext;
 using ECommerceModels.Enums;
 using EcommercModels;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ECommerceDTOs;
 
 namespace ECommerceInfrastructure
 {
@@ -19,38 +14,65 @@ namespace ECommerceInfrastructure
 
         public UserRepository(AppDBContext context)
         {
-            _context = context;
-        }
-        public async Task<User> GetByUsernameOrEmailAsync(string identifier)
-        {
-            return await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == identifier || u.Email == identifier);
-        }
-        public async Task<User> GetByIdAsync(int id)
-        {
-            return await _context.Users.FindAsync(id);
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task AddAsync(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }
 
+        public IQueryable<User> GetAll()
+        {
+            return _context.Users.AsNoTracking();
+        }
+
+        public async Task<User> GetByIdAsync(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                throw new KeyNotFoundException($"User with ID {id} not found.");
+            }
+            return user;
+        }
+
+        public async Task<User> GetByUsernameOrEmailAsync(string identifier)
+        {
+            if (string.IsNullOrEmpty(identifier))
+            {
+                throw new ArgumentNullException(nameof(identifier));
+            }
+
+            return await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Username == identifier || u.Email == identifier);
+        }
+
         public async Task<bool> UpdateAsync(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
             _context.Users.Update(user);
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public IQueryable<User> GetAll()
-        {
-            return _context.Users;
-        }
         public async Task<bool> ActivateUser(int userId)
         {
             var user = await _context.Users.FindAsync(userId);
-            if (user == null) return false;
+            if (user == null)
+            {
+                return false;
+            }
 
             user.IsActive = IsActive.Active;
             return await _context.SaveChangesAsync() > 0;
@@ -59,7 +81,10 @@ namespace ECommerceInfrastructure
         public async Task<bool> DeactivateUser(int userId)
         {
             var user = await _context.Users.FindAsync(userId);
-            if (user == null) return false;
+            if (user == null)
+            {
+                return false;
+            }
 
             user.IsActive = IsActive.Inactive;
             return await _context.SaveChangesAsync() > 0;

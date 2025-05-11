@@ -7,6 +7,7 @@ using ECommerceApplication.Services.CartItemService;
 using ECommerceApplication.Services.CategoryService;
 using ECommerceApplication.Services.IOrderDetailsService;
 using ECommerceApplication.Services.ProductService;
+using ECommerceApplication.Services.UserServices;
 using ECommerceContext;
 using ECommerceInfrastructure;
 using ECommerceInfrastructure.Security;
@@ -39,6 +40,7 @@ namespace ECommercePresentation
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerDependency();
             builder.RegisterType<CartItemService>().As<ICartItemService>().InstancePerDependency();
             builder.RegisterType<AuthService>().As<IAuthService>().InstancePerDependency();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerDependency();
             builder.RegisterType<PasswordHasher>().As<IPasswordHasher>().InstancePerDependency();
 
             // Register Forms

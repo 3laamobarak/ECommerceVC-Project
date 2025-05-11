@@ -19,9 +19,8 @@ namespace ECommercePresentation
 
             // Initialize DataGridView columns and styling
             gridCartItems.Columns.Clear();
-            gridCartItems.Columns.Add("CartItemID", "Cart Item ID");
-            gridCartItems.Columns.Add("UserID", "User ID");
-            gridCartItems.Columns.Add("ProductID", "Product ID");
+            gridCartItems.Columns.Add("Username", "User");
+            gridCartItems.Columns.Add("ProductName", "Product");
             gridCartItems.Columns.Add("Quantity", "Quantity");
             gridCartItems.Columns.Add("DateAdded", "Date Added");
 
@@ -50,13 +49,13 @@ namespace ECommercePresentation
                 gridCartItems.Rows.Clear();
                 foreach (var item in cartItems)
                 {
-                    gridCartItems.Rows.Add(
-                        item.CartItemID,
-                        item.UserID,
-                        item.ProductID,
+                    var rowIndex = gridCartItems.Rows.Add(
+                        item.User?.Username ?? "Unknown",
+                        item.Product?.Name ?? "Unknown",
                         item.Quantity,
                         item.DateAdded.ToString("g")
                     );
+                    gridCartItems.Rows[rowIndex].Tag = item.CartItemID; // Store CartItemID in the row's Tag
                 }
             }
             catch (Exception ex)
@@ -65,14 +64,43 @@ namespace ECommercePresentation
             }
         }
 
+        private async void TxtSearchUser_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchText = txtSearchUser.Text.Trim();
+                if (string.IsNullOrEmpty(searchText))
+                {
+                    LoadCartItemsAsync();
+                    return;
+                }
+
+                var cartItems = await _cartItemService.GetCartItemsByUserIdAsync(1); // Replace with dynamic user search if supported
+                var filteredItems = cartItems.Where(ci => ci.User?.Username?.Contains(searchText, StringComparison.OrdinalIgnoreCase) == true);
+                gridCartItems.Rows.Clear();
+                foreach (var item in filteredItems)
+                {
+                    var rowIndex = gridCartItems.Rows.Add(
+                        item.User?.Username ?? "Unknown",
+                        item.Product?.Name ?? "Unknown",
+                        item.Quantity,
+                        item.DateAdded.ToString("g")
+                    );
+                    gridCartItems.Rows[rowIndex].Tag = item.CartItemID; // Store CartItemID in the row's Tag
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error searching cart items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void GridCartItems_SelectionChanged(object sender, EventArgs e)
         {
             if (gridCartItems.SelectedRows.Count > 0)
             {
                 var selectedRow = gridCartItems.SelectedRows[0];
-                _selectedCartItemId = Convert.ToInt32(selectedRow.Cells["CartItemID"].Value);
-                txtUserID.Text = selectedRow.Cells["UserID"].Value.ToString();
-                txtProductID.Text = selectedRow.Cells["ProductID"].Value.ToString();
+                _selectedCartItemId = (int?)selectedRow.Tag; // Retrieve CartItemID from the row's Tag
                 txtQuantity.Text = selectedRow.Cells["Quantity"].Value.ToString();
             }
         }
@@ -83,8 +111,8 @@ namespace ECommercePresentation
             {
                 var cartItem = new CartItemDto
                 {
-                    UserID = int.Parse(txtUserID.Text),
-                    ProductID = int.Parse(txtProductID.Text),
+                    UserID = 1, // Replace with dynamic user selection if supported
+                    ProductID = 1, // Replace with dynamic product selection if supported
                     Quantity = int.Parse(txtQuantity.Text),
                     DateAdded = DateTime.Now
                 };
@@ -112,8 +140,6 @@ namespace ECommercePresentation
                 var cartItem = new CartItemDto
                 {
                     CartItemID = _selectedCartItemId.Value,
-                    UserID = int.Parse(txtUserID.Text),
-                    ProductID = int.Parse(txtProductID.Text),
                     Quantity = int.Parse(txtQuantity.Text)
                 };
                 await _cartItemService.UpdateCartItemAsync(_selectedCartItemId.Value, cartItem);
@@ -155,8 +181,6 @@ namespace ECommercePresentation
 
         private void ClearInputs()
         {
-            txtUserID.Clear();
-            txtProductID.Clear();
             txtQuantity.Clear();
             _selectedCartItemId = null;
             gridCartItems.ClearSelection();

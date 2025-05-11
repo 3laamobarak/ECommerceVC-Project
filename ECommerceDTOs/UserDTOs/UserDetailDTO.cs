@@ -14,10 +14,6 @@ namespace ECommerceDTOs
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public UserRole Role { get; set; }
-        public IsActive IsActive { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime? LastLoginDate { get; set; }
 
     }
 }

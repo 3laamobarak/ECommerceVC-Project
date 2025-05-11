@@ -1,8 +1,11 @@
-﻿using ECommerceApplication.Services.CartItemService;
+﻿using ECommerceApplication.PasswordHasherService;
+using ECommerceApplication.Services.CartItemService;
 using ECommerceApplication.Services.CategoryService;
 using ECommerceApplication.Services.IOrderDetailsService;
 using ECommerceApplication.Services.ProductService;
+using ECommerceApplication.Services.UserServices;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Helpers;
 
 namespace ECommercePresentation;
 
@@ -12,14 +15,19 @@ public partial class Base : Form
     private readonly ICategoryService _categoryService;
     private readonly IProductService _productService;
     private readonly ICartItemService _cartItemService;
+    private readonly IUserService _userService;
+    private readonly IPasswordHasher _passwordHasher;
 
-    public Base(IOrderService orderService, ICategoryService categoryService, IProductService productService, ICartItemService cartItemService)
+    public Base(IOrderService orderService, ICategoryService categoryService, IProductService productService, ICartItemService cartItemService, IUserService userService
+        ,IPasswordHasher passwordHasher )
     {
         InitializeComponent();
         _orderService = orderService;
         _categoryService = categoryService;
         _productService = productService;
         _cartItemService = cartItemService;
+        _userService = userService;
+        _passwordHasher = passwordHasher;
     }
 
     private void CategoriesButton_Click(object sender, EventArgs e)
@@ -45,7 +53,20 @@ public partial class Base : Form
         var cartItemForm = Program.Resolve<CartItemForm>();
         cartItemForm.Show();
     }
+    private void ProfileButton_Click(object sender, EventArgs e)
+    {
+        // Check if a user is logged in using SessionManager
+        if (!SessionManager.IsAuthenticated)
+        {
+            MessageBox.Show("User not logged in.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
 
+        int userId = SessionManager.UserId;
+        var profileForm = new Profile(_userService, _passwordHasher);
+        profileForm.LoadUserProfile(userId);
+        profileForm.ShowDialog();
+    }
     private void contentPanel_Paint(object sender, PaintEventArgs e)
     {
     }
