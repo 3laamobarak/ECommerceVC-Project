@@ -85,8 +85,9 @@ namespace ECommercePresentation
             navPanel.Controls.Add(CreateNavButton("Cart", new Point(0, 243), CartItemButton_Click));
             navPanel.Controls.Add(CreateNavButton("Order", new Point(0, 319), OrderButton_Click));
             navPanel.Controls.Add(CreateNavButton("Profile", new Point(0, 432), ProfileButton_Click));
+            navPanel.Controls.Add(CreateNavButton("Users", new Point(0, 375), BtnUsers_Click));
             navPanel.Controls.Add(CreateNavButton("Setting", new Point(0, 506), null));
-            navPanel.Controls.Add(CreateNavButton("Logout", new Point(0, 603), null));
+            navPanel.Controls.Add(CreateNavButton("Logout", new Point(0, 603),LogOutButton_Click));
 
             // Search Panel
             Panel searchPanel = new Panel

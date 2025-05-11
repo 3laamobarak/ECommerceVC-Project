@@ -76,3 +76,6 @@ C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\ne
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.AuthForms.LoginForm.resources
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.AuthForms.RegistrationForm.resources
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\bin\Debug\net9.0-windows\Autofac.Extensions.DependencyInjection.dll
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.CartItemForm.resources
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.UserEditForm.resources
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.UserForm.resources

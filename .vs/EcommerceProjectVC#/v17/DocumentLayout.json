@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercepresentation\\base.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|solutionrelative:ecommercepresentation\\base.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommerceapplication\\services\\usererservices\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9318E501-C3BE-4C42-85B3-3A6686F2AEAF}|ECommerceApplication\\ECommerceApplication.csproj|solutionrelative:ecommerceapplication\\services\\usererservices\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercepresentation\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|solutionrelative:ecommercepresentation\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercepresentation\\usereditform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|solutionrelative:ecommercepresentation\\usereditform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|c:\\users\\dell\\desktop\\iti\\ecommerceprojectvc#\\ecommercepresentation\\usereditform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C926C568-17AC-41A1-B7EB-9E964988BC43}|ECommercePresentation\\ECommercePresentation.csproj|solutionrelative:ecommercepresentation\\usereditform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -29,33 +33,42 @@
               "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Base.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\Base.Designer.cs",
-              "RelativeDocumentMoniker": "ECommercePresentation\\Base.Designer.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\Base.Designer.cs",
-              "RelativeToolTip": "ECommercePresentation\\Base.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Services\\UsererServices\\UserService.cs",
+              "RelativeDocumentMoniker": "ECommerceApplication\\Services\\UsererServices\\UserService.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\Services\\UsererServices\\UserService.cs",
+              "RelativeToolTip": "ECommerceApplication\\Services\\UsererServices\\UserService.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAA0wEgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T04:40:20.967Z",
+              "WhenOpened": "2025-05-11T19:28:37.099Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Base.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\Base.cs",
-              "RelativeDocumentMoniker": "ECommercePresentation\\Base.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\Base.cs",
-              "RelativeToolTip": "ECommercePresentation\\Base.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
+              "Title": "UserEditForm.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\UserEditForm.cs",
+              "RelativeDocumentMoniker": "ECommercePresentation\\UserEditForm.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\UserEditForm.cs",
+              "RelativeToolTip": "ECommercePresentation\\UserEditForm.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAA9wEYAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T11:46:31.886Z",
+              "WhenOpened": "2025-05-11T19:25:09.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserEditForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\UserEditForm.Designer.cs",
+              "RelativeDocumentMoniker": "ECommercePresentation\\UserEditForm.Designer.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\UserEditForm.Designer.cs",
+              "RelativeToolTip": "ECommercePresentation\\UserEditForm.Designer.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAcwG8AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T19:24:55.153Z",
               "EditorCaption": ""
             }
           ]

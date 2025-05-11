@@ -6,6 +6,7 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ECommerceApplication.Contracts;
 
 namespace ECommercePresentation
 {
@@ -164,7 +165,7 @@ namespace ECommercePresentation
 
             try
             {
-                var updatedUser = new UserDetailDTO
+                var updatedUser = new UserDto
                 {
                     Username = txtUsername.Text.Trim(),
                     Email = txtEmail.Text.Trim(),

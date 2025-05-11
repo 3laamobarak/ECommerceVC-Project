@@ -8,7 +8,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0296619e-9cfa-489e-8c7a-ab25abc547d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ECommerceApplication/Contracts/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceApplication/Contracts/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EcommerceProjectVC#/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcommerceProjectVC#/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/CopilotIndices/17.13.441.19478/CodeChunks.db" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/CopilotIndices/17.13.441.19478/CodeChunks.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/CopilotIndices/17.13.441.19478/SemanticSymbols.db" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/CopilotIndices/17.13.441.19478/SemanticSymbols.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/FileContentIndex/6defeaf9-3567-4aa3-8413-bdd83b1630b4.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/FileContentIndex/77d82d72-f9eb-42d9-ad1c-c78390eeaec5.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/FileContentIndex/dc761e0d-148f-46d1-973c-417211b5134f.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/FileContentIndex/fc93b80d-a9a9-4908-a389-19519f1d0f4b.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/FileContentIndex/fd2bdbe3-aef7-4a0c-aeb1-0f9362677e03.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/v17/DocumentLayout.backup.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/v17/DocumentLayout.backup.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/EcommerceProjectVC#/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/ecommerceprojectvc#.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/ecommerceprojectvc#.metadata.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/ecommerceprojectvc#.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/ecommerceprojectvc#.projects.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/ecommerceprojectvc#.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/ecommerceprojectvc#.strings.v9.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceApplication/Services/UsererServices/IUsererService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceApplication/Services/UsererServices/IUsererService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceApplication/Services/UsererServices/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceApplication/Services/UsererServices/UserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceApplication/bin/Debug/net9.0/ECommerceApplication.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceApplication/bin/Debug/net9.0/ECommerceApplication.dll" afterDir="false" />
@@ -47,15 +62,11 @@
       <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ECommerceDTOs.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ref/ECommerceDTOs.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/ref/ECommerceDTOs.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/refint/ECommerceDTOs.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceDTOs/obj/Debug/net9.0/refint/ECommerceDTOs.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/CartItemRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/CartItemRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/GenericRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/GenericRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/UserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/bin/Debug/net9.0/ECommerceApplication.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/bin/Debug/net9.0/ECommerceApplication.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/bin/Debug/net9.0/ECommerceApplication.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/bin/Debug/net9.0/ECommerceApplication.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/bin/Debug/net9.0/ECommerceContext.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/bin/Debug/net9.0/ECommerceContext.dll" afterDir="false" />
@@ -74,12 +85,11 @@
       <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/obj/Debug/net9.0/ECommerceInfrastructure.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/obj/Debug/net9.0/ECommerceInfrastructure.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/obj/Debug/net9.0/ref/ECommerceInfrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/obj/Debug/net9.0/ref/ECommerceInfrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommerceInfrastructure/obj/Debug/net9.0/refint/ECommerceInfrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommerceInfrastructure/obj/Debug/net9.0/refint/ECommerceInfrastructure.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECommercePresentation/Autofac.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/Autofac.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/Base.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/Base.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/Base.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/Base.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECommercePresentation/CartItemForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/CartItemForm.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECommercePresentation/CartItemForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/CartItemForm.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/ECommercePresentation.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/ECommercePresentation.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECommercePresentation/ECommercePresentation.csproj.user" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/ECommercePresentation.csproj.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECommercePresentation/Profile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/Profile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/bin/Debug/net9.0-windows/ECommerceApplication.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/bin/Debug/net9.0-windows/ECommerceApplication.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/bin/Debug/net9.0-windows/ECommerceApplication.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/bin/Debug/net9.0-windows/ECommerceApplication.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/bin/Debug/net9.0-windows/ECommerceContext.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/bin/Debug/net9.0-windows/ECommerceContext.dll" afterDir="false" />
@@ -97,6 +107,9 @@
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.csproj.GenerateResource.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.designer.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.designer.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/ECommercePresentation/obj/Debug/net9.0-windows/ECommercePresentation.sourcelink.json" afterDir="false" />
@@ -107,6 +120,7 @@
       <change beforePath="$PROJECT_DIR$/EcommerceData/bin/Debug/net9.0/ECommerceModels.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceData/bin/Debug/net9.0/ECommerceModels.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.dll" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceData/obj/Debug/net9.0/ECommerceModels.sourcelink.json" afterDir="false" />
@@ -238,7 +252,9 @@
       <workItem from="1746915737498" duration="546000" />
       <workItem from="1746960526341" duration="388000" />
       <workItem from="1746965359453" duration="6926000" />
-      <workItem from="1746976862866" duration="325000" />
+      <workItem from="1746976862866" duration="1060000" />
+      <workItem from="1746980873724" duration="10059000" />
+      <workItem from="1746991880001" duration="649000" />
     </task>
     <servers />
   </component>

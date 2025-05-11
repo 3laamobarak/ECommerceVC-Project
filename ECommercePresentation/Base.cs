@@ -1,4 +1,5 @@
-﻿using ECommerceApplication.PasswordHasherService;
+﻿using ECommerceApplication.Contracts;
+using ECommerceApplication.PasswordHasherService;
 using ECommerceApplication.Services.CartItemService;
 using ECommerceApplication.Services.CategoryService;
 using ECommerceApplication.Services.IOrderDetailsService;
@@ -70,7 +71,16 @@ public partial class Base : Form
     private void contentPanel_Paint(object sender, PaintEventArgs e)
     {
     }
-
+    private void BtnUsers_Click(object sender, EventArgs e)
+    {
+        var userForm = new UserForm(_userService);
+        userForm.ShowDialog();
+    }
+    private void LogOutButton_Click(object sender, EventArgs e)
+    {
+        SessionManager.ClearSession();
+        this.Close(); // Closes the form, redirect to login if needed
+    }
     private void header_Paint(object sender, PaintEventArgs e)
     {
     }
