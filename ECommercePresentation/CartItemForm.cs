@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared.Helpers;
 
 namespace ECommercePresentation
 {
@@ -45,7 +46,8 @@ namespace ECommercePresentation
         {
             try
             {
-                var cartItems = await _cartItemService.GetCartItemsByUserIdAsync(1); // Example UserID
+                var userid = SessionManager.UserId;
+                var cartItems = await _cartItemService.GetCartItemsByUserIdAsync(userid); // Example UserID
                 gridCartItems.Rows.Clear();
                 foreach (var item in cartItems)
                 {
