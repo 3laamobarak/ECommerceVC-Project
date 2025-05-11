@@ -13,7 +13,14 @@ namespace ECommerceInfrastructure
             {
                 _context = context;
             }
-    
+            public async Task<IQueryable<Product>> GetAll()
+            {
+                return await Task.FromResult(
+                    _context.Products
+                        .AsNoTracking()
+                        .Include(p => p.Category) // Include Category
+                );
+            }
             // Get products by category ID
             public async Task<IQueryable<Product>> GetByCategoryAsync(int categoryId)
             {

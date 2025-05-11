@@ -1,11 +1,17 @@
 ﻿using EcommercModels;
-    
-    namespace ECommerceApplication.Contracts
-    {
-        public interface IUserRepository : IGenericRepository<User>
-        {
-            public Task<User?> GetByUsername(string username);
+using System.Linq;
+using System.Threading.Tasks;
 
-            public Task<User?> AuthenticateAsync(string username, string password);
-        }
+namespace ECommerceApplication.Contracts
+{
+    public interface IUserRepository
+    {
+        Task AddAsync(User user);
+        Task<User> GetByUsernameOrEmailAsync(string identifier);
+        Task<User> GetByIdAsync(int id);
+        Task<bool>UpdateAsync(User user);
+        IQueryable<User>GetAll();
+        Task<bool> ActivateUser(int userId);
+        Task<bool> DeactivateUser(int userId);
     }
+}

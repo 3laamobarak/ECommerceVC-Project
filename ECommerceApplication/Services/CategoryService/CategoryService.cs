@@ -15,6 +15,11 @@ namespace ECommerceApplication.Services.CategoryService
             _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
+        public async Task<List<CategoryDto>> GetAllCategoriesAsync()
+        {
+            var categories = await _categoryRepository.GetAll();
+            return categories.Select(c => _mapper.MapToCategoryDto(c)).ToList();
+        }
 
         public async Task<CategoryDto?> GetByNameAsync(string name)
         {
@@ -34,11 +39,11 @@ namespace ECommerceApplication.Services.CategoryService
             return category != null ? _mapper.MapToCategoryDto(category) : null;
         }
 
-        public async Task<IEnumerable<CategoryDto>> GetAllAsync()
-        {
-            var categories = await _categoryRepository.GetAll();
-            return categories.Select(c => _mapper.MapToCategoryDto(c));
-        }
+        // public async Task<IEnumerable<CategoryDto>> GetAllAsync()
+        // {
+        //     var categories = await _categoryRepository.GetAll();
+        //     return categories.Select(c => _mapper.MapToCategoryDto(c));
+        // }
 
         public async Task<CategoryDto> AddAsync(CategoryDto categoryDto)
         {

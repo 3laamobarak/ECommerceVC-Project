@@ -1,65 +1,93 @@
-﻿using EcommercModels;
+﻿using ECommerceApplication.Contracts;
 using ECommerceContext;
 using ECommerceModels.Enums;
+using EcommercModels;
 using Microsoft.EntityFrameworkCore;
-using ECommerceApplication.Contracts;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ECommerceInfrastructure
 {
-    public class UserRepository : GenericRepository<User> , IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly AppDBContext _context;
 
-        public UserRepository(AppDBContext context) : base(context)
+        public UserRepository(AppDBContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        // Find a user by username
-        public async Task<User?> GetByUsername(string username)
+        public async Task AddAsync(User user)
         {
-            if (string.IsNullOrWhiteSpace(username))
+            if (user == null)
             {
-                throw new ArgumentNullException(nameof(username));
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public IQueryable<User> GetAll()
+        {
+            return _context.Users.AsNoTracking();
+        }
+
+        public async Task<User> GetByIdAsync(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                throw new KeyNotFoundException($"User with ID {id} not found.");
+            }
+            return user;
+        }
+
+        public async Task<User> GetByUsernameOrEmailAsync(string identifier)
+        {
+            if (string.IsNullOrEmpty(identifier))
+            {
+                throw new ArgumentNullException(nameof(identifier));
             }
 
             return await _context.Users
                 .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Username == username);
+                .FirstOrDefaultAsync(u => u.Username == identifier || u.Email == identifier);
         }
 
-        // Find a user by email
-        public async Task<User?> GetByEmailAsync(string email)
+        public async Task<bool> UpdateAsync(User user)
         {
-            if (string.IsNullOrWhiteSpace(email))
+            if (user == null)
             {
-                throw new ArgumentNullException(nameof(email));
+                throw new ArgumentNullException(nameof(user));
             }
 
-            return await _context.Users
-                .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Email == email);
+            _context.Users.Update(user);
+            return await _context.SaveChangesAsync() > 0;
         }
-        public async Task<User?> AuthenticateAsync(string username, string password)
+
+        public async Task<bool> ActivateUser(int userId)
         {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
             {
-                throw new ArgumentNullException("Username or password cannot be null or empty");
+                return false;
             }
 
-            return await _context.Users
-                .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+            user.IsActive = IsActive.Active;
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        // Get all active users
-        public async Task<IQueryable<User>> GetActiveUsersAsync()
+        public async Task<bool> DeactivateUser(int userId)
         {
-            return await Task.FromResult(
-                _context.Users
-                    .AsNoTracking()
-                    .Where(c=>c.IsActive == IsActive.Active)
-            );
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.IsActive = IsActive.Inactive;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

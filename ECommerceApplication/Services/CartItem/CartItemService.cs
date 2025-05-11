@@ -1,7 +1,9 @@
 using ECommerceApplication.Contracts;
 using ECommerceApplication.Mapping;
+using ECommerceContext;
 using ECommerceDTOs;
 using EcommercModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceApplication.Services.CartItemService
 {
@@ -9,9 +11,11 @@ namespace ECommerceApplication.Services.CartItemService
     {
         private readonly ICartItemRepository _cartItemRepository;
         private readonly IMappingService _mapper;
+        private readonly AppDBContext _context;
 
-        public CartItemService(ICartItemRepository cartItemRepository, IMappingService mapper)
+        public CartItemService(ICartItemRepository cartItemRepository, IMappingService mapper, AppDBContext context)
         {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
             _cartItemRepository = cartItemRepository;
             _mapper = mapper;
         }
@@ -54,6 +58,43 @@ namespace ECommerceApplication.Services.CartItemService
 
             await _cartItemRepository.RemoveAsync(cartItem);
             return true;
+        }
+        public async Task<CartItemDto> AddOrUpdateCartItemAsync(int userId, int productId, int quantity)
+        {
+            var cartItem = await _context.CartItems
+                .FirstOrDefaultAsync(ci => ci.UserID == userId && ci.ProductID == productId);
+
+            if (cartItem != null)
+            {
+                // Update existing cart item
+                cartItem.Quantity += quantity;
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                // Add new cart item
+                cartItem = new CartItem
+                {
+                    UserID = userId,
+                    ProductID = productId,
+                    Quantity = quantity,
+                    DateAdded = DateTime.Now
+                };
+                _context.CartItems.Add(cartItem);
+                await _context.SaveChangesAsync();
+            }
+
+            // Map to DTO
+            return new CartItemDto
+            {
+                CartItemID = cartItem.CartItemID,
+                UserID = cartItem.UserID,
+                ProductID = cartItem.ProductID,
+                Quantity = cartItem.Quantity,
+                DateAdded = cartItem.DateAdded,
+                Product = new ProductDto { Name = cartItem.Product?.Name ?? "Unknown" },
+                User = new UserDto { Username = cartItem.User?.Username ?? "Unknown" }
+            };
         }
     }
 }

@@ -18,6 +18,8 @@ namespace ECommerceInfrastructure
         {
             return await Task.FromResult(
                 _context.CartItems
+                    .Include(ci => ci.User)
+                    .Include(ci => ci.Product)
                     .AsNoTracking()
                     .Where(ci => ci.UserID == userId)
             );

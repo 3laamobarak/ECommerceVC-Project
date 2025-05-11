@@ -82,7 +82,9 @@ namespace ECommerceDTOs
         public int CategoryID { get; set; }
         [MaxLength(255)]
         public string ImagePath { get; set; }
-        
+    
+        // Add this for category name
+        public string CategoryName { get; set; } // New property
         // Navigation property
         public CategoryDto Category { get; set; }
     }

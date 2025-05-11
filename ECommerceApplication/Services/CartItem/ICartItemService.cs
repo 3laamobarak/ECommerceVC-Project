@@ -9,5 +9,7 @@ namespace ECommerceApplication.Services.CartItemService
         Task<CartItemDto> AddCartItemAsync(CartItemDto cartItemDto);
         Task<CartItemDto> UpdateCartItemAsync(int cartItemId, CartItemDto cartItemDto);
         Task<bool> RemoveCartItemAsync(int cartItemId);
+        Task<CartItemDto> AddOrUpdateCartItemAsync(int userId, int productId, int quantity);
+
     }
 }
