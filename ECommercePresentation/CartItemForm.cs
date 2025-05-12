@@ -1,21 +1,28 @@
 using ECommerceApplication.Services.CartItemService;
+using ECommerceApplication.Services.IOrderDetailsService;
 using ECommerceDTOs;
+using Shared.Helpers;
 using System;
-using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Shared.Helpers;
+using ECommerceModels.Enums;
+using Microsoft.EntityFrameworkCore; // Add for ToListAsync
 
 namespace ECommercePresentation
 {
     public partial class CartItemForm : Form
     {
         private readonly ICartItemService _cartItemService;
+        private readonly IOrderService _orderService;
+        private readonly IOrderDetailService _orderDetailService;
         private int? _selectedCartItemId;
 
-        public CartItemForm(ICartItemService cartItemService)
+        public CartItemForm(ICartItemService cartItemService, IOrderService orderService, IOrderDetailService orderDetailService)
         {
             _cartItemService = cartItemService ?? throw new ArgumentNullException(nameof(cartItemService));
+            _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
+            _orderDetailService = orderDetailService ?? throw new ArgumentNullException(nameof(orderDetailService));
             InitializeComponent();
 
             // Initialize DataGridView columns and styling
@@ -46,8 +53,8 @@ namespace ECommercePresentation
         {
             try
             {
-                var userid = SessionManager.UserId;
-                var cartItems = await _cartItemService.GetCartItemsByUserIdAsync(userid); // Example UserID
+                var userId = SessionManager.UserId;
+                var cartItems = await _cartItemService.GetCartItemsByUserIdAsync(userId);
                 gridCartItems.Rows.Clear();
                 foreach (var item in cartItems)
                 {
@@ -57,7 +64,7 @@ namespace ECommercePresentation
                         item.Quantity,
                         item.DateAdded.ToString("g")
                     );
-                    gridCartItems.Rows[rowIndex].Tag = item.CartItemID; // Store CartItemID in the row's Tag
+                    gridCartItems.Rows[rowIndex].Tag = item.CartItemID;
                 }
             }
             catch (Exception ex)
@@ -77,7 +84,7 @@ namespace ECommercePresentation
                     return;
                 }
 
-                var cartItems = await _cartItemService.GetCartItemsByUserIdAsync(1); // Replace with dynamic user search if supported
+                var cartItems = await _cartItemService.GetCartItemsByUserIdAsync(SessionManager.UserId);
                 var filteredItems = cartItems.Where(ci => ci.User?.Username?.Contains(searchText, StringComparison.OrdinalIgnoreCase) == true);
                 gridCartItems.Rows.Clear();
                 foreach (var item in filteredItems)
@@ -88,7 +95,7 @@ namespace ECommercePresentation
                         item.Quantity,
                         item.DateAdded.ToString("g")
                     );
-                    gridCartItems.Rows[rowIndex].Tag = item.CartItemID; // Store CartItemID in the row's Tag
+                    gridCartItems.Rows[rowIndex].Tag = item.CartItemID;
                 }
             }
             catch (Exception ex)
@@ -102,7 +109,7 @@ namespace ECommercePresentation
             if (gridCartItems.SelectedRows.Count > 0)
             {
                 var selectedRow = gridCartItems.SelectedRows[0];
-                _selectedCartItemId = (int?)selectedRow.Tag; // Retrieve CartItemID from the row's Tag
+                _selectedCartItemId = (int?)selectedRow.Tag;
                 txtQuantity.Text = selectedRow.Cells["Quantity"].Value.ToString();
             }
         }
@@ -113,8 +120,8 @@ namespace ECommercePresentation
             {
                 var cartItem = new CartItemDto
                 {
-                    UserID = 1, // Replace with dynamic user selection if supported
-                    ProductID = 1, // Replace with dynamic product selection if supported
+                    UserID = SessionManager.UserId,
+                    ProductID = 1,
                     Quantity = int.Parse(txtQuantity.Text),
                     DateAdded = DateTime.Now
                 };
@@ -179,6 +186,66 @@ namespace ECommercePresentation
         private void BtnClear_Click(object sender, EventArgs e)
         {
             ClearInputs();
+        }
+
+        private async void BtnMakeOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!SessionManager.IsAuthenticated)
+                {
+                    MessageBox.Show("Please log in to create an order.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var userId = SessionManager.UserId;
+                // Materialize the cart items into a list to avoid open DataReader issues
+                var cartItems = await _cartItemService.GetCartItemsByUserIdAsync(userId);
+
+                if (!cartItems.Any())
+                {
+                    MessageBox.Show("Your cart is empty!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Create a new order
+                var orderDto = new CreateOrderDto { UserID = userId };
+                var createdOrder = await _orderService.CreateOrderAsync(orderDto);
+                if (createdOrder == null)
+                {
+                    MessageBox.Show("Failed to create order.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
+                foreach (var cartItem in cartItems)
+                {
+                    var orderDetail = await _orderDetailService.CreateOrderwithuseridandproductidAsync(
+                        createdOrder.OrderID,
+                        cartItem.ProductID,
+                        cartItem.Quantity
+                    );
+                    if (orderDetail == null)
+                    {
+                        MessageBox.Show($"Failed to create order detail for ProductID: {cartItem.ProductID}. Check product existence and stock.");
+                    }
+                }
+
+                // Set order status
+                await _orderService.ChangeOrderStatusAsync(createdOrder.OrderID, OrderStatus.Pending);
+
+                // Clear cart items after successful order
+                foreach (var cartItem in cartItems)
+                {
+                    await _cartItemService.RemoveCartItemAsync(cartItem.CartItemID);
+                }
+
+                MessageBox.Show($"Order created successfully with Order ID: {createdOrder.OrderID}!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCartItemsAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error creating order: {ex.Message}\nStack Trace: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ClearInputs()

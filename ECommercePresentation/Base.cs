@@ -25,13 +25,17 @@ namespace ECommercePresentation
         private readonly ICartItemService _cartItemService;
         private readonly IUserService _userService;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IOrderDetailService _orderDetailService;
 
-        public Base(IOrderService orderService, ICategoryService categoryService, IProductService productService, ICartItemService cartItemService, IUserService userService, IPasswordHasher passwordHasher)
+        public Base(IOrderService orderService, ICategoryService categoryService, IProductService productService, 
+                    ICartItemService cartItemService, IUserService userService, IPasswordHasher passwordHasher ,
+                    IOrderDetailService orderDetailService)
         {
             InitializeComponent();
             _orderService = orderService;
             _categoryService = categoryService;
             _productService = productService;
+            _orderDetailService = orderDetailService;
             _cartItemService = cartItemService;
             _userService = userService;
             _passwordHasher = passwordHasher;
@@ -130,7 +134,9 @@ namespace ECommercePresentation
 
         private void CartItemButton_Click(object sender, EventArgs e)
         {
-            var cartItemForm = Program.Resolve<CartItemForm>();
+            // var cartItemForm = Program.Resolve<CartItemForm>();
+            // cartItemForm.Show();
+            var cartItemForm = new CartItemForm(_cartItemService, _orderService, _orderDetailService);
             cartItemForm.Show();
         }
 

@@ -211,6 +211,9 @@ namespace ECommerceContext.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductID1")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -219,6 +222,8 @@ namespace ECommerceContext.Migrations
                     b.HasIndex("OrderID");
 
                     b.HasIndex("ProductID");
+
+                    b.HasIndex("ProductID1");
 
                     b.ToTable("OrderDetails");
 
@@ -484,10 +489,14 @@ namespace ECommerceContext.Migrations
                         .IsRequired();
 
                     b.HasOne("EcommercModels.Product", "Product")
-                        .WithMany("OrderDetails")
+                        .WithMany()
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("EcommercModels.Product", null)
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ProductID1");
 
                     b.Navigation("Order");
 

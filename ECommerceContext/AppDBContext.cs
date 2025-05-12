@@ -8,7 +8,8 @@ namespace ECommerceContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=EcommerceProject;Integrated Security=true;Trusted_Connection=True;TrustServerCertificate=True");
+            //"Server=your_server;Database=your_db;Trusted_Connection=True;MultipleActiveResultSets=true;"
+            optionsBuilder.UseSqlServer("Server=.;Database=EcommerceProject;Integrated Security=true;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -64,7 +65,15 @@ namespace ECommerceContext
 
             #endregion
 
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(od => od.Order)
+                .WithMany(o => o.OrderDetails)
+                .HasForeignKey(od => od.OrderID);
 
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(od => od.Product)
+                .WithMany()
+                .HasForeignKey(od => od.ProductID);
         }
     }
 }

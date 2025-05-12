@@ -9,5 +9,6 @@ namespace ECommerceApplication.Services.IOrderDetailsService
         Task<OrderDetailDto> CreateOrderDetailAsync(CreateOrderDetailDto orderDetailDto, int orderId);
         Task<OrderDetailDto> UpdateOrderDetailAsync(int orderDetailId, UpdateOrderDetailDto orderDetailDto);
         Task<bool> DeleteOrderDetailAsync(int id);
+        Task<OrderDetailDto> CreateOrderwithuseridandproductidAsync(int orderId, int productId, int quantity);
     }
 }

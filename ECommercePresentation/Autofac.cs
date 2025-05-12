@@ -37,6 +37,7 @@ namespace ECommercePresentation
             builder.RegisterType<MappingService>().As<IMappingService>().InstancePerDependency();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerDependency();
             builder.RegisterType<OrderService>().As<IOrderService>().InstancePerDependency();
+            builder.RegisterType<OrderDetailService>().As<IOrderDetailService>().InstancePerDependency();
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerDependency();
             builder.RegisterType<CartItemService>().As<ICartItemService>().InstancePerDependency();
             builder.RegisterType<AuthService>().As<IAuthService>().InstancePerDependency();

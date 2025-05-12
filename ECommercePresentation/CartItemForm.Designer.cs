@@ -9,6 +9,7 @@ namespace ECommercePresentation
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnMakeOrder; // New button
         private System.Windows.Forms.Label lblQuantity;
 
         private void InitializeComponent()
@@ -20,6 +21,7 @@ namespace ECommercePresentation
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnMakeOrder = new System.Windows.Forms.Button(); // New button
             this.lblQuantity = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridCartItems)).BeginInit();
             this.SuspendLayout();
@@ -86,6 +88,15 @@ namespace ECommercePresentation
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
 
+            // btnMakeOrder
+            this.btnMakeOrder.Location = new System.Drawing.Point(460, 390);
+            this.btnMakeOrder.Name = "btnMakeOrder";
+            this.btnMakeOrder.Size = new System.Drawing.Size(100, 35);
+            this.btnMakeOrder.TabIndex = 8;
+            this.btnMakeOrder.Text = "Make Order";
+            this.btnMakeOrder.UseVisualStyleBackColor = true;
+            this.btnMakeOrder.Click += new System.EventHandler(this.BtnMakeOrder_Click);
+
             // lblQuantity
             this.lblQuantity.Location = new System.Drawing.Point(20, 340);
             this.lblQuantity.Name = "lblQuantity";
@@ -101,6 +112,7 @@ namespace ECommercePresentation
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnMakeOrder); // Add the new button
             this.Controls.Add(this.lblQuantity);
             this.Text = "Cart Item Management";
             ((System.ComponentModel.ISupportInitialize)(this.gridCartItems)).EndInit();
