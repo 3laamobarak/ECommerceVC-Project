@@ -28,7 +28,6 @@ namespace ECommercePresentation
             this.MaximizeBox = false;
 
             // Style Panels
-            panelHeader.BackColor = Color.FromArgb(3, 105, 161);
             panelContent.BackColor = Color.FromArgb(245, 247, 250);
 
             panelPersonalInfo.BackColor = Color.White;
@@ -54,8 +53,7 @@ namespace ECommercePresentation
             };
 
             // Style Labels
-            lblHeader.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblHeader.ForeColor = Color.White;
+            
 
             lblPersonalInfoHeader.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblPersonalInfoHeader.ForeColor = Color.FromArgb(31, 41, 55);
@@ -107,14 +105,8 @@ namespace ECommercePresentation
                 }
             }
 
-            // Style Combo Box
-            cbStatus.BackColor = Color.FromArgb(249, 250, 251);
-            cbStatus.FlatStyle = FlatStyle.Flat;
-            cbStatus.Font = new Font("Segoe UI", 9F);
-            cbStatus.Tag = cbStatus.BackColor;
-            cbStatus.Enter += (s, e) => cbStatus.BackColor = Color.FromArgb(243, 244, 246);
-            cbStatus.Leave += (s, e) => cbStatus.BackColor = (Color)cbStatus.Tag;
-            cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+          
+         
 
             // Style Buttons
             btnSave.BackColor = Color.FromArgb(3, 105, 161);
@@ -151,7 +143,7 @@ namespace ECommercePresentation
                 txtEmail.Text = userDetails.Email;
                 txtFirstName.Text = userDetails.FirstName;
                 txtLastName.Text = userDetails.LastName;
-            //    cbStatus.SelectedIndex = userDetails.IsActive == IsActive.Active ? 0 : 1;
+                //    cbStatus.SelectedIndex = userDetails.IsActive == IsActive.Active ? 0 : 1;
             }
             catch (Exception ex)
             {
@@ -171,7 +163,7 @@ namespace ECommercePresentation
                     Email = txtEmail.Text.Trim(),
                     FirstName = txtFirstName.Text.Trim(),
                     LastName = txtLastName.Text.Trim(),
-                //    IsActive = cbStatus.SelectedIndex == 0 ? IsActive.Active : IsActive.Inactive
+                    //    IsActive = cbStatus.SelectedIndex == 0 ? IsActive.Active : IsActive.Inactive
                 };
 
                 var result = await _userService.UpdateUserAsync(_userId, updatedUser, txtOldPassword.Text);
@@ -277,6 +269,11 @@ namespace ECommercePresentation
             {
                 return false;
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

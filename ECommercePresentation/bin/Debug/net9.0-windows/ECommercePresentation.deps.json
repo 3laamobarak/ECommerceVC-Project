@@ -570,7 +570,7 @@
         },
         "runtime": {
           "ECommerceApplication.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -584,7 +584,7 @@
         },
         "runtime": {
           "ECommerceContext.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -596,7 +596,7 @@
         },
         "runtime": {
           "ECommerceDTOs.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -611,7 +611,7 @@
         },
         "runtime": {
           "ECommerceInfrastructure.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -622,7 +622,7 @@
         },
         "runtime": {
           "ECommerceModels.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

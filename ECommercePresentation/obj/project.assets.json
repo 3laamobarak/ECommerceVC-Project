@@ -3024,23 +3024,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {},
+    "C:\\Users\\mosta\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\ECommercePresentation.csproj",
+      "projectUniqueName": "C:\\Users\\mosta\\Source\\Repos\\ECommerceVC-Project\\ECommercePresentation\\ECommercePresentation.csproj",
       "projectName": "ECommercePresentation",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\ECommercePresentation.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommercePresentation\\obj\\",
+      "projectPath": "C:\\Users\\mosta\\Source\\Repos\\ECommerceVC-Project\\ECommercePresentation\\ECommercePresentation.csproj",
+      "packagesPath": "C:\\Users\\mosta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mosta\\Source\\Repos\\ECommerceVC-Project\\ECommercePresentation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mosta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3056,11 +3056,11 @@
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
           "projectReferences": {
-            "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\ECommerceApplication.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\ECommerceApplication.csproj"
+            "C:\\Users\\mosta\\Source\\Repos\\ECommerceVC-Project\\ECommerceApplication\\ECommerceApplication.csproj": {
+              "projectPath": "C:\\Users\\mosta\\Source\\Repos\\ECommerceVC-Project\\ECommerceApplication\\ECommerceApplication.csproj"
             },
-            "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj"
+            "C:\\Users\\mosta\\Source\\Repos\\ECommerceVC-Project\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj": {
+              "projectPath": "C:\\Users\\mosta\\Source\\Repos\\ECommerceVC-Project\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj"
             }
           }
         }
@@ -3073,9 +3073,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net9.0-windows7.0": {
@@ -3109,7 +3109,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

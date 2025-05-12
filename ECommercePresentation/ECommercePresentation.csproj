@@ -28,22 +28,22 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
-      <Compile Update="CategoryForm.cs">
+      <Compile Update="Admin\CategoryForm.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="ProductForm.cs">
+      <Compile Update="Admin\ProductForm.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="CartItemForm.cs">
+      <Compile Update="Admin\CartItemForm.cs">
         <SubType>Form</SubType>
       </Compile>
       <Compile Update="Profile.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="UserForm.cs">
+      <Compile Update="Admin\UserForm.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="UserEditForm.cs">
+      <Compile Update="Admin\UserEditForm.cs">
         <SubType>Form</SubType>
       </Compile>
       <Compile Update="ProductCard.cs">
