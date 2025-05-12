@@ -3020,6 +3020,7 @@
       "Autofac >= 8.3.0",
       "Autofac.Extensions.DependencyInjection >= 10.0.0",
       "ECommerceApplication >= 1.0.0",
+      "ECommerceDTOs >= 1.0.0",
       "ECommerceInfrastructure >= 1.0.0"
     ]
   },
@@ -3058,6 +3059,9 @@
           "projectReferences": {
             "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\ECommerceApplication.csproj": {
               "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceApplication\\ECommerceApplication.csproj"
+            },
+            "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceDTOs\\ECommerceDTOs.csproj": {
+              "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceDTOs\\ECommerceDTOs.csproj"
             },
             "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj": {
               "projectPath": "C:\\Users\\DELL\\Desktop\\ITI\\EcommerceProjectVC#\\ECommerceInfrastructure\\ECommerceInfrastructure.csproj"
