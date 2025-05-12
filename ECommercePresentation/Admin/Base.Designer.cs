@@ -75,6 +75,7 @@
             sidebarPanel.Controls.Add(CreateSidebarButton("Categories", new Point(20, 180), CategoriesButton_Click));
             sidebarPanel.Controls.Add(CreateSidebarButton("Orders", new Point(20, 220), OrderButton_Click));
             sidebarPanel.Controls.Add(CreateSidebarButton("Users", new Point(20, 260), BtnUsers_Click));
+            sidebarPanel.Controls.Add(CreateSidebarButton("Cart Items", new Point(20, 300), CartItemButton_Click));
 
             // Settings Section
             Label settingsLabel = new Label

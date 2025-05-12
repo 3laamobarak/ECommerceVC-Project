@@ -2,6 +2,9 @@
 using ECommerceDTOs;
 using System;
 using System.Windows.Forms;
+using ECommerceModels.Enums;
+using ECommercePresentation.Client;
+using Shared.Helpers;
 
 namespace ECommercePresentation.AuthForms
 {
@@ -39,10 +42,19 @@ namespace ECommercePresentation.AuthForms
                 // SessionManager.SetSession(result.User);
 
                 this.Hide();
-
-                var baseForm = Program.Resolve<Base>();
-                baseForm.FormClosed += (s, args) => this.Close();
-                baseForm.Show();
+                // session manager
+                if(SessionManager.Role == UserRole.Admin || SessionManager.Role == UserRole.SuperAdmin)
+                {
+                    var baseForm = Program.Resolve<Base>();
+                    baseForm.FormClosed += (s, args) => this.Close();
+                    baseForm.Show();
+                }
+                else if(SessionManager.Role == UserRole.Client)
+                {
+                    var clientOrder = Program.Resolve<ProductDashboardForm>();
+                    clientOrder.FormClosed += (s, args) => this.Close();
+                    clientOrder.Show();
+                } 
             }
             else
             {

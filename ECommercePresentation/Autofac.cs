@@ -12,6 +12,7 @@ using ECommerceContext;
 using ECommerceInfrastructure;
 using ECommerceInfrastructure.Security;
 using ECommercePresentation.AuthForms;
+using ECommercePresentation.Client;
 
 namespace ECommercePresentation
 {
@@ -52,6 +53,8 @@ namespace ECommercePresentation
             builder.RegisterType<OrderForm>().AsSelf().InstancePerDependency();
             builder.RegisterType<ProductForm>().AsSelf().InstancePerDependency();
             builder.RegisterType<CartItemForm>().AsSelf().InstancePerDependency();
+            builder.RegisterType<ClientOrder>().AsSelf().InstancePerDependency();
+            builder.RegisterType<ProductDashboardForm>().AsSelf().InstancePerDependency();
 
             // Build the container
             var container = builder.Build();

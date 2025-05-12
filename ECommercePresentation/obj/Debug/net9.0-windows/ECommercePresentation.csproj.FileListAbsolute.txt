@@ -166,3 +166,5 @@ C:\Users\mosta\Source\Repos\ECommerceVC-Project\ECommercePresentation\obj\Debug\
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.CategoryForm.resources
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.ProductForm.resources
 C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.Profile.resources
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.ClientOrder.resources
+C:\Users\DELL\Desktop\ITI\EcommerceProjectVC#\ECommercePresentation\obj\Debug\net9.0-windows\ECommercePresentation.Client.ProductDashboardForm.resources

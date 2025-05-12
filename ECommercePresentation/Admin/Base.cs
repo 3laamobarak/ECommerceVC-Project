@@ -137,8 +137,6 @@ namespace ECommercePresentation
 
         private void CartItemButton_Click(object sender, EventArgs e)
         {
-            // var cartItemForm = Program.Resolve<CartItemForm>();
-            // cartItemForm.Show();
             var cartItemForm = new CartItemForm(_cartItemService, _orderService, _orderDetailService);
             cartItemForm.Show();
         }
