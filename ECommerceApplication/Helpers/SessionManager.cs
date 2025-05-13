@@ -9,7 +9,8 @@ namespace Shared.Helpers
         public static string Email { get; private set; }
         public static UserRole Role { get; private set; }
 
-        public static DateTime LoginTime { get; private set; }
+        public static DateTime LastLoginDate { get; private set; }
+        public static IsActive IsActive { get; private set; }
 
         public static bool IsAuthenticated => UserId > 0;
 
@@ -21,7 +22,8 @@ namespace Shared.Helpers
             Username = userDto.Username;
             Email = userDto.Email;
             Role = userDto.Role;
-            LoginTime = DateTime.Now;
+            LastLoginDate = DateTime.Now;
+            IsActive = userDto.IsActive;
         }
 
 

@@ -43,17 +43,33 @@ namespace ECommercePresentation.AuthForms
 
                 this.Hide();
                 // session manager
-                if(SessionManager.Role == UserRole.Admin || SessionManager.Role == UserRole.SuperAdmin)
+                if(SessionManager.Role == UserRole.Admin || SessionManager.Role == UserRole.SuperAdmin )
                 {
-                    var baseForm = Program.Resolve<Base>();
-                    baseForm.FormClosed += (s, args) => this.Close();
-                    baseForm.Show();
+                    if(SessionManager.IsActive== IsActive.Active)
+                    {
+                        var baseForm = Program.Resolve<Base>();
+                        baseForm.FormClosed += (s, args) => this.Close();
+                        baseForm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Your account is inactive. Please contact support.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else if(SessionManager.Role == UserRole.Client)
                 {
-                    var clientOrder = Program.Resolve<ProductDashboardForm>();
-                    clientOrder.FormClosed += (s, args) => this.Close();
-                    clientOrder.Show();
+                    if (SessionManager.IsActive == IsActive.Active)
+                    {
+                        var clientOrder = Program.Resolve<ProductDashboardForm>();
+                        clientOrder.FormClosed += (s, args) => this.Close();
+                        clientOrder.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Your account is inactive. Please contact support.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 } 
             }
             else

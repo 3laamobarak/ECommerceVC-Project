@@ -53,6 +53,9 @@
       <Compile Update="Client\ProductDetailForm.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="Client\ProfileControl.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

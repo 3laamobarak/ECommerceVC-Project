@@ -5,6 +5,7 @@ namespace ECommercePresentation.Client
     partial class ProductDashboardForm
     {
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.Panel sidebar;
         private System.Windows.Forms.Panel topNavbar;
@@ -66,8 +67,9 @@ namespace ECommercePresentation.Client
             var lblStore = new System.Windows.Forms.Label { Text = "Store", Font = new System.Drawing.Font("Segoe UI", 12F), Location = new System.Drawing.Point(15, 80), Margin = new System.Windows.Forms.Padding(5), Size = new System.Drawing.Size(200, 40) };
             var lblOrders = new System.Windows.Forms.Label { Text = "My Orders", Font = new System.Drawing.Font("Segoe UI", 12F), Location = new System.Drawing.Point(15, 120), Margin = new System.Windows.Forms.Padding(5), Size = new System.Drawing.Size(200, 40) };
             var lblCartNav = new System.Windows.Forms.Label { Text = "Cart", Font = new System.Drawing.Font("Segoe UI", 12F), Location = new System.Drawing.Point(15, 160), Margin = new System.Windows.Forms.Padding(5), Size = new System.Drawing.Size(200, 40) };
+            var lblProfile = new System.Windows.Forms.Label { Text = "Profile", Font = new System.Drawing.Font("Segoe UI", 12F), Location = new System.Drawing.Point(15, 200), Margin = new System.Windows.Forms.Padding(5), Size = new System.Drawing.Size(200, 40) };
             var lblLogout = new System.Windows.Forms.Label { Text = "Log Out", Font = new System.Drawing.Font("Segoe UI", 12F), Location = new System.Drawing.Point(15, this.ClientSize.Height - 60), ForeColor = System.Drawing.Color.FromArgb(220, 53, 69), Margin = new System.Windows.Forms.Padding(5), Size = new System.Drawing.Size(200, 40) };
-            this.sidebar.Controls.AddRange(new System.Windows.Forms.Control[] { lblStore, lblOrders, lblCartNav, lblLogout });
+            this.sidebar.Controls.AddRange(new System.Windows.Forms.Control[] { lblStore, lblOrders, lblCartNav, lblProfile, lblLogout });
 
             // Top Navbar
             this.topNavbar = new System.Windows.Forms.Panel
@@ -114,19 +116,28 @@ namespace ECommercePresentation.Client
                 Location = new System.Drawing.Point(this.ClientSize.Width - 150, 80)
             };
 
-            // FlowLayoutPanel
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel
+            // Content Panel
+            this.contentPanel = new System.Windows.Forms.Panel
             {
                 Location = new System.Drawing.Point(this.sidebar.Width + 20, 200),
                 Size = new System.Drawing.Size(this.ClientSize.Width - this.sidebar.Width - 40, this.ClientSize.Height - 200),
                 BackColor = System.Drawing.Color.Transparent,
-                FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight,
-                WrapContents = true,
                 AutoScroll = true
             };
 
+            // FlowLayoutPanel for Products
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = System.Drawing.Color.Transparent,
+                FlowDirection = FlowDirection.LeftToRight,
+                WrapContents = true,
+                AutoScroll = true
+            };
+            this.contentPanel.Controls.Add(this.flowLayoutPanel);
+
             // Add Controls
-            this.Controls.Add(this.flowLayoutPanel);
+            this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.btnCart);
             this.Controls.Add(this.lblCategory);
             this.Controls.Add(this.lblTitle);
