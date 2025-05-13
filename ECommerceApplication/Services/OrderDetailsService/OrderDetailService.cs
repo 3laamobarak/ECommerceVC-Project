@@ -5,6 +5,7 @@ using EcommercModels;
 using Microsoft.EntityFrameworkCore;
 using ECommerceApplication.Mapping;
 using ECommerceApplication.Services.ProductService;
+using ECommerceContext;
 
 namespace ECommerceApplication.Services.IOrderDetailsService
 {
@@ -14,13 +15,19 @@ namespace ECommerceApplication.Services.IOrderDetailsService
         private readonly IProductRepository _productRepository;
         private readonly IMappingService _mapper;
         private readonly IProductService _productService;
+        private readonly IOrderRepository _orderRepository;
+        private readonly AppDBContext _context;
 
         public OrderDetailService(
             IOrderDetailRepository orderDetailRepository,
             IProductRepository productRepository,
             IProductService productService,
+            IOrderRepository orderRepository,
+            AppDBContext context,
             IMappingService mapper)
         {
+            _orderRepository = orderRepository;
+            _context = context;
             _productService = productService;
             _orderDetailRepository = orderDetailRepository;
             _productRepository = productRepository;
@@ -163,14 +170,15 @@ namespace ECommerceApplication.Services.IOrderDetailsService
 
             // Reduce product stock
             product.UnitsInStock -= quantity;
-            await _productService.UpdateProductAsync(productId,product);
+            await _productService.UpdateProductAsync(productId, product);
 
-            // Save the order detail
             var createdOrderDetail = await _orderDetailRepository.CreateAsync(orderDetail);
             if (createdOrderDetail == null)
                 throw new InvalidOperationException("Failed to create order detail in the repository.");
 
-            // Map to DTO and return
+            // Update the order's TotalAmount using the new method
+            await _orderRepository.UpdateTotalAmountAsync(orderId, product.Price * quantity);
+
             var orderDetailDto = _mapper.MapToOrderDetailDto(createdOrderDetail);
             if (orderDetailDto == null)
                 throw new InvalidOperationException("Failed to map the created order detail to DTO.");
