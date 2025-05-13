@@ -4,6 +4,8 @@ using ECommerceModels.Enums;
 using EcommercModels;
 using Microsoft.EntityFrameworkCore;
 using ECommerceApplication.Mapping;
+using ECommerceContext;
+
 namespace ECommerceApplication.Services.IOrderDetailsService
 
 {
@@ -12,21 +14,49 @@ namespace ECommerceApplication.Services.IOrderDetailsService
      private readonly IOrderRepository _orderRepository;
      private readonly IOrderDetailRepository _orderDetailRepository;
      private readonly IMappingService _mapper;
+     private readonly AppDBContext _context;
 
      public OrderService(
          IOrderRepository orderRepository, 
          IOrderDetailRepository orderDetailRepository,
+            AppDBContext context,
          IMappingService mapper)
-     {
+     { 
+         _context = context;
          _orderRepository = orderRepository;
          _orderDetailRepository = orderDetailRepository;
          _mapper = mapper;
      }
 
+     // public async Task<IEnumerable<OrderDto>> GetAllOrdersAsync()
+     // {
+     //     var orders = await _orderRepository.GetAll();
+     //     return await orders.Select(o => _mapper.MapToOrderDto(o)).ToListAsync();
+     // }
      public async Task<IEnumerable<OrderDto>> GetAllOrdersAsync()
      {
-         var orders = await _orderRepository.GetAll();
-         return await orders.Select(o => _mapper.MapToOrderDto(o)).ToListAsync();
+         return await _context.Orders
+             .Include(o => o.User)
+             .Include(o => o.OrderDetails)
+             .ThenInclude(od => od.Product)
+             .Select(o => new OrderDto
+             {
+                 OrderID = o.OrderID,
+                 UserID = o.UserID,
+                 OrderDate = o.OrderDate,
+                 TotalAmount = o.TotalAmount,
+                 Status = o.Status,
+                 User = new UserDto { UserID = o.User.Id, Username = o.User.Username, FirstName = o.User.FirstName, LastName = o.User.LastName },
+                 OrderDetails = o.OrderDetails.Select(od => new OrderDetailDto
+                 {
+                     OrderDetailID = od.OrderDetailID,
+                     OrderID = od.OrderID,
+                     ProductID = od.ProductID,
+                     Quantity = od.Quantity,
+                     Product = new ProductDto { ProductID = od.Product.ProductID, Name = od.Product.Name }
+                 }).ToList()
+             })
+             .ToListAsync();
      }
 
      public async Task<OrderDto> GetOrderByIdAsync(int id)

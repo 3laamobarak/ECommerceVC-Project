@@ -22,7 +22,8 @@ namespace ECommercePresentation
             // Initialize DataGridView columns and styling
             gridOrders.Columns.Clear();
             gridOrders.Columns.Add("OrderID", "Order ID");
-            gridOrders.Columns.Add("UserID", "User ID");
+            //gridOrders.Columns.Add("UserID", "User ID");
+            gridOrders.Columns.Add("UserName", "User Name");
             gridOrders.Columns.Add("OrderDate", "Order Date");
             gridOrders.Columns.Add("TotalAmount", "Total Amount");
             gridOrders.Columns.Add("Status", "Status");
@@ -55,7 +56,8 @@ namespace ECommercePresentation
                 {
                     gridOrders.Rows.Add(
                         order.OrderID,
-                        order.UserID,
+                        //order.UserID,
+                        order.User.Username,
                         order.OrderDate.ToString("yyyy-MM-dd"),
                         order.TotalAmount.ToString("C"),
                         order.Status
@@ -74,34 +76,35 @@ namespace ECommercePresentation
             {
                 var selectedRow = gridOrders.SelectedRows[0];
                 _selectedOrderId = Convert.ToInt32(selectedRow.Cells["OrderID"].Value);
-                txtUserId.Text = selectedRow.Cells["UserID"].Value.ToString();
+                //txtUserId.Text = selectedRow.Cells["UserID"].Value.ToString();
+                txtUserName.Text = selectedRow.Cells["UserName"].Value.ToString();
                 txtTotalAmount.Text = decimal.Parse(selectedRow.Cells["TotalAmount"].Value.ToString().Replace("$", "")).ToString("F2");
                 cmbStatus.SelectedItem = selectedRow.Cells["Status"].Value.ToString();
             }
         }
 
-        private async void BtnCreate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!ValidateInputs()) return;
-
-                var orderDto = new CreateOrderDto
-                {
-                    UserID = int.Parse(txtUserId.Text),
-
-                };
-
-                var createdOrder = await _orderService.CreateOrderAsync(orderDto);
-                MessageBox.Show("Order created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearInputs();
-                LoadOrdersAsync();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error creating order: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        // private async void BtnCreate_Click(object sender, EventArgs e)
+        // {
+        //     try
+        //     {
+        //         if (!ValidateInputs()) return;
+        //
+        //         var orderDto = new CreateOrderDto
+        //         {
+        //             UserID = int.Parse(txtUserId.Text),
+        //
+        //         };
+        //
+        //         var createdOrder = await _orderService.CreateOrderAsync(orderDto);
+        //         MessageBox.Show("Order created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //         ClearInputs();
+        //         LoadOrdersAsync();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         MessageBox.Show($"Error creating order: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //     }
+        // }
 
         private async void BtnUpdate_Click(object sender, EventArgs e)
         {
@@ -170,11 +173,11 @@ namespace ECommercePresentation
 
         private bool ValidateInputs()
         {
-            if (!int.TryParse(txtUserId.Text, out int userId) || userId <= 0)
-            {
-                MessageBox.Show("Please enter a valid User ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            // if (!int.TryParse(txtUserId.Text, out int userId) || userId <= 0)
+            // {
+            //     MessageBox.Show("Please enter a valid User ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //     return false;
+            // }
             if (!decimal.TryParse(txtTotalAmount.Text, out decimal totalAmount) || totalAmount < 0)
             {
                 MessageBox.Show("Please enter a valid Total Amount (non-negative).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -190,7 +193,7 @@ namespace ECommercePresentation
 
         private void ClearInputs()
         {
-            txtUserId.Clear();
+            //txtUserId.Clear();
             txtTotalAmount.Clear();
             cmbStatus.SelectedIndex = 0;
             _selectedOrderId = null;
