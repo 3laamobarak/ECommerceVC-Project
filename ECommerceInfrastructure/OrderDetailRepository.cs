@@ -20,6 +20,7 @@ namespace ECommerceInfrastructure
             return await Task.FromResult(
                 _context.OrderDetails
                     .AsNoTracking()
+                    .Include(od => od.Product) // Include Product navigation property
                     .Where(od => od.OrderID == orderId)
             );
         }

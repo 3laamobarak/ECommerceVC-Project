@@ -15,11 +15,13 @@ namespace ECommercePresentation
     {
         private readonly IUserService _userService;
         private List<UserDto> _allUsers;
+        private Dictionary<int, bool> _pendingChanges; // Track rows with pending changes
 
         public UserForm(IUserService userService)
         {
             InitializeComponent();
             _userService = userService;
+            _pendingChanges = new Dictionary<int, bool>();
             LoadUsersAsync();
             SetupDataGridView();
         }
@@ -28,12 +30,22 @@ namespace ECommercePresentation
         {
             dataGridViewClients.AutoGenerateColumns = false;
             dataGridViewAdmins.AutoGenerateColumns = false;
-            // Ensure columns are editable where needed
+            dataGridViewClients.Columns["colUsernameClients"].ReadOnly = true;
+            dataGridViewClients.Columns["colEmailClients"].ReadOnly = true;
+            dataGridViewClients.Columns["colFirstNameClients"].ReadOnly = true;
+            dataGridViewClients.Columns["colLastNameClients"].ReadOnly = true;
             dataGridViewClients.Columns["colRoleClients"].ReadOnly = false;
             dataGridViewClients.Columns["colActiveClients"].ReadOnly = false;
+            dataGridViewClients.Columns["colCreatedClients"].ReadOnly = true;
+            dataGridViewClients.Columns["colLastLoginClients"].ReadOnly = true;
+            dataGridViewAdmins.Columns["colUsernameAdmins"].ReadOnly = true;
+            dataGridViewAdmins.Columns["colEmailAdmins"].ReadOnly = true;
+            dataGridViewAdmins.Columns["colFirstNameAdmins"].ReadOnly = true;
+            dataGridViewAdmins.Columns["colLastNameAdmins"].ReadOnly = true;
             dataGridViewAdmins.Columns["colRoleAdmins"].ReadOnly = false;
             dataGridViewAdmins.Columns["colActiveAdmins"].ReadOnly = false;
-            // Set edit mode to commit on Enter
+            dataGridViewAdmins.Columns["colCreatedAdmins"].ReadOnly = true;
+            dataGridViewAdmins.Columns["colLastLoginAdmins"].ReadOnly = true;
             dataGridViewClients.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridViewAdmins.EditMode = DataGridViewEditMode.EditOnEnter;
         }
@@ -43,6 +55,7 @@ namespace ECommercePresentation
             try
             {
                 _allUsers = (await _userService.GetAllUsersAsync()).ToList();
+                _pendingChanges.Clear();
                 PopulateDataGridView();
             }
             catch (Exception ex)
@@ -55,40 +68,16 @@ namespace ECommercePresentation
         {
             dataGridViewClients.Rows.Clear();
             dataGridViewAdmins.Rows.Clear();
-
             var clients = _allUsers.Where(u => u.Role == UserRole.Client);
             foreach (var user in clients)
             {
-                int rowIndex = dataGridViewClients.Rows.Add(
-                    user.Username,
-                    user.Email,
-                    user.FirstName,
-                    user.LastName,
-                    user.Role.ToString(),
-                    user.IsActive == IsActive.Active ? "True" : "False",
-                    user.DateCreated.ToString("yyyy-MM-dd"),
-                    user.LastLoginDate?.ToString("yyyy-MM-dd") ?? "N/A",
-                    "Edit",
-                    "Delete"
-                );
+                int rowIndex = dataGridViewClients.Rows.Add(user.Username, user.Email, user.FirstName, user.LastName, user.Role.ToString(), user.IsActive == IsActive.Active ? "True" : "False", user.DateCreated.ToString("yyyy-MM-dd"), user.LastLoginDate?.ToString("yyyy-MM-dd") ?? "N/A", "Save Changes");
                 dataGridViewClients.Rows[rowIndex].Tag = user.UserID;
             }
-
             var admins = _allUsers.Where(u => u.Role == UserRole.Admin || u.Role == UserRole.SuperAdmin);
             foreach (var user in admins)
             {
-                int rowIndex = dataGridViewAdmins.Rows.Add(
-                    user.Username,
-                    user.Email,
-                    user.FirstName,
-                    user.LastName,
-                    user.Role.ToString(),
-                    user.IsActive == IsActive.Active ? "True" : "False",
-                    user.DateCreated.ToString("yyyy-MM-dd"),
-                    user.LastLoginDate?.ToString("yyyy-MM-dd") ?? "N/A",
-                    "Edit",
-                    "Delete"
-                );
+                int rowIndex = dataGridViewAdmins.Rows.Add(user.Username, user.Email, user.FirstName, user.LastName, user.Role.ToString(), user.IsActive == IsActive.Active ? "True" : "False", user.DateCreated.ToString("yyyy-MM-dd"), user.LastLoginDate?.ToString("yyyy-MM-dd") ?? "N/A", "Save Changes");
                 dataGridViewAdmins.Rows[rowIndex].Tag = user.UserID;
             }
         }
@@ -96,142 +85,89 @@ namespace ECommercePresentation
         private async void DataGridViewClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            int userId = (int)dataGridViewClients.Rows[e.RowIndex].Tag;
-            var user = _allUsers.FirstOrDefault(u => u.UserID == userId);
-
-            if (e.ColumnIndex == dataGridViewClients.Columns["colEditClients"].Index)
+            if (e.ColumnIndex == dataGridViewClients.Columns["colSaveChangesClients"].Index)
             {
-                await HandleEdit(userId, user);
-            }
-            else if (e.ColumnIndex == dataGridViewClients.Columns["colDeleteClients"].Index)
-            {
-                await HandleDelete(userId);
+                int userId = (int)dataGridViewClients.Rows[e.RowIndex].Tag;
+                if (_pendingChanges.ContainsKey(userId) && _pendingChanges[userId])
+                    await SaveRowChanges(userId, dataGridViewClients, e.RowIndex);
             }
         }
 
         private async void DataGridViewAdmins_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-            int userId = (int)dataGridViewAdmins.Rows[e.RowIndex].Tag;
-            var user = _allUsers.FirstOrDefault(u => u.UserID == userId);
-
-            if (e.ColumnIndex == dataGridViewAdmins.Columns["colEditAdmins"].Index)
+            if (e.ColumnIndex == dataGridViewAdmins.Columns["colSaveChangesAdmins"].Index)
             {
-                await HandleEdit(userId, user);
-            }
-            else if (e.ColumnIndex == dataGridViewAdmins.Columns["colDeleteAdmins"].Index)
-            {
-                await HandleDelete(userId);
+                int userId = (int)dataGridViewAdmins.Rows[e.RowIndex].Tag;
+                if (_pendingChanges.ContainsKey(userId) && _pendingChanges[userId])
+                    await SaveRowChanges(userId, dataGridViewAdmins, e.RowIndex);
             }
         }
 
         private async void DataGridViewClients_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || (e.ColumnIndex != dataGridViewClients.Columns["colRoleClients"].Index &&
-                e.ColumnIndex != dataGridViewClients.Columns["colActiveClients"].Index)) return;
-
+            if (e.RowIndex < 0 || (e.ColumnIndex != dataGridViewClients.Columns["colRoleClients"].Index && e.ColumnIndex != dataGridViewClients.Columns["colActiveClients"].Index)) return;
             int userId = (int)dataGridViewClients.Rows[e.RowIndex].Tag;
-            await SaveCellChanges(userId, e.ColumnIndex, dataGridViewClients);
+            _pendingChanges[userId] = true;
         }
 
         private async void DataGridViewAdmins_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || (e.ColumnIndex != dataGridViewAdmins.Columns["colRoleAdmins"].Index &&
-                e.ColumnIndex != dataGridViewAdmins.Columns["colActiveAdmins"].Index)) return;
-
+            if (e.RowIndex < 0 || (e.ColumnIndex != dataGridViewAdmins.Columns["colRoleAdmins"].Index && e.ColumnIndex != dataGridViewAdmins.Columns["colActiveAdmins"].Index)) return;
             int userId = (int)dataGridViewAdmins.Rows[e.RowIndex].Tag;
-            await SaveCellChanges(userId, e.ColumnIndex, dataGridViewAdmins);
+            _pendingChanges[userId] = true;
         }
 
-        private async Task SaveCellChanges(int userId, int columnIndex, DataGridView dataGridView)
+        private async Task SaveRowChanges(int userId, DataGridView dataGridView, int rowIndex)
         {
             var user = _allUsers.FirstOrDefault(u => u.UserID == userId);
-            if (user == null) return;
-
-            var rows = dataGridView.Rows.Cast<DataGridViewRow>().Where(r => (int)r.Tag == userId).ToList();
-            if (!rows.Any())
+            if (user == null)
             {
-                MessageBox.Show($"No row found for user ID {userId}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"User with ID {userId} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            var row = rows.First();
-            var rowIndex = row.Index;
-            var cellValue = row.Cells[columnIndex].Value;
-
-            if (cellValue == null)
-            {
-                MessageBox.Show($"Cell value at column {columnIndex} is null for user ID {userId}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
+            var row = dataGridView.Rows[rowIndex];
+            bool changesMade = false;
             UpdateUserResultDTO result = null;
-            if (columnIndex == dataGridView.Columns["colRoleClients"].Index || columnIndex == dataGridView.Columns["colRoleAdmins"].Index)
+            var roleCellValue = row.Cells[dataGridView.Columns["colRoleClients"]?.Index ?? dataGridView.Columns["colRoleAdmins"].Index].Value;
+            if (roleCellValue != null && roleCellValue.ToString() != user.Role.ToString())
             {
-                var newRole = (UserRole)Enum.Parse(typeof(UserRole), cellValue.ToString());
+                var newRole = (UserRole)Enum.Parse(typeof(UserRole), roleCellValue.ToString());
                 result = await _userService.ChangeRoleAsync(userId, newRole);
-            }
-            else if (columnIndex == dataGridView.Columns["colActiveClients"].Index || columnIndex == dataGridView.Columns["colActiveAdmins"].Index)
-            {
-                var isActive = cellValue.ToString() == "True" ? IsActive.Active : IsActive.Inactive;
-                var updatedUser = new UserDto
-                {
-                    IsActive = isActive,
-                    Username = user.Username,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Role = user.Role,
-                    LastLoginDate = user.LastLoginDate
-                };
-                result = await _userService.UpdateUserWithoutPasswordAsync(userId, updatedUser);
-            }
-
-            if (result?.Success == true)
-            {
-                MessageBox.Show(result.Message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadUsersAsync();
-            }
-            else if (result != null)
-            {
-                MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LoadUsersAsync(); // Revert changes
-            }
-        }
-
-        private async Task HandleEdit(int userId, UserDto user)
-        {
-            if (user == null) return;
-
-            using (var editForm = new UserEditForm(user, _userService))
-            {
-                if (editForm.ShowDialog() == DialogResult.OK)
-                {
-                    // Assuming UserEditForm updates the user object; refresh the grid
-                    var result = new UpdateUserResultDTO { Success = true, Message = "User updated successfully." };
-                    MessageBox.Show(result.Message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadUsersAsync();
-                }
-            }
-        }
-
-        private async Task HandleDelete(int userId)
-        {
-            var confirm = MessageBox.Show("Are you sure you want to deactivate this user?", "Confirm Deactivate",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (confirm == DialogResult.Yes)
-            {
-                var result = await _userService.DeactivateUserAsync(userId); // Using Deactivate since Delete isn't available
-                if (result.Success)
-                {
-                    MessageBox.Show(result.Message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadUsersAsync();
-                }
+                if (result?.Success == true)
+                    changesMade = true;
                 else
                 {
-                    MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(result?.Message ?? "Error updating role.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LoadUsersAsync();
+                    return;
                 }
             }
+            var activeCellValue = row.Cells[dataGridView.Columns["colActiveClients"]?.Index ?? dataGridView.Columns["colActiveAdmins"].Index].Value;
+            if (activeCellValue != null)
+            {
+                var isActive = activeCellValue.ToString() == "True" ? IsActive.Active : IsActive.Inactive;
+                if (isActive != user.IsActive)
+                {
+                    result = isActive == IsActive.Active ? await _userService.ActivateUserAsync(userId) : await _userService.DeactivateUserAsync(userId);
+                    if (result?.Success == true)
+                        changesMade = true;
+                    else
+                    {
+                        MessageBox.Show(result?.Message ?? "Error updating active status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LoadUsersAsync();
+                        return;
+                    }
+                }
+            }
+            if (changesMade)
+            {
+                MessageBox.Show("Changes saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _pendingChanges.Remove(userId);
+                LoadUsersAsync();
+            }
+            else
+                MessageBox.Show("No changes to save.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BtnBack_Click(object sender, EventArgs e)

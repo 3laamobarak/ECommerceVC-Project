@@ -172,8 +172,18 @@ namespace ECommerceApplication.Mapping
                 OrderID = orderDetail.OrderID,
                 ProductID = orderDetail.ProductID,
                 Quantity = orderDetail.Quantity,
-                // Map related entities if they're loaded
-                Product = orderDetail.Product != null ? MapToProductDto(orderDetail.Product) : null
+                // Product = orderDetail.Product != null ? MapToProductDto(orderDetail.Product) : null
+                Product = orderDetail.Product != null ? new ProductDto
+                {
+                    ProductID = orderDetail.Product.ProductID,
+                    Name = orderDetail.Product.Name,
+                    Description = orderDetail.Product.Description,
+                    Price = orderDetail.Product.Price,
+                    UnitsInStock = orderDetail.Product.UnitsInStock,
+                    CategoryID = orderDetail.Product.CategoryID,
+                    ImagePath = orderDetail.Product.ImagePath,
+                    CategoryName = orderDetail.Product.Category?.Name
+                } : null
             };
         }
 

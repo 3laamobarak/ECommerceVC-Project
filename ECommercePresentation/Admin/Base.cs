@@ -14,6 +14,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ECommerceApplication.Services.AuthServices;
+using ECommercePresentation.AuthForms;
 
 namespace ECommercePresentation
 {
@@ -25,6 +27,7 @@ namespace ECommercePresentation
         private readonly ICartItemService _cartItemService;
         private readonly IUserService _userService;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IAuthService _authService;
         
         private readonly IOrderDetailService _orderDetailService;
 
@@ -33,13 +36,14 @@ namespace ECommercePresentation
 
         public Base(IOrderService orderService, ICategoryService categoryService, IProductService productService, 
                     ICartItemService cartItemService, IUserService userService, IPasswordHasher passwordHasher ,
-                    IOrderDetailService orderDetailService)
+                    IOrderDetailService orderDetailService, IAuthService authService)
         {
             InitializeComponent();
             _orderService = orderService;
             _categoryService = categoryService;
             _productService = productService;
             _orderDetailService = orderDetailService;
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
             _cartItemService = cartItemService;
             _userService = userService;
             _passwordHasher = passwordHasher;
@@ -164,7 +168,9 @@ namespace ECommercePresentation
         private void LogOutButton_Click(object sender, EventArgs e)
         {
             SessionManager.ClearSession();
-            this.Close();
+            var loginForm = new LoginForm(_authService);
+            loginForm.Show();
+            this.Hide();
         }
 
         private void ShowDashboardPanel(object sender, EventArgs e)

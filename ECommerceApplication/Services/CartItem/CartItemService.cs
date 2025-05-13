@@ -1,5 +1,7 @@
+using System.Diagnostics;
 using ECommerceApplication.Contracts;
 using ECommerceApplication.Mapping;
+using ECommerceApplication.Services.IOrderDetailsService;
 using ECommerceContext;
 using ECommerceDTOs;
 using EcommercModels;
@@ -12,12 +14,62 @@ namespace ECommerceApplication.Services.CartItemService
         private readonly ICartItemRepository _cartItemRepository;
         private readonly IMappingService _mapper;
         private readonly AppDBContext _context;
-
-        public CartItemService(ICartItemRepository cartItemRepository, IMappingService mapper, AppDBContext context)
+        private readonly IOrderService _orderService;
+        private readonly IOrderDetailService _orderDetailService;
+        private readonly IProductRepository _productRepository;
+        
+        public CartItemService(ICartItemRepository cartItemRepository, IMappingService mapper, AppDBContext context,
+            IOrderService orderService, IOrderDetailService orderDetailService, IProductRepository productRepository)
         {
+            _orderService = orderService;
+            _orderDetailService = orderDetailService;
+            _productRepository = productRepository;
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _cartItemRepository = cartItemRepository;
             _mapper = mapper;
+        }
+        public async Task<bool> CheckoutAsync(int userId)
+        {
+            try
+            {
+                var cartItems = await _cartItemRepository.GetByUserIdAsync(userId);
+                var cartItemList = cartItems.ToList();
+                if (!cartItemList.Any())
+                    return false;
+
+                // Create order
+                var orderDto = new CreateOrderDto { UserID = userId };
+                var createdOrder = await _orderService.CreateOrderAsync(orderDto);
+
+                // Create order details
+                decimal totalAmount = 0;
+                foreach (var item in cartItemList)
+                {
+                    var product = await _productRepository.GetByIdAsync(item.ProductID);
+                    if (product == null || product.UnitsInStock < item.Quantity)
+                        throw new InvalidOperationException($"Insufficient stock for product ID {item.ProductID}");
+
+                    var orderDetailDto = await _orderDetailService.CreateOrderwithuseridandproductidAsync(
+                        createdOrder.OrderID, item.ProductID, item.Quantity);
+
+                    totalAmount += product.Price * item.Quantity;
+
+                    // Remove cart item
+                    await _cartItemRepository.RemoveAsync(item);
+                }
+
+                // Update order total amount
+                var orderUpdateDto = new OrderUpdateDto { TotalAmount = totalAmount };
+                await _orderService.UpdateOrderAsync(createdOrder.OrderID, orderUpdateDto);
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error during checkout: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                throw;
+            }
         }
 
         public async Task<IEnumerable<CartItemDto>> GetCartItemsByUserIdAsync(int userId)

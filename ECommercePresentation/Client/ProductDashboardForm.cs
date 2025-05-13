@@ -1,265 +1,201 @@
-﻿
+﻿using ECommerceApplication.Services.ProductService;
+using ECommerceApplication.Services.CartItemService;
+using ECommerceApplication.Services.IOrderDetailsService;
+using ECommerceDTOs;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using Shared.Helpers;
+using System.Drawing.Drawing2D;
+using ECommerceApplication.Contracts;
+using ECommerceApplication.Services.AuthServices;
+using ECommercePresentation.AuthForms;
 
 namespace ECommercePresentation.Client
 {
     public partial class ProductDashboardForm : Form
     {
-        private FlowLayoutPanel flowLayoutPanel;
-        private Panel sidebar;
-        private Panel topNavbar;
-        private Label lblWelcome;
-        private Label lblTitle;
-        private Label lblCategory;
-        private Button btnCart;
-        private List<Product> products;
+        private readonly IProductService _productService;
+        private readonly ICartItemService _cartItemService;
+        private readonly IAuthService _authService;
+        private readonly IOrderService _orderService; // Added for order navigation
+        private readonly IOrderDetailService _orderDetailService; // Added for order details
+        private readonly IUserService _userService; // Added for user data
 
-        public ProductDashboardForm()
+        public ProductDashboardForm(
+            IProductService productService,
+            ICartItemService cartItemService,
+            IOrderService orderService,
+            IOrderDetailService orderDetailService,
+            IAuthService authService,
+            IUserService userService)
         {
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+            _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+            _cartItemService = cartItemService ?? throw new ArgumentNullException(nameof(cartItemService));
+            _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
+            _orderDetailService = orderDetailService ?? throw new ArgumentNullException(nameof(orderDetailService));
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             InitializeComponent();
-            InitializeData();
-            SetupLayout();
-            LoadProducts();
+            SetupNavigation();
+            LoadProductsAsync();
+            //UpdateWelcomeMessage();
         }
 
-        private void InitializeData()
-        {
-            products = new List<Product>
-            {
-                new Product { ProductID = 1, Name = "Color Mastery in Web Design", Description = "A Guide to Creating Visually Stunning Websites", Price = 49.00m, UnitsInStock = 66, Category = "Published", ImagePath = "color_mastery.jpg" },
-                new Product { ProductID = 2, Name = "Speedy Design Solutions", Description = "Mastering the Art of Quick and Effective Design Systems", Price = 59.00m, UnitsInStock = 151, Category = "Published", ImagePath = "speedy_design.jpg" },
-                new Product { ProductID = 3, Name = "Responsive Web Design Best Practices", Description = "Best Practices for Responsive Web Design", Price = 99.00m, UnitsInStock = 0, Category = "Draft", ImagePath = "responsive_web.jpg" },
-                 new Product { ProductID = 4, Name = "Responsive Web Design Best Practices", Description = "Best Practices for Responsive Web Design", Price = 99.00m, UnitsInStock = 0, Category = "Draft", ImagePath = "responsive_web.jpg" },
-                 new Product { ProductID = 5, Name = "Responsive Web Design Best Practices", Description = "Best Practices for Responsive Web Design", Price = 99.00m, UnitsInStock = 0, Category = "Draft", ImagePath = "responsive_web.jpg" }
-            };
-        }
+        // private void UpdateWelcomeMessage()
+        // {
+        //     if (SessionManager.IsAuthenticated)
+        //     {
+        //         // Assuming GetUserByIdAsync is async and returns UserDto
+        //         Task.Run(async () =>
+        //         {
+        //             var user = await _userService.GetUserByIdAsync(SessionManager.UserId);
+        //             string welcomeText = user != null ? $"Welcome, {user.FirstName} {user.LastName}" : "Welcome, Guest";
+        //             lblWelcome.Invoke((MethodInvoker)(() => lblWelcome.Text = welcomeText));
+        //         });
+        //     }
+        //     else
+        //     {
+        //         lblWelcome.Text = "Welcome, Guest";
+        //     }
+        // }
 
-        private void SetupLayout()
+        private void SetupNavigation()
         {
-            // Sidebar with padding and margins
-            sidebar = new Panel
+            foreach (Control control in sidebar.Controls)
             {
-                Size = new Size(200, this.ClientSize.Height),
-                BackColor = Color.FromArgb(240, 242, 245),
-                Location = new Point(0, 0),
-                Padding = new Padding(15)
-            };
-
-            // Logo as "HYPER" text styled like a logo
-            Label logo = new Label
-            {
-                Text = "HYPER",
-                Font = new Font("Segoe UI", 18F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(0, 120, 200),
-                Location = new Point(15, 15),
-                AutoSize = true,
-                Margin = new Padding(0, 0, 0, 30)
-            };
-            logo.Paint += (s, e) =>
-            {
-                using (var brush = new LinearGradientBrush(logo.ClientRectangle, Color.FromArgb(0, 120, 200), Color.FromArgb(75, 0, 130), LinearGradientMode.Horizontal))
+                if (control is Label lbl)
                 {
-                    e.Graphics.FillRectangle(brush, logo.ClientRectangle);
+                    lbl.Cursor = Cursors.Hand;
+                    lbl.Click += (s, e) =>
+                    {
+                        if (lbl.Text == "My Orders")
+                        {
+                            if (!SessionManager.IsAuthenticated)
+                            {
+                                MessageBox.Show("Please log in to view orders.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            var clientOrderForm = new ClientOrder(_orderService, _orderDetailService, _userService);
+                            clientOrderForm.ShowDialog();
+                        }
+                        else if (lbl.Text == "Cart")
+                        {
+                            var cartItemForm = new CartItemForm(_cartItemService, _orderService, _orderDetailService);
+                            cartItemForm.ShowDialog();
+                            
+                        }
+                        else if (lbl.Text == "Log Out")
+                        {
+                            SessionManager.ClearSession();
+                            //UpdateWelcomeMessage();
+                            MessageBox.Show("Logged out successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            var loginForm = new LoginForm(_authService);
+                            loginForm.Show();
+                            this.Hide(); // Hide the current form
+                        }
+                        else if (lbl.Text == "Store")
+                        {
+                            LoadProductsAsync(); // Reload products
+                        }
+                    };
                 }
-                TextRenderer.DrawText(e.Graphics, logo.Text, logo.Font, logo.ClientRectangle, Color.White, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-            };
-            sidebar.Controls.Add(logo);
-
-            // Sidebar navigation items with adjusted positions
-            Label lblStore = new Label { Text = "Store", Font = new Font("Segoe UI", 12F), Location = new Point(15, 80), Margin = new Padding(5), Size = new Size(200, 40) };
-            Label lblOrders = new Label { Text = "My Orders", Font = new Font("Segoe UI", 12F), Location = new Point(15, 110), Margin = new Padding(5) , Size = new Size(200,40) };
-            Label lblCartNav = new Label { Text = "Cart", Font = new Font("Segoe UI", 12F), Location = new Point(15, 140), Margin = new Padding(20), Size = new Size(200, 60) };
-            Label lblLogout = new Label { Text = "Log Out", Font = new Font("Segoe UI", 12F), Location = new Point(15, this.ClientSize.Height - 60), ForeColor = Color.FromArgb(220, 53, 69), Margin = new Padding(5), Size = new Size(200, 40) };
-
-            sidebar.Controls.AddRange(new Control[] { lblStore, lblOrders, lblCartNav, lblLogout });
-            this.Controls.Add(sidebar);
-
-            // Top Navbar
-            topNavbar = new Panel
-            {
-                Size = new Size(this.ClientSize.Width - sidebar.Width, 60),
-                BackColor = Color.White,
-                Location = new Point(sidebar.Width, 0)
-            };
-            lblWelcome = new Label
-            {
-                Text = "Welcome, Dominic Keller",
-                Font = new Font("Segoe UI", 12F),
-                AutoSize = true,
-                Location = new Point((topNavbar.Width - 200) / 2, 20)
-            };
-            topNavbar.Controls.Add(lblWelcome);
-            this.Controls.Add(topNavbar);
-
-            // Main Content
-            lblTitle = new Label
-            {
-                Text = "Products", // Explicitly set to "Products" to confirm
-                Font = new Font("Segoe UI", 18F, FontStyle.Bold),
-                Location = new Point(sidebar.Width + 20, 80),
-                Size = new Size(200, 50),
-                Margin = new Padding(0, 0, 0, 100) // Increased bottom margin to prevent cropping
-            };
-            this.Controls.Add(lblTitle);
-
-            // Category Header
-            lblCategory = new Label
-            {
-                Text = "Category",
-                Font = new Font("Segoe UI", 14F, FontStyle.Bold),
-                Location = new Point(sidebar.Width + 20, 160),
-                Size = new Size(200, 50),// Moved down to give more space
-            };
-            this.Controls.Add(lblCategory);
-
-            // Cart Button
-            btnCart = new Button
-            {
-                Text = "Cart",
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(59, 130, 246),
-                ForeColor = Color.White,
-                Size = new Size(100, 40),
-                Location = new Point(this.ClientSize.Width - 150, 80)
-            };
-            this.Controls.Add(btnCart);
-
-            // FlowLayoutPanel for Cards (adjusted position to avoid overlap)
-            flowLayoutPanel = new FlowLayoutPanel
-            {
-                Location = new Point(sidebar.Width + 20, 200), // Moved down to avoid overlap
-                Size = new Size(this.ClientSize.Width - sidebar.Width - 40, this.ClientSize.Height ), // Adjusted height
-                BackColor = Color.Transparent,
-                FlowDirection = FlowDirection.LeftToRight,
-                WrapContents = true,
-                AutoScroll = true
-            };
-            this.Controls.Add(flowLayoutPanel);
-        }
-
-        private void LoadProducts()
-        {
-            flowLayoutPanel.Controls.Clear();
-            foreach (var product in products)
-            {
-                Panel card = CreateProductCard(product);
-                flowLayoutPanel.Controls.Add(card);
             }
+
+            btnCart.Click += (s, e) =>
+            {
+                if (!SessionManager.IsAuthenticated)
+                {
+                    MessageBox.Show("Please log in to view cart.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                //sidebarPanel.Controls.Add(CreateSidebarButton("Cart Items", new Point(20, 300), CartItemButton_Click));
+                // CartItemButton_Click 
+                // Implement cart item navigation if needed
+                var cartItemForm = new CartItemForm(_cartItemService, _orderService, _orderDetailService);
+                cartItemForm.ShowDialog();
+            };
         }
 
-        private Panel CreateProductCard(Product product)
+private async void LoadProductsAsync()
+{
+    try
+    {
+        var products = await _productService.GetAllProductsAsync();
+        flowLayoutPanel.Controls.Clear();
+        foreach (var product in products)
         {
-            Panel card = new Panel
+            var card = new ProductCard();
+            Image productImage = null;
+            try
             {
-                Size = new Size(300, 550), // Kept at 500px as preferred
-                BackColor = Color.White,
-                Padding = new Padding(10),
-                Margin = new Padding(10)
-            };
-            card.Paint += (s, e) => { using (var brush = new SolidBrush(Color.FromArgb(0, 0, 0, 20))) e.Graphics.FillRectangle(brush, card.ClientRectangle); };
+                if (!string.IsNullOrEmpty(product.ImagePath) && File.Exists(product.ImagePath))
+                {
+                    productImage = Image.FromFile(product.ImagePath);
+                }
+                else
+                {
+                    productImage = Properties.Resources.logo;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading image for product {product.Name}: {ex.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                productImage = Properties.Resources.logo;
+            }
 
-            PictureBox image = new PictureBox
-            {
-                Size = new Size(200, 250),
-                Location = new Point(50, 10),
-                SizeMode = PictureBoxSizeMode.Zoom,
-                BackColor = Color.LightGray
-            };
-            card.Controls.Add(image);
+            card.UpdateCard(
+                product.ProductID,
+                product.Name,
+                product.Description?.Length > 50 ? product.Description.Substring(0, 50) + "..." : product.Description ?? "No description available",
+                product.Price,
+                productImage
+            );
 
-            Label status = new Label
+            // Handle Add to Cart
+            card.AddToCartClicked += async (s, productId) =>
             {
-                Text = product.UnitsInStock > 0 ? "Avaliable" : "Out Of Stock",
-                ForeColor = product.UnitsInStock > 0 ? Color.Green : Color.Red,
-                Location = new Point(10, 270),
-                Font = new Font("Segoe UI", 10F)
-            };
-            card.Controls.Add(status);
+                if (!SessionManager.IsAuthenticated)
+                {
+                    MessageBox.Show("Please log in to add items to cart.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-            Label name = new Label
-            {
-                Text = product.Name,
-                Location = new Point(10, 300),
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
-                AutoSize = true,
-                MaximumSize = new Size(280, 0)
+                int userId = SessionManager.UserId;
+                try
+                {
+                    var result = await _cartItemService.AddOrUpdateCartItemAsync(userId, productId, 1);
+                    if (result != null)
+                    {
+                        MessageBox.Show($"Product {result.Product?.Name ?? "item"} added/updated in cart. Quantity: {result.Quantity}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add/update product in cart.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error adding to cart: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
-            card.Controls.Add(name);
 
-            Label description = new Label
+            // Handle Card Click to Open ProductDetailForm
+            card.CardClicked += (s, productId) =>
             {
-                Text = product.Description,
-                Location = new Point(10, 330),
-                Font = new Font("Segoe UI", 10F),
-                AutoSize = true,
-                MaximumSize = new Size(280, 0)
+                var productDetailForm = new ProductDetailForm(_cartItemService, _productService, productId);
+                productDetailForm.ShowDialog();
             };
-            card.Controls.Add(description);
 
-            Label price = new Label
-            {
-                Text = $"Price: ${product.Price:F2}",
-                Location = new Point(10, 390), // Moved up from 450
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                Size = new Size(200, 30),
-
-            };
-            Label DecreaseQuantity = new Label
-            {
-                Text = $"---",
-                Location = new Point(90, 430), // Moved up from 450
-                Font = new Font("Segoe UI", 10F),
-                Size = new Size(30, 30),
-            };
-            Label QuantityInCart = new Label
-            {
-                Text = $"In Cart: {product.UnitsInStock}",
-                Location = new Point(100, 430), // Moved up from 450
-                Font = new Font("Segoe UI", 10F),
-                Size = new Size(70, 20),
-
-            };
-            Label IncreaseQuantity = new Label
-            {
-                Text = $"+",
-                Location = new Point(170, 430), // Moved up from 450
-                Font = new Font("Segoe UI", 10F),
-                Size = new Size(30, 30),
-            };
-            card.Controls.Add(price);
-            card.Controls.Add(QuantityInCart);
-            card.Controls.Add(IncreaseQuantity);
-            card.Controls.Add(DecreaseQuantity);
-
-            Button addToCart = new Button
-            {
-                Text = "Add To Cart",
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(40, 167, 69),
-                ForeColor = Color.White,
-                Size = new Size(270, 30), // 90% of 300px width
-                Location = new Point(15, 480), // Moved up from 480
-                FlatAppearance = { BorderSize = 0 }
-            };
-            card.Controls.Add(addToCart);
-
-            card.Click += (s, e) => MessageBox.Show($"Selected: {product.Name}");
-            return card;
+            flowLayoutPanel.Controls.Add(card);
         }
-
-        private class Product
-        {
-            public int ProductID { get; set; }
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public decimal Price { get; set; }
-            public int UnitsInStock { get; set; }
-            public string Category { get; set; }
-            public string ImagePath { get; set; }
-        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+}
     }
 }

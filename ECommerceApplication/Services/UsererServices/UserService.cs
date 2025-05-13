@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceApplication.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceApplication.Services.UserServices
@@ -14,9 +15,11 @@ namespace ECommerceApplication.Services.UserServices
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IMappingService _mappingService;
 
-        public UserService(IUserRepository userRepository, IPasswordHasher passwordHasher)
+        public UserService(IUserRepository userRepository, IPasswordHasher passwordHasher, IMappingService mappingService)
         {
+            _mappingService = mappingService ?? throw new ArgumentNullException(nameof(mappingService));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
         }
@@ -241,6 +244,11 @@ namespace ECommerceApplication.Services.UserServices
                 DateCreated = user.DateCreated,
                 LastLoginDate = user.LastLoginDate
             };
+        }
+        public async Task<UserDto> GetUserByIdAsync(int userId)
+        {
+            var user = await _userRepository.GetByIdAsync(userId);
+            return user != null ? _mappingService.MapToUserDto(user) : null;
         }
     }
 }

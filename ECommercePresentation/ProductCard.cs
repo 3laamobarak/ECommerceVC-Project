@@ -25,11 +25,24 @@ namespace ECommercePresentation
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public event EventHandler<int> AddToCartClicked;
 
+        public event EventHandler<int> CardClicked;
+
         public ProductCard()
         {
             InitializeComponent();
-        }
+            this.Click += (s, e) => CardClicked?.Invoke(this, ProductId);
+            foreach (Control control in this.Controls)
+            {
+                if (control != addToCartButton)
+                {
+                    control.Click += (s, e) => CardClicked?.Invoke(this, ProductId);
+                }
+            }
 
+            // Add hover effects
+            this.MouseEnter += (s, e) => this.BackColor = Color.FromArgb(245, 245, 245);
+            this.MouseLeave += (s, e) => this.BackColor = Color.White;
+        }
         public void UpdateCard(int productId, string name, string description, decimal price, Image image)
         {
             ProductId = productId;
@@ -43,5 +56,23 @@ namespace ECommercePresentation
             descLabel.Text = description;
             priceLabel.Text = $"${price:F2}";
         }
+        // public ProductCard()
+        // {
+        //     InitializeComponent();
+        // }
+        //
+        // public void UpdateCard(int productId, string name, string description, decimal price, Image image)
+        // {
+        //     ProductId = productId;
+        //     ItemName = name;
+        //     Description = description;
+        //     Price = price;
+        //     ProductImage = image;
+        //
+        //     pictureBox.Image = image;
+        //     nameLabel.Text = name;
+        //     descLabel.Text = description;
+        //     priceLabel.Text = $"${price:F2}";
+        // }
     }
 }

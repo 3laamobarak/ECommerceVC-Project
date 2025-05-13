@@ -15,8 +15,7 @@ namespace ECommercePresentation
         private System.Windows.Forms.DataGridViewComboBoxColumn colActiveClients;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCreatedClients;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLastLoginClients;
-        private System.Windows.Forms.DataGridViewButtonColumn colEditClients;
-        private System.Windows.Forms.DataGridViewButtonColumn colDeleteClients;
+        private System.Windows.Forms.DataGridViewButtonColumn colSaveChangesClients;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUsernameAdmins;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmailAdmins;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFirstNameAdmins;
@@ -25,8 +24,7 @@ namespace ECommercePresentation
         private System.Windows.Forms.DataGridViewComboBoxColumn colActiveAdmins;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCreatedAdmins;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLastLoginAdmins;
-        private System.Windows.Forms.DataGridViewButtonColumn colEditAdmins;
-        private System.Windows.Forms.DataGridViewButtonColumn colDeleteAdmins;
+        private System.Windows.Forms.DataGridViewButtonColumn colSaveChangesAdmins;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Panel panelMain;
 
@@ -44,8 +42,7 @@ namespace ECommercePresentation
             this.colActiveClients = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.colCreatedClients = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLastLoginClients = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditClients = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colDeleteClients = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colSaveChangesClients = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewAdmins = new System.Windows.Forms.DataGridView();
             this.colUsernameAdmins = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmailAdmins = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,19 +52,14 @@ namespace ECommercePresentation
             this.colActiveAdmins = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.colCreatedAdmins = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLastLoginAdmins = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditAdmins = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colDeleteAdmins = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colSaveChangesAdmins = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnBack = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
-
-            // tabControl
             this.tabControl.Controls.Add(this.tabClients);
             this.tabControl.Controls.Add(this.tabAdmins);
             this.tabControl.Location = new System.Drawing.Point(10, 10);
             this.tabControl.Size = new System.Drawing.Size(1170, 600);
             this.tabControl.TabIndex = 0;
-
-            // tabClients
             this.tabClients.Location = new System.Drawing.Point(4, 29);
             this.tabClients.Name = "tabClients";
             this.tabClients.Padding = new System.Windows.Forms.Padding(3);
@@ -76,8 +68,6 @@ namespace ECommercePresentation
             this.tabClients.Text = "Clients";
             this.tabClients.UseVisualStyleBackColor = true;
             this.tabClients.Controls.Add(this.dataGridViewClients);
-
-            // tabAdmins
             this.tabAdmins.Location = new System.Drawing.Point(4, 29);
             this.tabAdmins.Name = "tabAdmins";
             this.tabAdmins.Padding = new System.Windows.Forms.Padding(3);
@@ -86,34 +76,24 @@ namespace ECommercePresentation
             this.tabAdmins.Text = "Admins";
             this.tabAdmins.UseVisualStyleBackColor = true;
             this.tabAdmins.Controls.Add(this.dataGridViewAdmins);
-
-            // dataGridViewClients
             this.dataGridViewClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewClients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-                colUsernameClients, colEmailClients, colFirstNameClients, colLastNameClients, colRoleClients,
-                colActiveClients, colCreatedClients, colLastLoginClients, colEditClients, colDeleteClients});
+            this.dataGridViewClients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { colUsernameClients, colEmailClients, colFirstNameClients, colLastNameClients, colRoleClients, colActiveClients, colCreatedClients, colLastLoginClients, colSaveChangesClients });
             this.dataGridViewClients.Location = new System.Drawing.Point(6, 6);
             this.dataGridViewClients.Size = new System.Drawing.Size(1150, 550);
             this.dataGridViewClients.TabIndex = 0;
-            this.dataGridViewClients.AllowUserToAddRows = false; // Remove extra line
+            this.dataGridViewClients.AllowUserToAddRows = false;
             this.dataGridViewClients.CellContentClick += new DataGridViewCellEventHandler(DataGridViewClients_CellContentClick);
             this.dataGridViewClients.CellValueChanged += new DataGridViewCellEventHandler(DataGridViewClients_CellValueChanged);
             this.dataGridViewClients.EditMode = DataGridViewEditMode.EditOnEnter;
-
-            // dataGridViewAdmins
             this.dataGridViewAdmins.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAdmins.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-                colUsernameAdmins, colEmailAdmins, colFirstNameAdmins, colLastNameAdmins, colRoleAdmins,
-                colActiveAdmins, colCreatedAdmins, colLastLoginAdmins, colEditAdmins, colDeleteAdmins});
+            this.dataGridViewAdmins.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { colUsernameAdmins, colEmailAdmins, colFirstNameAdmins, colLastNameAdmins, colRoleAdmins, colActiveAdmins, colCreatedAdmins, colLastLoginAdmins, colSaveChangesAdmins });
             this.dataGridViewAdmins.Location = new System.Drawing.Point(6, 6);
             this.dataGridViewAdmins.Size = new System.Drawing.Size(1150, 550);
             this.dataGridViewAdmins.TabIndex = 0;
-            this.dataGridViewAdmins.AllowUserToAddRows = false; // Remove extra line
+            this.dataGridViewAdmins.AllowUserToAddRows = false;
             this.dataGridViewAdmins.CellContentClick += new DataGridViewCellEventHandler(DataGridViewAdmins_CellContentClick);
             this.dataGridViewAdmins.CellValueChanged += new DataGridViewCellEventHandler(DataGridViewAdmins_CellValueChanged);
             this.dataGridViewAdmins.EditMode = DataGridViewEditMode.EditOnEnter;
-
-            // Column Headers for Clients
             this.colUsernameClients.HeaderText = "Username";
             this.colUsernameClients.Name = "colUsernameClients";
             this.colUsernameClients.Width = 100;
@@ -142,16 +122,10 @@ namespace ECommercePresentation
             this.colLastLoginClients.Name = "colLastLoginClients";
             this.colLastLoginClients.Width = 120;
             this.colLastLoginClients.ReadOnly = true;
-            this.colEditClients.HeaderText = "Edit";
-            this.colEditClients.Name = "colEditClients";
-            this.colEditClients.Width = 80;
-            this.colEditClients.Text = "Edit";
-            this.colDeleteClients.HeaderText = "Delete";
-            this.colDeleteClients.Name = "colDeleteClients";
-            this.colDeleteClients.Width = 80;
-            this.colDeleteClients.Text = "Delete";
-
-            // Column Headers for Admins
+            this.colSaveChangesClients.HeaderText = "Action";
+            this.colSaveChangesClients.Name = "colSaveChangesClients";
+            this.colSaveChangesClients.Width = 100;
+            this.colSaveChangesClients.Text = "Save Changes";
             this.colUsernameAdmins.HeaderText = "Username";
             this.colUsernameAdmins.Name = "colUsernameAdmins";
             this.colUsernameAdmins.Width = 100;
@@ -180,33 +154,23 @@ namespace ECommercePresentation
             this.colLastLoginAdmins.Name = "colLastLoginAdmins";
             this.colLastLoginAdmins.Width = 120;
             this.colLastLoginAdmins.ReadOnly = true;
-            this.colEditAdmins.HeaderText = "Edit";
-            this.colEditAdmins.Name = "colEditAdmins";
-            this.colEditAdmins.Width = 80;
-            this.colEditAdmins.Text = "Edit";
-            this.colDeleteAdmins.HeaderText = "Delete";
-            this.colDeleteAdmins.Name = "colDeleteAdmins";
-            this.colDeleteAdmins.Width = 80;
-            this.colDeleteAdmins.Text = "Delete";
-
-            // btnBack
-            this.btnBack.Text = "Back";
-            this.btnBack.Location = new System.Drawing.Point(10, 620);
-            this.btnBack.Size = new System.Drawing.Size(100, 35);
-            this.btnBack.BackColor = Color.FromArgb(3, 105, 161);
-            this.btnBack.ForeColor = Color.White;
-            this.btnBack.FlatStyle = FlatStyle.Flat;
-            this.btnBack.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
-            this.btnBack.Click += new EventHandler(BtnBack_Click);
-
-            // panelMain
+            this.colSaveChangesAdmins.HeaderText = "Action";
+            this.colSaveChangesAdmins.Name = "colSaveChangesAdmins";
+            this.colSaveChangesAdmins.Width = 100;
+            this.colSaveChangesAdmins.Text = "Save Changes";
+            // this.btnBack.Text = "Back";
+            // this.btnBack.Location = new System.Drawing.Point(10, 620);
+            // this.btnBack.Size = new System.Drawing.Size(100, 35);
+            // this.btnBack.BackColor = Color.FromArgb(3, 105, 161);
+            // this.btnBack.ForeColor = Color.White;
+            // this.btnBack.FlatStyle = FlatStyle.Flat;
+            // this.btnBack.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
+            // this.btnBack.Click += new EventHandler(BtnBack_Click);
             this.panelMain.BackColor = Color.White;
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Size = new System.Drawing.Size(1190, 680);
             this.panelMain.Controls.Add(this.tabControl);
             this.panelMain.Controls.Add(this.btnBack);
-
-            // UserForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1190, 680);

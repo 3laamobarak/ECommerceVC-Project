@@ -15,6 +15,8 @@ namespace ECommerceApplication.Contracts
         Task<UpdateUserResultDTO> DeactivateUserAsync(int userId);
         Task<UpdateUserResultDTO> ChangeRoleAsync(int userId, UserRole newRole);
         Task<UpdateUserResultDTO> UpdateUserWithoutPasswordAsync(int userId, UserDto updatedUser);
+        public Task<UserDto> GetUserByIdAsync(int userId);
+
     }
     
 }

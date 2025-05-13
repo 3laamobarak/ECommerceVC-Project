@@ -50,6 +50,9 @@
       <Compile Update="ProductCard.cs">
         <SubType>UserControl</SubType>
       </Compile>
+      <Compile Update="Client\ProductDetailForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
