@@ -7,18 +7,21 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ECommerceApplication.Contracts;
+using ECommerceApplication.Services.AuthServices;
 
 namespace ECommercePresentation
 {
     public partial class Profile : Form
     {
         private readonly IUserService _userService;
+        private readonly IAuthService _authService;
         private readonly IPasswordHasher _passwordHasher;
         private int _userId;
 
-        public Profile(IUserService userService, IPasswordHasher passwordHasher)
+        public Profile(IUserService userService, IPasswordHasher passwordHasher, IAuthService authService)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
             _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
             InitializeComponent();
 
@@ -53,7 +56,7 @@ namespace ECommercePresentation
             };
 
             // Style Labels
-            
+
 
             lblPersonalInfoHeader.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblPersonalInfoHeader.ForeColor = Color.FromArgb(31, 41, 55);
@@ -105,8 +108,8 @@ namespace ECommercePresentation
                 }
             }
 
-          
-         
+
+
 
             // Style Buttons
             btnSave.BackColor = Color.FromArgb(3, 105, 161);
@@ -153,34 +156,34 @@ namespace ECommercePresentation
 
         private async void BtnSave_Click(object sender, EventArgs e)
         {
-            if (!ValidateInputs()) return;
+           // if (!ValidateInputs()) return;
 
-            try
-            {
-                var updatedUser = new UserDto
+             
+                var updatedUser = new UpdateUserDTO
                 {
                     Username = txtUsername.Text.Trim(),
                     Email = txtEmail.Text.Trim(),
                     FirstName = txtFirstName.Text.Trim(),
                     LastName = txtLastName.Text.Trim(),
+                    UserId = _userId,
+                    Password = txtPassword.Text.Trim(),
                     //    IsActive = cbStatus.SelectedIndex == 0 ? IsActive.Active : IsActive.Inactive
                 };
-
-                var result = await _userService.UpdateUserAsync(_userId, updatedUser, txtOldPassword.Text);
-                if (result.Success)
+            ValidationResultDTO result = await _authService.UpdateUserAsync(updatedUser);
+ 
+                if (!result.Success)
                 {
-                    MessageBox.Show(result.Message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ShowValidationErrors(result);
                 }
                 else
                 {
-                    MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorProvider.Clear();
+                    MessageBox.Show("Registration successful! Please log in.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error updating profile: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+
 
         private async void BtnChangePassword_Click(object sender, EventArgs e)
         {
@@ -188,13 +191,15 @@ namespace ECommercePresentation
 
             try
             {
-                var result = await _userService.ChangePasswordAsync(_userId, txtOldPassword.Text, txtNewPassword.Text);
+                var result = await _authService.ChangePasswordAsync(_userId, txtOldPassword.Text, txtNewPassword.Text);
                 if (result.Success)
                 {
                     MessageBox.Show(result.Message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtOldPassword.Clear();
                     txtNewPassword.Clear();
                     txtConfirmPassword.Clear();
+                    panelPasswordChange.Visible = !panelPasswordChange.Visible;
+                    btnChangePassword.Visible = !btnChangePassword.Visible;
                 }
                 else
                 {
@@ -222,7 +227,7 @@ namespace ECommercePresentation
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtOldPassword.Text))
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
                 MessageBox.Show("Old password is required for updates.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -275,5 +280,53 @@ namespace ECommercePresentation
         {
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+            panelPasswordChange.Visible = !panelPasswordChange.Visible;
+            btnChangePassword.Visible = !btnChangePassword.Visible;
+        }
+        private void ShowValidationErrors(ValidationResultDTO result)
+        {
+            errorProvider.Clear();
+
+            if (result.Errors == null || result.Errors.Count == 0)
+                return;
+
+            foreach (var error in result.Errors)
+            {
+                string fieldName = error.Key.ToLower();
+                string combinedError = string.Join("\n", error.Value);
+
+                switch (fieldName)
+                {
+                    case "firstname":
+                        errorProvider.SetError(txtFirstName, combinedError);
+                        break;
+                    case "lastname":
+                        errorProvider.SetError(txtLastName, combinedError);
+                        break;
+                    case "username":
+                        errorProvider.SetError(txtUsername, combinedError);
+                        break;
+                    case "email":
+                        errorProvider.SetError(txtEmail, combinedError);
+                        break;
+                    case "password":
+                        errorProvider.SetError(txtPassword, combinedError);
+                        break;
+                    case "confirmpassword":
+                        errorProvider.SetError(txtConfirmPassword, combinedError);
+                        break;
+                    default:
+                        MessageBox.Show($"Unhandled error field: {fieldName}", "Warning",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                }
+            }
+        }
+
+
     }
 }

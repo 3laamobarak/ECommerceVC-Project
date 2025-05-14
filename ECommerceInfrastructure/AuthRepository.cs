@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceInfrastructure
 {
-   public class AuthRepository:IAuthRepository
+    public class AuthRepository:IAuthRepository
     {
         private readonly AppDBContext _context;
         public AuthRepository(AppDBContext context)
@@ -32,7 +32,15 @@ namespace ECommerceInfrastructure
         {
             return await _context.Users.AnyAsync(u => u.Username == username);
         }
+        public async Task<bool> EmailExistsAsync(string email, int currentUserId)
+        {
+            return await _context.Users.AnyAsync(u => u.Email == email && u.Id != currentUserId);
+        }
 
+        public async Task<bool> UsernameExistsAsync(string username, int currentUserId)
+        {
+            return await _context.Users.AnyAsync(u => u.Username == username && u.Id != currentUserId);
+        }
 
     }
 }

@@ -89,5 +89,76 @@ namespace ECommerceApplication.Services.AuthServices
 
             return new LoginResultDto { Success = true, Message = "Login successful" };
         }
+        public async Task<UpdateUserResultDTO> ChangePasswordAsync(int userId, string oldPassword, string newPassword)
+        {
+            if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
+            {
+                return new UpdateUserResultDTO { Success = false, Message = "Old and new passwords are required." };
+            }
+
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null || !_passwordHasher.VerifyPassword(user.Password, oldPassword))
+            {
+                return new UpdateUserResultDTO { Success = false, Message = "Incorrect old password." };
+            }
+
+            user.Password = _passwordHasher.HashPassword(newPassword);
+            var updateSuccess = await _userRepository.UpdateAsync(user);
+            if (!updateSuccess)
+            {
+                return new UpdateUserResultDTO { Success = false, Message = "Failed to change password." };
+            }
+
+            return new UpdateUserResultDTO { Success = true, Message = "Password changed successfully." };
+        }
+
+        public async Task<ValidationResultDTO> UpdateUserAsync(UpdateUserDTO dto)
+        {
+
+            var result = GenericValidator.Validate(dto);
+
+            if (!result.Success)
+                return result;
+
+            var user = await _userRepository.GetByIdAsync(dto.UserId);
+            if (user == null || !_passwordHasher.VerifyPassword(user.Password, dto.Password))
+            {
+                result.Success = false;
+                AddError(result, "Password", "INCorrect Password  .");
+
+            }
+
+            if (await _authRepository.UsernameExistsAsync(dto.Username,dto.UserId))
+            {
+                result.Success = false;
+                AddError(result, "Username", "Username is already taken by another user .");
+            }
+
+            if (await _authRepository.EmailExistsAsync(dto.Email,dto.UserId))
+            {
+                result.Success = false;
+                AddError(result, "Email", "Email is already registered by another user .");
+            }
+            if (!result.Success)
+                return result;
+            var sessionUser = new SessionUserDto
+            {
+                UserId = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                Role = user.Role
+            };
+            user.Username = dto.Username;
+            user.FirstName = dto.FirstName;
+            user.LastName = dto.LastName;
+            user.Email = dto.Email;
+            var updateSuccess = await _userRepository.UpdateAsync(user);
+            if (updateSuccess)
+            {
+                result.Success = true;
+                SessionManager.SetSession(sessionUser);
+            }
+            return result;
+        }
     }
 }
