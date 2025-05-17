@@ -6,6 +6,8 @@ namespace ECommercePresentation.Client
     {
         private System.Windows.Forms.PictureBox picMainImage;
         private System.Windows.Forms.Label lblBrandAndName;
+        private System.Windows.Forms.Label lblDescription; // Added for description
+        // private System.Windows.Forms.Label lblCategory; // Added for category
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Button btnAddToCart;
         private System.Windows.Forms.Label lblDeliveryInfo;
@@ -61,11 +63,34 @@ namespace ECommercePresentation.Client
             };
             pnlProductInfo.Controls.Add(lblBrandAndName);
 
+            // Description
+            lblDescription = new System.Windows.Forms.Label
+            {
+                Text = "Loading description...",
+                Location = new System.Drawing.Point(10, 90), // Positioned directly below lblBrandAndName
+                Size = new System.Drawing.Size(360, 60), // Increased height to accommodate longer text
+                Font = new System.Drawing.Font("Segoe UI", 10F),
+                ForeColor = System.Drawing.Color.Black,
+                AutoSize = false // Allow wrapping
+            };
+            pnlProductInfo.Controls.Add(lblDescription);
+
+            // Category
+            // lblCategory = new System.Windows.Forms.Label
+            // {
+            //     Text = "Category: Loading...",
+            //     Location = new System.Drawing.Point(10, 160), // Positioned below lblDescription
+            //     Size = new System.Drawing.Size(360, 20),
+            //     Font = new System.Drawing.Font("Segoe UI", 10F),
+            //     ForeColor = System.Drawing.Color.Gray
+            // };
+            // pnlProductInfo.Controls.Add(lblCategory);
+
             // Price
             lblPrice = new System.Windows.Forms.Label
             {
                 Text = "$0.00",
-                Location = new System.Drawing.Point(10, 100),
+                Location = new System.Drawing.Point(10, 190), // Adjusted to account for new labels
                 Size = new System.Drawing.Size(360, 40),
                 Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.Black
@@ -104,6 +129,5 @@ namespace ECommercePresentation.Client
 
             this.Controls.Add(tblMain);
         }
-        
     }
 }

@@ -35,42 +35,36 @@ namespace ECommercePresentation.AuthForms
 
             if (result.Success)
             {
-                MessageBox.Show("Login successful!", "Success",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Store session (uncomment if SessionManager is implemented)
-                // SessionManager.SetSession(result.User);
-
-                this.Hide();
-                // session manager
-                if(SessionManager.Role == UserRole.Admin || SessionManager.Role == UserRole.SuperAdmin )
+                if (SessionManager.IsActive == IsActive.Inactive)
                 {
-                    if(SessionManager.IsActive== IsActive.Active)
+                    MessageBox.Show("Your account is inactive. Please contact support.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+
+
+                    MessageBox.Show("Login successful!", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Store session (uncomment if SessionManager is implemented)
+                    // SessionManager.SetSession(result.User);
+
+                    this.Hide();
+                    // session manager
+                    if (SessionManager.Role == UserRole.Admin || SessionManager.Role == UserRole.SuperAdmin)
                     {
                         var baseForm = Program.Resolve<Base>();
                         baseForm.FormClosed += (s, args) => this.Close();
                         baseForm.Show();
                     }
-                    else
-                    {
-                        MessageBox.Show("Your account is inactive. Please contact support.", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else if(SessionManager.Role == UserRole.Client)
-                {
-                    if (SessionManager.IsActive == IsActive.Active)
+                    else if (SessionManager.Role == UserRole.Client)
                     {
                         var clientOrder = Program.Resolve<ProductDashboardForm>();
                         clientOrder.FormClosed += (s, args) => this.Close();
                         clientOrder.Show();
                     }
-                    else
-                    {
-                        MessageBox.Show("Your account is inactive. Please contact support.", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                } 
+                }
             }
             else
             {

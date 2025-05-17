@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace ECommerceDTOs
 {
-   public class RegisterUserDto
+    public class RegisterUserDto
     {
         [Required(ErrorMessage = "Username is required.")]
+        [MinLength(6, ErrorMessage = "Username must be at least 6 characters .")]
 
         public string Username { get; set; }
         [Required(ErrorMessage = "Password is required.")]

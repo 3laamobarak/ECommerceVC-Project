@@ -56,23 +56,5 @@ namespace ECommercePresentation
             descLabel.Text = description;
             priceLabel.Text = $"${price:F2}";
         }
-        // public ProductCard()
-        // {
-        //     InitializeComponent();
-        // }
-        //
-        // public void UpdateCard(int productId, string name, string description, decimal price, Image image)
-        // {
-        //     ProductId = productId;
-        //     ItemName = name;
-        //     Description = description;
-        //     Price = price;
-        //     ProductImage = image;
-        //
-        //     pictureBox.Image = image;
-        //     nameLabel.Text = name;
-        //     descLabel.Text = description;
-        //     priceLabel.Text = $"${price:F2}";
-        // }
     }
 }

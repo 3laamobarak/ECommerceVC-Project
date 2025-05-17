@@ -4,17 +4,18 @@ using ECommerceApplication.Validators;
 using ECommerceDTOs;
 using ECommerceModels.Enums;
 using EcommercModels;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
- 
+
 namespace ECommerceApplication.Services.AuthServices
 {
 
-    public class AuthService: IAuthService
+    public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher _passwordHasher;
@@ -26,10 +27,10 @@ namespace ECommerceApplication.Services.AuthServices
             _passwordHasher = passwordHasher;
             _authRepository = authRepository;
         }
-        public async Task<RegistrationResultDTO> RegisterAsync(RegisterUserDto dto)
+        public async Task<ValidationResultDTO> RegisterAsync(RegisterUserDto dto)
         {
-            var result = RegisterUserValidator.Validate(dto);
-            result.RegisterationUserData = dto;
+            var result = GenericValidator.Validate(dto);
+
             if (!result.Success)
                 return result;
 
@@ -52,7 +53,7 @@ namespace ECommerceApplication.Services.AuthServices
             {
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
-                 Role = UserRole.Client,
+                Role = UserRole.Client,
 
                 Username = dto.Username,
                 Email = dto.Email,
@@ -63,7 +64,7 @@ namespace ECommerceApplication.Services.AuthServices
             result.Success = true;
             return result;
         }
-        private void AddError(RegistrationResultDTO result, string field, string message)
+        private void AddError(ValidationResultDTO result, string field, string message)
         {
             if (!result.Errors.ContainsKey(field))
                 result.Errors[field] = new List<string>();
@@ -76,7 +77,12 @@ namespace ECommerceApplication.Services.AuthServices
             {
                 return new LoginResultDto { Success = false, Message = "Invalid credentials" };
             }
+            if (user.IsActive == IsActive.Inactive)
+            {
+                return new LoginResultDto { Success = false, Message = "Your Account Is IN Active" };
+            }
 
+            await _userRepository.UpdateLastLoginDateAsync(user.Id, DateTime.Now);
             var sessionUser = new SessionUserDto
             {
                 UserId = user.Id,
@@ -89,6 +95,7 @@ namespace ECommerceApplication.Services.AuthServices
 
             return new LoginResultDto { Success = true, Message = "Login successful" };
         }
+
         public async Task<UpdateUserResultDTO> ChangePasswordAsync(int userId, string oldPassword, string newPassword)
         {
             if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
@@ -128,19 +135,21 @@ namespace ECommerceApplication.Services.AuthServices
 
             }
 
-            if (await _authRepository.UsernameExistsAsync(dto.Username,dto.UserId))
+            if (await _authRepository.UsernameExistsAsync(dto.Username, dto.UserId))
             {
                 result.Success = false;
                 AddError(result, "Username", "Username is already taken by another user .");
             }
 
-            if (await _authRepository.EmailExistsAsync(dto.Email,dto.UserId))
+            if (await _authRepository.EmailExistsAsync(dto.Email, dto.UserId))
             {
                 result.Success = false;
                 AddError(result, "Email", "Email is already registered by another user .");
             }
+
             if (!result.Success)
                 return result;
+
             var sessionUser = new SessionUserDto
             {
                 UserId = user.Id,
@@ -148,17 +157,42 @@ namespace ECommerceApplication.Services.AuthServices
                 Email = user.Email,
                 Role = user.Role
             };
+
+
+
             user.Username = dto.Username;
             user.FirstName = dto.FirstName;
             user.LastName = dto.LastName;
             user.Email = dto.Email;
+
             var updateSuccess = await _userRepository.UpdateAsync(user);
             if (updateSuccess)
             {
                 result.Success = true;
                 SessionManager.SetSession(sessionUser);
+
+
             }
+
+
+
+
             return result;
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

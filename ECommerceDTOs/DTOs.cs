@@ -10,7 +10,7 @@ namespace ECommerceDTOs
         public int ProductID { get; set; }
         public int Quantity { get; set; }
         public DateTime DateAdded { get; set; }
-        
+
         // Navigation properties
         public ProductDto Product { get; set; }
         public UserDto User { get; set; }
@@ -48,7 +48,7 @@ namespace ECommerceDTOs
         public int OrderID { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set; }
-        
+
         // Navigation properties
         public ProductDto Product { get; set; }
     }
@@ -60,7 +60,7 @@ namespace ECommerceDTOs
         public decimal TotalAmount { get; set; }
         public OrderStatus Status { get; set; }
         public DateTime? DateProcessed { get; set; }
-        
+
         // Navigation properties
         public UserDto User { get; set; }
         public List<OrderDetailDto> OrderDetails { get; set; }
@@ -68,7 +68,8 @@ namespace ECommerceDTOs
     public class ProductDto
     {
         public int ProductID { get; set; }
-        [Required][MaxLength(100)]
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
         [MaxLength(500)]
         public string Description { get; set; }
@@ -82,7 +83,7 @@ namespace ECommerceDTOs
         public int CategoryID { get; set; }
         [MaxLength(255)]
         public string ImagePath { get; set; }
-    
+
         // Add this for category name
         public string CategoryName { get; set; } // New property
         // Navigation property
@@ -99,7 +100,7 @@ namespace ECommerceDTOs
         public IsActive IsActive { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? LastLoginDate { get; set; }
-        
+
         // Navigation properties (for UI display purposes)
         public List<OrderDto> Orders { get; set; }
     }
@@ -108,7 +109,7 @@ namespace ECommerceDTOs
         public int CategoryID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        
+
         // Navigation properties
         public List<ProductDto> Products { get; set; }
     }

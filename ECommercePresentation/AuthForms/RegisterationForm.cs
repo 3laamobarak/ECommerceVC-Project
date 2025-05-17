@@ -27,7 +27,7 @@ namespace ECommercePresentation.AuthForms
                 ConfirmPassword = txtConfirmPassword.Text
             };
 
-            RegistrationResultDTO result = await _authService.RegisterAsync(userDto);
+            ValidationResultDTO result = await _authService.RegisterAsync(userDto);
 
             if (!result.Success)
             {
@@ -42,7 +42,7 @@ namespace ECommercePresentation.AuthForms
             }
         }
 
-        private void ShowValidationErrors(RegistrationResultDTO result)
+        private void ShowValidationErrors(ValidationResultDTO result)
         {
             errorProvider.Clear();
 

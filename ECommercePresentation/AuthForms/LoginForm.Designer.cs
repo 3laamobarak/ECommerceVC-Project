@@ -117,8 +117,8 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(400, 25);
             this.txtUsername.TabIndex = 2;
-            this.txtUsername.GotFocus += (s, e) => this.txtUsername.BackColor = System.Drawing.Color.FromArgb(240, 242, 245);
-            this.txtUsername.LostFocus += (s, e) => this.txtUsername.BackColor = System.Drawing.Color.White;
+            //  this.txtUsername.GotFocus += (s, e) => this.txtUsername.BackColor = System.Drawing.Color.FromArgb(240, 242, 245);
+            // this.txtUsername.LostFocus += (s, e) => this.txtUsername.BackColor = System.Drawing.Color.White;
             this.toolTip.SetToolTip(this.txtUsername, "Enter your username or email");
 
             // lblPassword
@@ -139,8 +139,8 @@
             this.txtPassword.Size = new System.Drawing.Size(400, 25);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
-            this.txtPassword.GotFocus += (s, e) => this.txtPassword.BackColor = System.Drawing.Color.FromArgb(240, 242, 245);
-            this.txtPassword.LostFocus += (s, e) => this.txtPassword.BackColor = System.Drawing.Color.White;
+            //   this.txtPassword.GotFocus += (s, e) => this.txtPassword.BackColor = System.Drawing.Color.FromArgb(240, 242, 245);
+            //  this.txtPassword.LostFocus += (s, e) => this.txtPassword.BackColor = System.Drawing.Color.White;
             this.toolTip.SetToolTip(this.txtPassword, "Enter your password");
 
             // btnLogin
@@ -156,8 +156,8 @@
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            this.btnLogin.MouseEnter += (s, e) => this.btnLogin.BackColor = System.Drawing.Color.FromArgb(11, 94, 215);
-            this.btnLogin.MouseLeave += (s, e) => this.btnLogin.BackColor = System.Drawing.Color.FromArgb(13, 110, 253);
+            //this.btnLogin.MouseEnter += (s, e) => this.btnLogin.BackColor = System.Drawing.Color.FromArgb(11, 94, 215);
+            //this.btnLogin.MouseLeave += (s, e) => this.btnLogin.BackColor = System.Drawing.Color.FromArgb(13, 110, 253);
             this.toolTip.SetToolTip(this.btnLogin, "Login to your account");
 
             // btnRegister
@@ -173,8 +173,8 @@
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            this.btnRegister.MouseEnter += (s, e) => this.btnRegister.BackColor = System.Drawing.Color.FromArgb(90, 99, 107);
-            this.btnRegister.MouseLeave += (s, e) => this.btnRegister.BackColor = System.Drawing.Color.FromArgb(108, 117, 125);
+            //this.btnRegister.MouseEnter += (s, e) => this.btnRegister.BackColor = System.Drawing.Color.FromArgb(90, 99, 107);
+            //this.btnRegister.MouseLeave += (s, e) => this.btnRegister.BackColor = System.Drawing.Color.FromArgb(108, 117, 125);
             this.toolTip.SetToolTip(this.btnRegister, "Create a new account");
 
             // LoginForm

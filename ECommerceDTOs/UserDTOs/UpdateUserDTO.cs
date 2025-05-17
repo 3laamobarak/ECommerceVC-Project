@@ -14,6 +14,7 @@ namespace ECommerceDTOs
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Username is required.")]
+        [MinLength(6, ErrorMessage = "Username must be at least 6 characters .")]
 
         public string Username { get; set; }
 

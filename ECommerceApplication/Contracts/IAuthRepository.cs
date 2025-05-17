@@ -13,6 +13,6 @@ namespace ECommerceApplication.Contracts
         Task<bool> UsernameExistsAsync(string username);
         Task<bool> UsernameExistsAsync(string username, int currentUserId);
         Task<bool> EmailExistsAsync(string email, int currentUserId);
-       
+
     }
 }

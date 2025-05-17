@@ -6,6 +6,7 @@
         private Panel navBar;
         private Panel contentPanel;
         private Panel productPanelContainer;
+        private Label welcomeLabel; // Made welcomeLabel a class field for accessibility
 
         protected override void Dispose(bool disposing)
         {
@@ -98,9 +99,9 @@
                 Height = 60
             };
 
-            Label welcomeLabel = new Label
+            welcomeLabel = new Label // Changed from local variable to class field
             {
-                Text = "Welcome, Dominic Keller",
+                Text = "Welcome Guest", // Default text
                 ForeColor = Color.Black,
                 Font = new Font("Segoe UI", 12F, FontStyle.Bold),
                 TextAlign = ContentAlignment.MiddleCenter,

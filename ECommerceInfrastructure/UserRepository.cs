@@ -89,5 +89,14 @@ namespace ECommerceInfrastructure
             user.IsActive = IsActive.Inactive;
             return await _context.SaveChangesAsync() > 0;
         }
+        public async Task UpdateLastLoginDateAsync(int userId, DateTime lastLogin)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+                throw new KeyNotFoundException($"User {userId} not found!");
+
+            user.LastLoginDate = lastLogin;
+            await _context.SaveChangesAsync();
+        }
     }
 }

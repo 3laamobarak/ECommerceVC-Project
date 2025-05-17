@@ -1,4 +1,4 @@
-﻿ 
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,35 +9,35 @@ using ECommerceDTOs;
 
 namespace ECommerceApplication.Validators
 {
-        public static class RegisterUserValidator
+    public static class RegisterUserValidator
+    {
+        public static RegistrationResultDTO Validate(RegisterUserDto dto)
         {
-            public static RegistrationResultDTO Validate(RegisterUserDto dto)
+            var context = new ValidationContext(dto);
+            var results = new List<ValidationResult>();
+            var registrationResult = new RegistrationResultDTO();
+
+            bool isValid = Validator.TryValidateObject(dto, context, results, true);
+
+            if (!isValid)
             {
-                var context = new ValidationContext(dto);
-                var results = new List<ValidationResult>();
-                var registrationResult = new RegistrationResultDTO();
+                registrationResult.Success = false;
 
-                bool isValid = Validator.TryValidateObject(dto, context, results, true);
-
-                if (!isValid)
+                foreach (var validationResult in results)
                 {
-                    registrationResult.Success = false;
-
-                    foreach (var validationResult in results)
+                    foreach (var memberName in validationResult.MemberNames)
                     {
-                        foreach (var memberName in validationResult.MemberNames)
-                        {
-                            if (!registrationResult.Errors.ContainsKey(memberName))
-                                registrationResult.Errors[memberName] = new List<string>();
+                        if (!registrationResult.Errors.ContainsKey(memberName))
+                            registrationResult.Errors[memberName] = new List<string>();
 
-                            registrationResult.Errors[memberName].Add(validationResult.ErrorMessage);
-                        }
+                        registrationResult.Errors[memberName].Add(validationResult.ErrorMessage);
                     }
                 }
-
-                return registrationResult;
             }
+
+            return registrationResult;
         }
+    }
 
 }
 

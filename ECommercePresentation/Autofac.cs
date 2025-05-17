@@ -56,7 +56,7 @@ namespace ECommercePresentation
             builder.RegisterType<ClientOrder>().AsSelf().InstancePerDependency();
             builder.RegisterType<ProductDashboardForm>().AsSelf().InstancePerDependency();
             //builder.RegisterType<ProductDetailForm>().AsSelf().InstancePerDependency();
-            
+
 
             // Build the container
             var container = builder.Build();

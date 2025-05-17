@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceInfrastructure
 {
-    public class AuthRepository:IAuthRepository
+    public class AuthRepository : IAuthRepository
     {
         private readonly AppDBContext _context;
         public AuthRepository(AppDBContext context)
@@ -41,6 +41,7 @@ namespace ECommerceInfrastructure
         {
             return await _context.Users.AnyAsync(u => u.Username == username && u.Id != currentUserId);
         }
+
 
     }
 }

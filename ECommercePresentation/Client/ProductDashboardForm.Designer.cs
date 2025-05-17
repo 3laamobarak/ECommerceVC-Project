@@ -80,7 +80,7 @@ namespace ECommercePresentation.Client
             };
             this.lblWelcome = new System.Windows.Forms.Label
             {
-                Text = "Welcome, Dominic Keller",
+                Text = "Welcome, Guest", // Default to Guest
                 Font = new System.Drawing.Font("Segoe UI", 12F),
                 AutoSize = true,
                 Location = new System.Drawing.Point((this.topNavbar.Width - 200) / 2, 20)

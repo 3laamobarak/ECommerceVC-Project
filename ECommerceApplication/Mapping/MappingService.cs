@@ -88,15 +88,15 @@ namespace ECommerceApplication.Mapping
                 CategoryName = product.Category?.Name // Map category name
             };
         }
-        
+
         #endregion
-        
+
         #region Category Mappings
-        
+
         public CategoryDto MapToCategoryDto(Category category)
         {
             if (category == null) return null;
-            
+
             return new CategoryDto
             {
                 CategoryID = category.CategoryID,
@@ -110,7 +110,7 @@ namespace ECommerceApplication.Mapping
         public Category MapToCategoryEntity(CategoryDto categoryDto)
         {
             if (categoryDto == null) return null;
-            
+
             return new Category
             {
                 CategoryID = categoryDto.CategoryID,
@@ -119,15 +119,15 @@ namespace ECommerceApplication.Mapping
                 // Products relationship is handled separately
             };
         }
-        
+
         #endregion
-        
+
         #region Order Mappings
-        
+
         public OrderDto MapToOrderDto(Order order)
         {
             if (order == null) return null;
-            
+
             return new OrderDto
             {
                 OrderID = order.OrderID,
@@ -145,7 +145,7 @@ namespace ECommerceApplication.Mapping
         public Order MapToOrderEntity(OrderDto orderDto)
         {
             if (orderDto == null) return null;
-            
+
             return new Order
             {
                 OrderID = orderDto.OrderID,
@@ -157,15 +157,15 @@ namespace ECommerceApplication.Mapping
                 // Relationships are handled separately
             };
         }
-        
+
         #endregion
-        
+
         #region OrderDetail Mappings
-        
+
         public OrderDetailDto MapToOrderDetailDto(OrderDetail orderDetail)
         {
             if (orderDetail == null) return null;
-            
+
             return new OrderDetailDto
             {
                 OrderDetailID = orderDetail.OrderDetailID,
@@ -190,7 +190,7 @@ namespace ECommerceApplication.Mapping
         public OrderDetail MapToOrderDetailEntity(OrderDetailDto orderDetailDto)
         {
             if (orderDetailDto == null) return null;
-            
+
             return new OrderDetail
             {
                 OrderDetailID = orderDetailDto.OrderDetailID,
@@ -200,15 +200,15 @@ namespace ECommerceApplication.Mapping
                 // Relationships are handled separately
             };
         }
-        
+
         #endregion
-        
+
         #region CartItem Mappings
-        
+
         public CartItemDto MapToCartItemDto(CartItem cartItem)
         {
             if (cartItem == null) return null;
-            
+
             return new CartItemDto
             {
                 CartItemID = cartItem.CartItemID,
@@ -225,7 +225,7 @@ namespace ECommerceApplication.Mapping
         public CartItem MapToCartItemEntity(CartItemDto cartItemDto)
         {
             if (cartItemDto == null) return null;
-            
+
             return new CartItem
             {
                 CartItemID = cartItemDto.CartItemID,
@@ -236,7 +236,7 @@ namespace ECommerceApplication.Mapping
                 // Relationships are handled separately
             };
         }
-        
+
         #endregion
     }
 }

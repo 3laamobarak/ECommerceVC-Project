@@ -1,6 +1,7 @@
 ﻿using ECommerceApplication.Services.ProductService;
 using ECommerceApplication.Services.CartItemService;
 using ECommerceApplication.Services.IOrderDetailsService;
+using ECommerceApplication.Services.CategoryService; // Added for category service
 using ECommerceDTOs;
 using System;
 using System.Drawing;
@@ -25,6 +26,7 @@ namespace ECommercePresentation.Client
         private readonly IOrderDetailService _orderDetailService;
         private readonly IUserService _userService;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly ICategoryService _categoryService; // Added for category service
 
         public ProductDashboardForm(
             IProductService productService,
@@ -33,7 +35,8 @@ namespace ECommercePresentation.Client
             IOrderDetailService orderDetailService,
             IAuthService authService,
             IUserService userService,
-            IPasswordHasher passwordHasher
+            IPasswordHasher passwordHasher,
+            ICategoryService categoryService // Added parameter
             )
         {
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
@@ -43,9 +46,33 @@ namespace ECommercePresentation.Client
             _orderDetailService = orderDetailService ?? throw new ArgumentNullException(nameof(orderDetailService));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
+            _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService)); // Initialize category service
             InitializeComponent();
+            UpdateWelcomeLabel(); // Update welcome label with username
             SetupNavigation();
             LoadProductsAsync();
+        }
+
+        private async void UpdateWelcomeLabel()
+        {
+            try
+            {
+                if (SessionManager.IsAuthenticated)
+                {
+                    int userId = SessionManager.UserId;
+                    var user = await _userService.GetUserByIdAsync(userId);
+                    lblWelcome.Text = $"Welcome, {user?.Username ?? "User"}";
+                }
+                else
+                {
+                    lblWelcome.Text = "Welcome, Guest";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching username: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblWelcome.Text = "Welcome, Guest";
+            }
         }
 
         private void SetupNavigation()
@@ -86,13 +113,12 @@ namespace ECommercePresentation.Client
                         {
                             if (!SessionManager.IsAuthenticated)
                             {
-                                MessageBox.Show("Please log in to view cart.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Please log in to view profile.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
-      
 
                             int userId = SessionManager.UserId;
-                            var profileForm = new Profile(_userService, _passwordHasher);
+                            var profileForm = new Profile(_userService, _passwordHasher, _authService);
                             profileForm.LoadUserProfile(userId);
                             LoadProfileFormContent();
                         }
@@ -151,10 +177,16 @@ namespace ECommercePresentation.Client
 
                 foreach (var product in products)
                 {
+                    if (product.UnitsInStock == 0)
+                    {
+                        continue;
+                    }
                     var card = new ProductCard();
                     Image productImage = null;
+                    string categoryName = "Unknown";
                     try
                     {
+                        // Load image
                         if (!string.IsNullOrEmpty(product.ImagePath) && File.Exists(product.ImagePath))
                         {
                             productImage = Image.FromFile(product.ImagePath);
@@ -163,12 +195,21 @@ namespace ECommercePresentation.Client
                         {
                             productImage = Properties.Resources.logo;
                         }
+
+                        // // Fetch category name
+                        // if (product.CategoryId > 0) // Assuming CategoryId is a property in ProductDTO
+                        // {
+                        //     var category = await _categoryService.GetCategoryByIdAsync(product.CategoryId);
+                        //     categoryName = category?.CategoryName ?? "Unknown";
+                        // }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error loading image for product {product.Name}: {ex.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Error loading image or category for product {product.Name}: {ex.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         productImage = Properties.Resources.logo;
+                        categoryName = "Unknown";
                     }
+
 
                     card.UpdateCard(
                         product.ProductID,
@@ -207,7 +248,7 @@ namespace ECommercePresentation.Client
 
                     card.CardClicked += (s, productId) =>
                     {
-                        var productDetailForm = new ProductDetailForm(_cartItemService, _productService, productId);
+                        var productDetailForm = new ProductDetailForm(_cartItemService, _productService, productId); // Updated to pass _categoryService
                         productDetailForm.ShowDialog();
                     };
 
@@ -259,28 +300,7 @@ namespace ECommercePresentation.Client
             contentPanel.Controls.Add(cartItemForm);
             cartItemForm.Show();
         }
-        //public void LoadUserProfile(int userId)
-        //{
-        //    _userId = userId;
-        //    LoadUserDetailsAsync();
-        //}
 
-        //private async void LoadUserDetailsAsync()
-        //{
-        //    try
-        //    {
-        //        var userDetails = await _userService.GetUserDetailsAsync(_userId);
-        //        txtUsername.Text = userDetails.Username;
-        //        txtEmail.Text = userDetails.Email;
-        //        txtFirstName.Text = userDetails.FirstName;
-        //        txtLastName.Text = userDetails.LastName;
-        //        //    cbStatus.SelectedIndex = userDetails.IsActive == IsActive.Active ? 0 : 1;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Error loading user details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
         private void LoadProfileFormContent()
         {
             contentPanel.Controls.Clear();
@@ -288,13 +308,18 @@ namespace ECommercePresentation.Client
             lblCategory.Visible = false;
             btnCart.Visible = false;
 
-            var cartItemForm = new Profile(_userService,_passwordHasher);
-            cartItemForm.TopLevel = false;
-            cartItemForm.FormBorderStyle = FormBorderStyle.None;
-            cartItemForm.Dock = DockStyle.Fill;
-            contentPanel.Controls.Add(cartItemForm);
-            cartItemForm.Show();
+            var profile = new Profile(_userService, _passwordHasher, _authService);
+
+            int userId = SessionManager.UserId;
+            profile.LoadUserProfile(userId);
+
+            profile.TopLevel = false;
+            profile.FormBorderStyle = FormBorderStyle.None;
+            profile.Dock = DockStyle.Fill;
+            contentPanel.Controls.Add(profile);
+            profile.Show();
         }
+
         private void LoadOrderFormContent()
         {
             contentPanel.Controls.Clear();
@@ -302,7 +327,7 @@ namespace ECommercePresentation.Client
             lblCategory.Visible = false;
             btnCart.Visible = false;
 
-            var orderForm = new ClientOrder(_orderService,_orderDetailService, _userService);
+            var orderForm = new ClientOrder(_orderService, _orderDetailService, _userService);
             orderForm.TopLevel = false;
             orderForm.FormBorderStyle = FormBorderStyle.None;
             orderForm.Dock = DockStyle.Fill;

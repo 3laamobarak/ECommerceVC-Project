@@ -28,17 +28,17 @@ namespace ECommercePresentation
         private readonly IUserService _userService;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAuthService _authService;
-        
         private readonly IOrderDetailService _orderDetailService;
 
         private Panel dashboardPanel;
         private FlowLayoutPanel summaryCardsPanel;
 
-        public Base(IOrderService orderService, ICategoryService categoryService, IProductService productService, 
-                    ICartItemService cartItemService, IUserService userService, IPasswordHasher passwordHasher ,
+        public Base(IOrderService orderService, ICategoryService categoryService, IProductService productService,
+                    ICartItemService cartItemService, IUserService userService, IPasswordHasher passwordHasher,
                     IOrderDetailService orderDetailService, IAuthService authService)
         {
             InitializeComponent();
+
             _orderService = orderService;
             _categoryService = categoryService;
             _productService = productService;
@@ -47,8 +47,34 @@ namespace ECommercePresentation
             _cartItemService = cartItemService;
             _userService = userService;
             _passwordHasher = passwordHasher;
+
+            // Set welcome label text with username
+            UpdateWelcomeLabel();
+
             LoadProductsAsync();
             ShowDashboardPanel(null, null); // Default to dashboard
+        }
+
+        private async void UpdateWelcomeLabel()
+        {
+            try
+            {
+                if (SessionManager.IsAuthenticated)
+                {
+                    int userId = SessionManager.UserId;
+                    var user = await _userService.GetUserByIdAsync(userId);
+                    welcomeLabel.Text = $"Welcome {user?.Username ?? "User"}";
+                }
+                else
+                {
+                    welcomeLabel.Text = "Welcome Guest";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching username: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                welcomeLabel.Text = "Welcome Guest";
+            }
         }
 
         private async void LoadProductsAsync()
@@ -135,8 +161,7 @@ namespace ECommercePresentation
 
         private void ProductButton_Click(object sender, EventArgs e)
         {
-            LoadFormInPanel(new ProductForm(_productService,_categoryService));
-
+            LoadFormInPanel(new ProductForm(_productService, _categoryService));
         }
 
         private void CartItemButton_Click(object sender, EventArgs e)
@@ -154,7 +179,7 @@ namespace ECommercePresentation
             }
 
             int userId = SessionManager.UserId;
-            var profileForm = new Profile(_userService, _passwordHasher);
+            var profileForm = new Profile(_userService, _passwordHasher, _authService);
             profileForm.LoadUserProfile(userId);
             LoadFormInPanel(profileForm);
         }

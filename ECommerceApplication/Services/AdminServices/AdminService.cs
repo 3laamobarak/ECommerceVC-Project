@@ -21,7 +21,7 @@ namespace ECommerceApplication.Services.AdminServices
 
         public async Task<List<User>> GetAllByRole(UserRole role)
         {
-            return await _adminRepository.GetAll().Where(u=>u.Role == role).ToListAsync();
+            return await _adminRepository.GetAll().Where(u => u.Role == role).ToListAsync();
         }
 
         public async Task ActivateUserAsync(int userId)

@@ -1,5 +1,6 @@
 using ECommerceApplication.Services.CartItemService;
 using ECommerceApplication.Services.ProductService;
+using ECommerceApplication.Services.CategoryService; // Added for category service
 using ECommerceDTOs;
 using Shared.Helpers;
 using System;
@@ -11,6 +12,7 @@ namespace ECommercePresentation.Client
     {
         private readonly ICartItemService _cartItemService;
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService; // Added for category service
         private readonly int _productId;
         private ProductDto _product;
 
@@ -18,6 +20,7 @@ namespace ECommercePresentation.Client
         {
             _cartItemService = cartItemService ?? throw new ArgumentNullException(nameof(cartItemService));
             _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+            //_categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService)); // Initialize category service
             _productId = productId;
             InitializeComponent();
             LoadProductDetails();
@@ -35,9 +38,27 @@ namespace ECommercePresentation.Client
                     return;
                 }
 
+                // Fetch category name
+                // string categoryName = "Unknown";
+                // try
+                // {
+                //     if (_product.CategoryID > 0) // Assuming CategoryId is a property in ProductDto
+                //     {
+                //         var category = await _categoryService.GetCategoryByIdAsync(_product.CategoryId);
+                //         categoryName = category?.CategoryName ?? "Unknown";
+                //     }
+                // }
+                // catch (Exception ex)
+                // {
+                //     MessageBox.Show($"Error loading category: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //     categoryName = "Unknown";
+                // }
+
                 // Update UI with product details
                 this.Text = $"Product Detail - {_product.Name}";
                 lblBrandAndName.Text = _product.Name;
+                lblDescription.Text = _product.Description ?? "No description available"; // Set description
+                //lblCategory.Text = $"Category: {categoryName}"; // Set category
                 lblPrice.Text = $"${_product.Price:F2}";
                 lblDeliveryInfo.Text = _product.Price >= 30.0m ? "Free delivery" : "Delivery charges apply";
 

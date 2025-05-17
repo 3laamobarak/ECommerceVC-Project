@@ -156,33 +156,32 @@ namespace ECommercePresentation
 
         private async void BtnSave_Click(object sender, EventArgs e)
         {
-           // if (!ValidateInputs()) return;
+            // if (!ValidateInputs()) return;
 
-             
-                var updatedUser = new UpdateUserDTO
-                {
-                    Username = txtUsername.Text.Trim(),
-                    Email = txtEmail.Text.Trim(),
-                    FirstName = txtFirstName.Text.Trim(),
-                    LastName = txtLastName.Text.Trim(),
-                    UserId = _userId,
-                    Password = txtPassword.Text.Trim(),
-                    //    IsActive = cbStatus.SelectedIndex == 0 ? IsActive.Active : IsActive.Inactive
-                };
+
+            var updatedUser = new UpdateUserDTO
+            {
+                Username = txtUsername.Text.Trim(),
+                Email = txtEmail.Text.Trim(),
+                FirstName = txtFirstName.Text.Trim(),
+                LastName = txtLastName.Text.Trim(),
+                UserId = _userId,
+                Password = txtPassword.Text.Trim(),
+                //    IsActive = cbStatus.SelectedIndex == 0 ? IsActive.Active : IsActive.Inactive
+            };
             ValidationResultDTO result = await _authService.UpdateUserAsync(updatedUser);
- 
-                if (!result.Success)
-                {
-                    ShowValidationErrors(result);
-                }
-                else
-                {
-                    errorProvider.Clear();
-                    MessageBox.Show("Registration successful! Please log in.", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
+
+            if (!result.Success)
+            {
+                ShowValidationErrors(result);
             }
+            else
+            {
+                errorProvider.Clear();
+                MessageBox.Show("Registration successful! Please log in.", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
 
         private async void BtnChangePassword_Click(object sender, EventArgs e)

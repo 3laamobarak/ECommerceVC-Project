@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace ECommerceApplication.Services.AuthServices
 {
- public interface IAuthService
+    public interface IAuthService
     {
-         Task<LoginResultDto> LoginAsync(LoginDto loginDto);
-         Task<RegistrationResultDTO> RegisterAsync(RegisterUserDto dto);
-         Task<ValidationResultDTO> UpdateUserAsync( UpdateUserDTO updatedUser);
-         Task<UpdateUserResultDTO> ChangePasswordAsync(int userId, string oldPassword, string newPassword);
+        Task<LoginResultDto> LoginAsync(LoginDto loginDto);
+        Task<ValidationResultDTO> RegisterAsync(RegisterUserDto dto);
+        Task<ValidationResultDTO> UpdateUserAsync(UpdateUserDTO updatedUser);
+        Task<UpdateUserResultDTO> ChangePasswordAsync(int userId, string oldPassword, string newPassword);
 
 
     }
