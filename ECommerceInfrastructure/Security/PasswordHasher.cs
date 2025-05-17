@@ -11,12 +11,16 @@ namespace ECommerceInfrastructure.Security
     {
         public string HashPassword(string plainPassword)
         {
-            return BCrypt.Net.BCrypt.HashPassword(plainPassword);
+            using (var sha = System.Security.Cryptography.SHA256.Create())
+            {
+                var bytes = Encoding.UTF8.GetBytes(plainPassword);
+                var hash = sha.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
+            }
         }
-
         public bool VerifyPassword(string hashedPassword, string plainPassword)
         {
-            return BCrypt.Net.BCrypt.Verify(plainPassword, hashedPassword);
+            return HashPassword(plainPassword) == hashedPassword;
         }
     }
 }
